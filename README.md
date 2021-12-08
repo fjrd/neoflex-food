@@ -2,9 +2,9 @@
 
 Demo application developed as part of microservice architecture training at Neoflex company
 
+[link to MSA schema](https://miro.com/app/board/uXjVOd7LGZE=/?invite_link_id=860322798548)
+
 ## Installation
-
-
 
 ```bash
 TODO
