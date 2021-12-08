@@ -1,0 +1,55 @@
+version: '3.9'
+services:
+
+  #Loan request analyzer
+  orders-service:
+    container_name: orders-service
+    image: fjrd/orders-servicer:0.0.1
+    depends_on:
+      - kafka
+      - postgres-db
+      #redis
+    ports:
+    - 8081:8081
+    environment:
+      - POSTGRES_URL=jdbc:postgresql://postgres-orders/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - SERVER_PORT=8081
+    command: [ 'java', '-jar', '/app.jar' ]
+
+  #Kafka
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    expose:
+      - 2181
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=kafka
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CREATE_TOPIC=orders
+
+  #Orders DataBase
+  postgres-orders:
+    container_name: postgres-orders
+    image: postgres:alpine3.14
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    restart: unless-stopped
+    volumes:
+      - pg-orders-data:/var/lib/postgresql/data/
+
+volumes:
+  pg-orders-data:
