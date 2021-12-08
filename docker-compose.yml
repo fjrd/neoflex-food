@@ -1,7 +1,7 @@
 version: '3.9'
 services:
 
-  #Loan request analyzer
+  #Orders
   orders-service:
     container_name: orders-service
     image: fjrd/orders-servicer:0.0.1
