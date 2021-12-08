@@ -7,7 +7,7 @@ services:
     image: fjrd/orders-servicer:0.0.1
     depends_on:
       - kafka
-      - postgres-db
+      - postgres-orders
       #redis
     ports:
     - 8081:8081
