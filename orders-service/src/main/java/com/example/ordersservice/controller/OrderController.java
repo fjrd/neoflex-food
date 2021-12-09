@@ -22,22 +22,19 @@ public class OrderController {
     @GetMapping("/{customerId}")
     public ResponseEntity<List<OrderDto>> getOrdersByCustomerId(@RequestParam() UUID customerId){
         log.info("getOrdersByCustomerId(), customerId = {}", customerId);
-        //TODO
-        return null;
+        return ResponseEntity.ok(service.getOrdersByCustomerId(customerId));
     }
 
     @PostMapping
-    public ResponseEntity<OrderDto> createOrder(@RequestParam UUID customerId, @RequestBody @Valid OrderDto orderDto){
-        log.info("createOrder(), customerId = {}, orderDto = {}", customerId, orderDto);
-        //TODO
-        return null;
+    public ResponseEntity<OrderDto> createOrder(@RequestBody @Valid OrderDto orderDto){
+        log.info("createOrder(), orderDto = {}", orderDto);
+        return ResponseEntity.ok(service.createOrder(orderDto));
     }
 
-    @PutMapping("/customerId")
-    public ResponseEntity<OrderDto> updateOrder(@RequestParam UUID customerId, @RequestBody @Valid OrderDto orderDto){
-        log.info("updateOrder(), customerId = {}, orderDto = {}", customerId, orderDto);
-        //TODO
-        return null;
+    @PutMapping()
+    public ResponseEntity<OrderDto> updateOrder(@RequestBody @Valid OrderDto orderDto){
+        log.info("updateOrder(), orderDto = {}", orderDto);
+        return ResponseEntity.ok(service.updateOrder(orderDto));
     }
 
 }

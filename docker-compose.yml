@@ -2,32 +2,32 @@ version: '3.9'
 services:
 
   #Orders
-  orders-service:
-    container_name: orders-service
-    image: fjrd/orders-servicer:0.0.1
-    depends_on:
-      - kafka
-      - postgres-orders
-      #redis
-    ports:
-    - 8081:8081
-    environment:
-      - POSTGRES_URL=jdbc:postgresql://postgres-orders:5433/postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - SERVER_PORT=8081
-    command: [ 'java', '-jar', '/app.jar' ]
+#  nf-orders:
+#    container_name: orders-service
+#    image: fjrd/orders-servicer:0.0.1
+#    depends_on:
+#      - kafka
+#      - postgres-orders
+#      #redis
+#    ports:
+#    - 8081:8081
+#    environment:
+#      - POSTGRES_URL=jdbc:postgresql://postgres-orders:5433/postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#      - SERVER_PORT=8081
+#    command: [ 'java', '-jar', '/app.jar' ]
 
   #Kafka
   zookeeper:
     image: wurstmeister/zookeeper
-    container_name: zookeeper
+    container_name: nf-zookeeper
     expose:
       - 2181
 
   kafka:
     image: wurstmeister/kafka
-    container_name: kafka
+    container_name: nf-kafka
     ports:
       - "9092:9092"
     depends_on:
@@ -39,10 +39,10 @@ services:
 
   #Orders DataBase
   postgres-orders:
-    container_name: postgres-orders
+    container_name: nf-postgres-orders
     image: postgres:alpine3.14
     ports:
-      - 5433:5433
+      - 5433:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -53,7 +53,7 @@ services:
 
   #Customers DataBase
   postgres-customers:
-    container_name: postgres-customers
+    container_name: nf-postgres-customers
     image: postgres:alpine3.14
     ports:
       - 5432:5432
