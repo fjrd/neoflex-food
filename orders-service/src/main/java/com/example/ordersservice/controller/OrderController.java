@@ -25,16 +25,9 @@ public class OrderController {
         return ResponseEntity.ok(service.getOrdersByCustomerId(customerId));
     }
 
-    @PostMapping
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
     public ResponseEntity<OrderDto> createOrder(@RequestBody @Valid OrderDto orderDto){
         log.info("createOrder(), orderDto = {}", orderDto);
-        return ResponseEntity.ok(service.createOrder(orderDto));
+        return ResponseEntity.ok(service.createOrUpdateOrder(orderDto));
     }
-
-    @PutMapping()
-    public ResponseEntity<OrderDto> updateOrder(@RequestBody @Valid OrderDto orderDto){
-        log.info("updateOrder(), orderDto = {}", orderDto);
-        return ResponseEntity.ok(service.updateOrder(orderDto));
-    }
-
 }

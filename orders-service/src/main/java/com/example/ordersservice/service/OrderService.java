@@ -8,7 +8,6 @@ import java.util.UUID;
 public interface OrderService {
 
     List<OrderDto> getOrdersByCustomerId(UUID customerId);
-    OrderDto createOrder(OrderDto dto);
-    OrderDto updateOrder(OrderDto dto);
+    OrderDto createOrUpdateOrder(OrderDto orderDto);
 
 }
