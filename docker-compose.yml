@@ -18,6 +18,18 @@ services:
 #      - SERVER_PORT=8081
 #    command: [ 'java', '-jar', '/app.jar' ]
 
+
+ #Orders
+#  nf-processor:
+#    container_name: processor-service
+#    image: fjrd/processor-servicer:0.0.1
+#    depends_on:
+#      - kafka
+#    ports:
+#    - 8085:8085
+#    command: [ 'java', '-jar', '/app.jar' ]
+
+
   #Kafka
   zookeeper:
     image: wurstmeister/zookeeper
