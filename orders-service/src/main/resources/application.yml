@@ -14,6 +14,7 @@ spring:
   liquibase:
     enabled: true
     change-log: db/changelog/db.changelog-master.xml
+    #REMOVE ME
     drop-first: true
 
   redis:
@@ -22,9 +23,14 @@ spring:
 
 
   kafka:
+    producer:
+      bootstrap-servers: ${KAFKA_HOST_NAME:localhost:9092}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
     consumer:
-      bootstrap-servers: kafka:9092
-      group-id: analyzer
+      bootstrap-servers: ${KAFKA_HOST_NAME:localhost:9092}
+      group-id: orders
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
