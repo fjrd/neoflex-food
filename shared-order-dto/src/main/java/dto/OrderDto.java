@@ -3,17 +3,19 @@ package dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
-public class OrderDto {
+@NoArgsConstructor
+public class OrderDto implements Serializable {
 
-    @NotNull
     UUID id;
 
     @NotNull
