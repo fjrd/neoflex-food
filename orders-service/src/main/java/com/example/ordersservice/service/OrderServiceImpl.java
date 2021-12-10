@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-@CacheConfig
+@CacheConfig(cacheNames = "orders")
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    @Cacheable(key = "customerId")
+    @Cacheable
     public List<OrderDto> getOrdersByCustomerId(UUID customerId) {
         log.info("getOrdersByCustomersId(), customerId = {}", customerId);
         return repository.getOrdersByCustomerId(customerId)
@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @CachePut(key = "dto.id")
+    @CachePut
     public OrderDto createOrder(OrderDto dto) {
         log.info("createOrder(), dto = {}", dto);
         Order savedOrder = repository.save(mapper.dtoToModel(dto));
@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @CachePut(key = "dto.id")
+    @CachePut
     public OrderDto updateOrder(OrderDto dto) {
         log.info("updateOrder(), dto = {}", dto);
         Order savedOrder = repository.save(mapper.dtoToModel(dto));

@@ -20,6 +20,7 @@ spring:
     host: ${REDIS_HOST:nf-redis}
     port: ${REDIS_PORT:6379}
 
+
   kafka:
     consumer:
       bootstrap-servers: kafka:9092
