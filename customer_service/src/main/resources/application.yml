@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: auth
+  datasource:
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DATABASE_HOST:localhost:5432}/${DATABASE_NAME:customer_db}?currentSchema=public
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        jdbc:
+          time_zone: UTC
+          batch_size: 5
+        order_updates: true
+        order_inserts: true
+    show-sql: true
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/changelog/master.xml
+
+logging:
+  file:
+    path: logs/app_service.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    guru.springframework.controllers: DEBUG
+
+server:
+  port: 8090
+
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://localhost:8761/eureka
+
+jwt:
+  secret: "spring"
+  expiration: 604800
+
+
+
