@@ -16,6 +16,10 @@ spring:
     change-log: db/changelog/db.changelog-master.xml
     drop-first: true
 
+  redis:
+    host: ${REDIS_HOST:nf-redis}
+    port: ${REDIS_PORT:6379}
+
   kafka:
     consumer:
       bootstrap-servers: kafka:9092
