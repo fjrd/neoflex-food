@@ -19,7 +19,7 @@ services:
 #    command: [ 'java', '-jar', '/app.jar' ]
 
 
- #Orders
+ #Processors
 #  nf-processor:
 #    container_name: processor-service
 #    image: fjrd/processor-servicer:0.0.1
