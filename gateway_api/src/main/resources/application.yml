@@ -1,0 +1,22 @@
+server:
+  port: 8091
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+restUri: http://localhost:8090/auth
+
+jwt:
+  secret: "spring"
+  expiration: 604800
+
+
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://localhost:8761/eureka
