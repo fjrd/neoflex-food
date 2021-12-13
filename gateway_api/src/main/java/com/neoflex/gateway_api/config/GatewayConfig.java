@@ -13,11 +13,14 @@ public class GatewayConfig {
     @Autowired
     private JwtAuthenticationFilter filter;
 
+//    @Value("${orders.host}")
+//    private String ORDERS_HOST;
+
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("auth", r -> r.path("/auth/**").filters(f -> f.filter(filter)).uri("http://localhost:8090/"))
-                .route("auth2", r -> r.path("**/orders/").filters(f -> f.filter(filter)).uri("http://nf-orders-service:8081/"))
+                .route("auth", r -> r.path("/auth/**").filters(f -> f.filter(filter)).uri("http://localhost:8092/"))
+                .route("auth2", r -> r.path("/api/v1/orders").filters(f -> f.filter(filter)).uri("http://localhost:8081/"))
                 .build();
     }
 
