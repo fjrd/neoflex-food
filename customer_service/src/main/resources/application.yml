@@ -6,7 +6,7 @@ spring:
       connection-timeout: 30000
       maximum-pool-size: 10
     driver-class-name: org.postgresql.Driver
-    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5433/postgres}
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/postgres}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
   jpa:
@@ -36,7 +36,7 @@ logging:
     guru.springframework.controllers: DEBUG
 
 server:
-  port: ${SERVER_PORT:8090}
+  port: ${SERVER_PORT:8091}
 
 #eureka:
 #  client:
