@@ -6,9 +6,9 @@ services:
     container_name: nf-api-gateway-service
     image: ryzhkov/nf-api-gateway-service:0.0.1
     ports:
-      - 8080:8080
+      - 8083:8083
     environment:
-      - SERVER_PORT=8080
+      - SERVER_PORT=8083
       - CUSTOMERS_HOST=nf-customers-service
       - CUSTOMERS_PORT=8091
       - ORDERS_HOST=nf-orders-service
