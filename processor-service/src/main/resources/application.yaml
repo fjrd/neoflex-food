@@ -10,16 +10,15 @@ spring:
       group-id: orders
       auto-offset-reset: earliest
 
-
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
-
 kafka-manual-settings:
   topic-in: new_orders
   topic-out: processed_orders
+
 
 #springdoc:
 #  swagger-ui:
