@@ -13,13 +13,10 @@ public class GatewayConfig {
     @Autowired
     private JwtAuthenticationFilter filter;
 
-//    @Bean
-//    public RouteLocator routes(RouteLocatorBuilder builder) {
-//        return builder.routes().route("auth", r -> r.path("/auth/**").filters(f -> f.filter(filter)).uri("lb://auth"))
-//                .route("alert", r -> r.path("/alert/**").filters(f -> f.filter(filter)).uri("lb://alert"))
-//                .route("echo", r -> r.path("/echo/**").filters(f -> f.filter(filter)).uri("lb://echo"))
-//                .route("hello", r -> r.path("/hello/**").filters(f -> f.filter(filter)).uri("lb://hello"))
-//                .build();
-//    }
+    @Bean
+    public RouteLocator routes(RouteLocatorBuilder builder) {
+        return builder.routes().route("auth", r -> r.path("/auth/**").filters(f -> f.filter(filter)).uri("http://localhost:8090/"))
+                .build();
+    }
 
 }

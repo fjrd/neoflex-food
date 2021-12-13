@@ -9,6 +9,6 @@ public class CustomerEditDto {
     private String name;
     @Length(min = 8, max = 12)
     private String phone;
-    @Length(min=7,max=15)
+    @Length(min=3,max=15)
     private String password;
 }
