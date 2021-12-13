@@ -2,21 +2,22 @@ version: '3.9'
 services:
 
   #Orders
-#  nf-orders:
-#    container_name: orders-service
-#    image: fjrd/orders-servicer:0.0.1
-#    depends_on:
-#      - kafka
-#      - postgres-orders
-#      #redis
-#    ports:
-#    - 8081:8081
-#    environment:
-#      - POSTGRES_URL=jdbc:postgresql://postgres-orders:5433/postgres
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#      - SERVER_PORT=8081
-#    command: [ 'java', '-jar', '/app.jar' ]
+  orders:
+    container_name: nf-orders-service
+    image: fjrd/nf-orders-service:0.0.1
+    depends_on:
+      - kafka
+      - postgres-orders
+      - redis
+    ports:
+    - 8081:8081
+    environment:
+      - POSTGRES_URL=jdbc:postgresql://nf-postgres-orders:5432/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - SERVER_PORT=8081
+      - KAFKA_HOST_NAME=nf-kafka
+    command: [ 'java', '-jar', '/app.jar' ]
 
 
  #Processors
@@ -48,6 +49,13 @@ services:
       - KAFKA_ADVERTISED_HOST_NAME=kafka
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_CREATE_TOPIC=orders
+
+  #Redis
+  redis:
+    container_name: nf-redis
+    image: redis:alpine
+    ports:
+      - 6379:6379
 
   #Orders DataBase
   postgres-orders:
