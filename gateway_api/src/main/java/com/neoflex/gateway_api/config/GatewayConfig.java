@@ -15,7 +15,9 @@ public class GatewayConfig {
 
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
-        return builder.routes().route("auth", r -> r.path("/auth/**").filters(f -> f.filter(filter)).uri("http://localhost:8090/"))
+        return builder.routes()
+                .route("auth", r -> r.path("/auth/**").filters(f -> f.filter(filter)).uri("http://localhost:8090/"))
+                .route("auth2", r -> r.path("**/orders/").filters(f -> f.filter(filter)).uri("http://nf-orders-service:8081/"))
                 .build();
     }
 

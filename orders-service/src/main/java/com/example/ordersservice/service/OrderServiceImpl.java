@@ -31,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository repository;
     private final KafkaTemplate<UUID, OrderDto> kafkaTemplate;
     private static final String TOPIC_TO_PROCESSOR = "new_orders";
+    private static final String TOPIC_FROM_PROCESSOR = "processed_orders";
 
     @Override
     @Cacheable
@@ -80,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
         });
     }
 
-    @KafkaListener(topics = "processed_orders", groupId = "orders")
+    @KafkaListener(topics = TOPIC_FROM_PROCESSOR, groupId = "orders")
     private void loadProcessedOrder(OrderDto orderDto) {
         log.info("loadProcessedOrder(), orderDto = {}", orderDto);
 
