@@ -1,5 +1,5 @@
 server:
-  port: 8085
+  port: ${SERVER_PORT:8085}
 
 spring:
   kafka:
@@ -18,6 +18,8 @@ spring:
 kafka-manual-settings:
   topic-in: new_orders
   topic-out: processed_orders
+  topic-in-payments: new_payments
+  topic-out-payments: processed_payments
 
 
 #springdoc:

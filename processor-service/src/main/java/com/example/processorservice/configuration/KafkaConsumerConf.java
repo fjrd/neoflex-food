@@ -1,4 +1,4 @@
-package com.example.processorservice.client;
+package com.example.processorservice.configuration;
 
 import org.springframework.context.annotation.Configuration;
 

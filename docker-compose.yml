@@ -47,17 +47,17 @@ services:
       - KAFKA_HOST_NAME=nf-kafka
     command: [ 'java', '-jar', '/app.jar' ]
 
-
  #Processors
-#  nf-processor:
-#    container_name: processor-service
-#    image: fjrd/processor-servicer:0.0.1
-#    depends_on:
-#      - kafka
-#    ports:
-#    - 8085:8085
-#    command: [ 'java', '-jar', '/app.jar' ]
-
+  processor:
+    container_name: nf-processor-service
+    image: fjrd/processor-servicer:0.0.1
+    depends_on:
+      - kafka
+    ports:
+    - 8085:8085
+    environment:
+      - SERVER_PORT=8085
+    command: [ 'java', '-jar', '/app.jar' ]
 
   #Kafka
   zookeeper:

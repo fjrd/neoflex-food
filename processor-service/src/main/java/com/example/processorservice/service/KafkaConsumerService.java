@@ -1,4 +1,4 @@
 package com.example.processorservice.service;
 
-public interface KafkaConsumerNewOrderService {
+public interface KafkaConsumerService {
 }

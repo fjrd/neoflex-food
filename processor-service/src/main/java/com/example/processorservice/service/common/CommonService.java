@@ -1,9 +1,9 @@
 package com.example.processorservice.service.common;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import dto.OrderDto;
 
 public interface CommonService {
-    OrderDto stringToOrderDto(String str) throws JsonProcessingException;
-    Object stringToObject(String str, Class type) throws JsonProcessingException;
+
+    <T> Object stringToObject(String str, Class<T> typeClass) throws JsonProcessingException;
+    String objectToString(Object typeClass) throws JsonProcessingException;
 }

@@ -1,29 +1,24 @@
 package com.example.processorservice.service.common;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import dto.OrderDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public record CommonServiceImpl() implements CommonService{
+public record CommonServiceImpl() implements CommonService {
 
     @Override
-    public OrderDto stringToOrderDto(String str) throws JsonProcessingException {
+    public <T> Object stringToObject(String str, Class<T> typeClass) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
-        OrderDto orderDto;
-        orderDto = mapper.readValue(str, new TypeReference<OrderDto>() {
-        });
-        return orderDto;
+        return mapper.readValue(str, typeClass);
     }
 
     @Override
-    public Object stringToObject(String str, Class type) throws JsonProcessingException {
+    public String objectToString(Object typeClass) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
-        return mapper.readValue(str, type);
+        return mapper.writeValueAsString(typeClass);
     }
 }

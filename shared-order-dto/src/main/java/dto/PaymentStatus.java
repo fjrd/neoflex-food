@@ -1,4 +1,10 @@
 package dto;
 
-public class PaymentStatus {
+public enum PaymentStatus {
+    ACTIVE("active"),
+    INACTIVE("inactive");
+
+    PaymentStatus(String status) {
+
+    }
 }

@@ -1,0 +1,3 @@
+FROM openjdk:17-alpine AS JDK
+
+COPY /target/*.jar app.jar
