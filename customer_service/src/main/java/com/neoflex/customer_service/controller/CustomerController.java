@@ -1,5 +1,6 @@
 package com.neoflex.customer_service.controller;
 
+import com.neoflex.customer_service.model.to.CustomerAuthDto;
 import com.neoflex.customer_service.model.to.CustomerDto;
 import com.neoflex.customer_service.model.to.CustomerEditDto;
 import com.neoflex.customer_service.service.CustomerService;
@@ -25,14 +26,14 @@ public class CustomerController {
     }
 
     @PostMapping("login")
-    public CustomerDto authenticate(@RequestBody @Valid CustomerEditDto editDto) {
-        log.info("authenticate customer with phone{}", editDto.getPhone());
-     return service.get(editDto.getPhone(), editDto.getPassword());
+    public CustomerDto authenticate(@RequestBody @Valid CustomerAuthDto authDto) {
+        log.info("Authenticate customer with phone {}", authDto.getPhone());
+        return service.get(authDto.getPhone(), authDto.getPassword());
     }
 
     @PostMapping("register")
     public CustomerDto create(@RequestBody @Valid CustomerEditDto editDto) {
-        log.info("create customer {}", editDto);
+        log.info("Create customer {}", editDto);
         return service.create(editDto);
     }
 }

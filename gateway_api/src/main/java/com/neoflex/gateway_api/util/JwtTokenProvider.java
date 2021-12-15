@@ -23,13 +23,12 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(String customerPhone, long id) {
-        Claims claims = Jwts.claims().setSubject(customerPhone);
+    public String createToken(String customerPhone, long  id) {
+        Claims claims = Jwts.claims().setSubject(customerPhone).setId(String.valueOf(id));
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds * 1000);
 
         return Jwts.builder()
-                .setId(String.valueOf(id))
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(validity)
@@ -48,6 +47,16 @@ public class JwtTokenProvider {
 
     public String getCustomerId(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getId();
+    }
+
+    public Claims getClaims(final String token) {
+        try {
+            Claims body = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+            return body;
+        } catch (Exception e) {
+            System.out.println(e.getMessage() + " => " + e);
+        }
+        return null;
     }
 
 }
