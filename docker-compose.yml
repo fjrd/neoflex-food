@@ -12,6 +12,7 @@ services:
       - CUSTOMERS_HOST=nf-customers-service
       - CUSTOMERS_PORT=8091
       - ORDERS_HOST=nf-orders-service
+      - ORDERS_PORT=8081
     command: [ 'java', '-jar', '/app.jar' ]
 
   #Customers

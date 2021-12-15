@@ -1,5 +1,5 @@
-server:
-  port:
+orders:
+  host: http://${ORDERS_HOST:localhost}:${ORDERS_PORT:8081}/
 
 feign:
   client:
@@ -10,7 +10,8 @@ feign:
         loggerLevel: basic
 
 #restUri: http://localhost:8090/auth
-restUri: http://${CUSTOMERS_HOST:localhost}:${CUSTOMERS_PORT:8091}/auth
+restUri: http://${CUSTOMERS_HOST:localhost}:${CUSTOMERS_PORT:8092}/auth
+
 
 jwt:
   secret: "spring"
