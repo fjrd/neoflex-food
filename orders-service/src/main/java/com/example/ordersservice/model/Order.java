@@ -5,14 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -20,29 +18,26 @@ import java.util.UUID;
 public class Order {
 
     @Id
-    UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    private UUID customerId;
 
     @NotNull
-    UUID customerId;
+    private String deliveryAddress;
 
     @NotNull
-    String orderStatus;
+    private String dishesList;
 
-    @NotNull
-    String deliveryAddress;
+    @Builder.Default
+    private String orderStatus = "unprocessed";
 
-    @NotNull
-    String cardDetails;
+    @Builder.Default
+    private String paymentStatus = "unprocessed";
 
-    @NotNull
-    String dishesList;
+    @Builder.Default
+    private String restaurantStatus = "unprocessed";
 
-    @NotNull
-    String paymentStatus;
-
-    @NotNull
-    String restaurantStatus;
-
-    @NotNull
-    String deliveryStatus;
+    @Builder.Default
+    private String deliveryStatus = "unprocessed";
 }

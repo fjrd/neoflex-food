@@ -1,34 +1,34 @@
 version: '3.9'
 services:
 
-  #ApiGateway
-  gateway:
-    container_name: nf-api-gateway-service
-    image: ryzhkov/nf-api-gateway-service:0.0.1
-    ports:
-      - 8083:8083
-    environment:
-      - SERVER_PORT=8083
-      - CUSTOMERS_HOST=nf-customers-service
-      - CUSTOMERS_PORT=8091
-      - ORDERS_HOST=nf-orders-service
-      - ORDERS_PORT=8081
-    command: [ 'java', '-jar', '/app.jar' ]
-
-  #Customers
-  customers:
-    container_name: nf-customers-service
-    image: ryzhkov/nf-customers-service:0.0.1
-    depends_on:
-      - postgres-customers
-    ports:
-      - 8091:8091
-    environment:
-      - POSTGRES_URL=jdbc:postgresql://nf-postgres-customers:5432/postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - SERVER_PORT=8091
-    command: [ 'java', '-jar', '/app.jar' ]
+#  #ApiGateway
+#  gateway:
+#    container_name: nf-api-gateway-service
+#    image: ryzhkov/nf-api-gateway-service:0.0.1
+#    ports:
+#      - 8083:8083
+#    environment:
+#      - SERVER_PORT=8083
+#      - CUSTOMERS_HOST=nf-customers-service
+#      - CUSTOMERS_PORT=8091
+#      - ORDERS_HOST=nf-orders-service
+#      - ORDERS_PORT=8081
+#    command: [ 'java', '-jar', '/app.jar' ]
+#
+#  #Customers
+#  customers:
+#    container_name: nf-customers-service
+#    image: ryzhkov/nf-customers-service:0.0.1
+#    depends_on:
+#      - postgres-customers
+#    ports:
+#      - 8091:8091
+#    environment:
+#      - POSTGRES_URL=jdbc:postgresql://nf-postgres-customers:5432/postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#      - SERVER_PORT=8091
+#    command: [ 'java', '-jar', '/app.jar' ]
 
   #Orders
   orders:
@@ -45,7 +45,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - SERVER_PORT=8081
-      - KAFKA_HOST_NAME=nf-kafka
+      - KAFKA_HOST_NAME=nf-kafka:9092
+      - KAFKA_TOPIC_FROM=processed_prders
+      - KAFKA_TOPIC_TO=new_orders
     command: [ 'java', '-jar', '/app.jar' ]
 
   #Kafka
@@ -63,9 +65,10 @@ services:
     depends_on:
       - zookeeper
     environment:
-      - KAFKA_ADVERTISED_HOST_NAME=kafka
+      - KAFKA_ADVERTISED_HOST_NAME=nf-kafka
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_CREATE_TOPIC=orders
+    restart: unless-stopped
 
   #Redis
   redis:

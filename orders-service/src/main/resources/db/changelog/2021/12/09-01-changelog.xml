@@ -6,9 +6,21 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
-    <changeSet id="1639045892753-1" author="fjrd (generated)">
+    <property name="uuid_type" value="uuid" dbms="postgresql"/>
+    <property name="uuid_type" value="uniqueidentifier" dbms="mssql"/>
+    <property name="uuid_type" value="RAW(16)" dbms="oracle"/>
+
+    <property name="uuid_function" value="uid.uuid_generate_v4()" dbms="postgresql"/>
+    <property name="uuid_function" value="NEWID()" dbms="mssql"/>
+    <property name="uuid_function" value="sys_guid()" dbms="oracle"/>
+
+    <preConditions>
+        <dbms type="postgresql"/>
+    </preConditions>
+
+    <changeSet id="1639045892753-1" author="Alexander Reztsov">
         <createTable tableName="orders">
-            <column name="id" type="UUID">
+            <column name="id" type="${uuid_type}" generationType="${uuid_function}">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_orders"/>
             </column>
             <column name="customer_id" type="UUID"/>
