@@ -30,8 +30,9 @@ public record KafkaProducerServiceImpl(KafkaTemplate<UUID, String> kafkaTemplate
             e.printStackTrace();
         }
     }
- @Override
- public void producePayments(PaymentDto paymentDto) {
+
+    @Override
+    public void producePayments(PaymentDto paymentDto) {
 
         try {
             kafkaTemplate.send(topicPayments, paymentDto.cardNumber(), commonService.objectToString(paymentDto));
