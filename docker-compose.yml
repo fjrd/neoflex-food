@@ -46,8 +46,6 @@ services:
       - POSTGRES_PASSWORD=postgres
       - SERVER_PORT=8081
       - KAFKA_HOST_NAME=nf-kafka:9092
-      - KAFKA_TOPIC_FROM=processed_prders
-      - KAFKA_TOPIC_TO=new_orders
 #    command: [ 'java', '-jar', '/app.jar' ]
 
   #Kafka

@@ -13,10 +13,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class KafkaConsumerServiceImpl implements KafkaConsumerService {
 
+    private static final String KAFKA_FROM_TOPIC = "processed_orders";
     private final OrderService service;
 
     @Override
-    @KafkaListener(topics = "${KAFKA_TOPIC_FROM:processed_orders}", groupId = "orders")
+    @KafkaListener(topics = KAFKA_FROM_TOPIC, groupId = "orders")
     public void loadProcessedOrder(FullOrderDto dto) {
         KafkaConsumerServiceImpl.log.info("loadProcessedOrder(), orderDto = {}", dto);
         service.updateOrder(dto);

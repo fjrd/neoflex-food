@@ -19,11 +19,12 @@ import java.util.UUID;
 public class KafkaProducerServiceImpl implements KafkaProducerService {
 
     private final KafkaTemplate<UUID, FullOrderDto> kafkaTemplate;
+    private static final String KAFKA_TO_TOPIC = "new_orders";
 
     public void send(FullOrderDto dto) {
         log.info("sendToProcessorByKafka(), orderDto = {}", dto);
 
-        ListenableFuture<SendResult<UUID, FullOrderDto>> future = kafkaTemplate.send("${KAFKA_TOPIC_FROM:new_orders}", dto);
+        ListenableFuture<SendResult<UUID, FullOrderDto>> future = kafkaTemplate.send(KAFKA_TO_TOPIC, dto);
         future.addCallback(new ListenableFutureCallback<>() {
 
             @Override

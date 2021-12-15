@@ -45,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
         log.info("createOrder(), orderDto = {}", clientOrderDto);
 
         Order order = clientOrderMapper.dtoToModel(clientOrderDto);
-        order.toBuilder().customerId(customerId).build();
+        order = order.toBuilder().customerId(customerId).build();
         FullOrderDto fullOrderDto = fullOrderMapper.modelToDto(repository.save(order));
         kafkaProducerService.send(fullOrderDto);
         return fullOrderDto;
@@ -57,7 +57,7 @@ public class OrderServiceImpl implements OrderService {
         repository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException(orderId.toString()));
 
         Order order = clientOrderMapper.dtoToModel(clientOrderDto);
-        order.toBuilder().id(orderId).customerId(customerId).build();
+        order = order.toBuilder().id(orderId).customerId(customerId).build();
         FullOrderDto fullOrderDto = fullOrderMapper.modelToDto(repository.save(order));
         kafkaProducerService.send(fullOrderDto);
         return fullOrderDto;
