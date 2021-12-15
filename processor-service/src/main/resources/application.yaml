@@ -21,8 +21,6 @@ kafka-manual-settings:
   topic-in-payments: new_payments
   topic-out-payments: processed_payments
 
-
 #springdoc:
 #  swagger-ui:
 #    path:
-
