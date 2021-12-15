@@ -29,7 +29,7 @@ public class FullOrderDto implements Serializable {
     String deliveryAddress;
 
     @NotBlank
-    String cardDetails;
+    CardDetailDto cardDetails;
 
     @NotBlank
     String dishesList;
