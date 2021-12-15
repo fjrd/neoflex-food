@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequestMapping(value = CustomerController.REST_URL)
 public class RandomController {
+
     static final String REST_URL = "/auth/";
 
     @GetMapping("message")
