@@ -1,12 +1,12 @@
 package com.example.ordersservice.mapper;
 
 import com.example.ordersservice.model.Order;
-import dto.OrderDto;
+import dto.FullOrderDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface OrderMapper {
-    OrderDto modelToDto(Order order);
-    Order dtoToModel(OrderDto dto);
+public interface FullOrderMapper {
+    FullOrderDto modelToDto(Order order);
+    Order dtoToModel(FullOrderDto dto);
 
 }

@@ -45,8 +45,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - SERVER_PORT=8081
-      - KAFKA_HOST_NAME=nf-kafka
-    command: [ 'java', '-jar', '/app.jar' ]
+      - KAFKA_HOST_NAME=nf-kafka:9092
+#    command: [ 'java', '-jar', '/app.jar' ]
 
   #Kafka
   zookeeper:
@@ -63,9 +63,10 @@ services:
     depends_on:
       - zookeeper
     environment:
-      - KAFKA_ADVERTISED_HOST_NAME=kafka
+      - KAFKA_ADVERTISED_HOST_NAME=nf-kafka
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_CREATE_TOPIC=orders
+    restart: unless-stopped
 
   #Redis
   redis:
