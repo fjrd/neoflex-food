@@ -1,773 +1,119 @@
-2021-12-13 10:13:23,198 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 4076 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:13:23,206 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:13:23,270 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:13:23,271 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:13:23,271 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:13:24,258 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:13:24,339 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:13:25,371 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:13:25,387 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:13:25,388 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:13:25,531 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:13:25,531 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2258 ms
-2021-12-13 10:13:25,691 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:13:26,284 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:13:26,997 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:13:27,600 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:13:27,662 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:13:27,672 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:13:27,674 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 10:13:27,716 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 10:13:27,718 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 36ms
-2021-12-13 10:13:27,730 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:13:27,843 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 10:13:27,961 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 10:13:28,123 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 10:13:28,256 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 10:13:28,879 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 10:13:28,886 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:13:29,673 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 10:13:30,195 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 10:13:30,255 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8090 (http) with context path ''
-2021-12-13 10:13:30,274 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 7.816 seconds (JVM running for 8.828)
-2021-12-13 10:18:34,473 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:18:34,482 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:18:34,490 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:18:37,974 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 2176 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:18:37,975 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:18:38,030 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:18:38,031 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:18:38,031 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:18:38,787 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:18:38,850 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:18:39,625 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:18:39,642 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:18:39,642 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:18:39,749 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:18:39,749 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1717 ms
-2021-12-13 10:18:39,891 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:18:40,132 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:18:40,624 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:18:41,118 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:18:41,158 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:18:41,164 WARN  [restartedMain] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.ValidationFailedException: Validation Failed:
-     1 change sets check sum
-          changelog/v1.0/initial.xml::2::sryzhkov was: 8:21dd4e1830efb2349651d043fec171ad but is now: 8:c64bba67b8e5631ab1de409fc343561f
-
-2021-12-13 10:18:41,165 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:18:41,170 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:18:41,178 INFO  [restartedMain] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
-2021-12-13 10:18:41,194 INFO  [restartedMain] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2021-12-13 10:18:41,222 ERROR [restartedMain] org.springframework.boot.SpringApplication : Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.ValidationFailedException: Validation Failed:
-     1 change sets check sum
-          changelog/v1.0/initial.xml::2::sryzhkov was: 8:21dd4e1830efb2349651d043fec171ad but is now: 8:c64bba67b8e5631ab1de409fc343561f
-
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
-	at com.neoflex.customer_service.CustomerServiceApplication.main(CustomerServiceApplication.java:11)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: liquibase.exception.ValidationFailedException: Validation Failed:
-     1 change sets check sum
-          changelog/v1.0/initial.xml::2::sryzhkov was: 8:21dd4e1830efb2349651d043fec171ad but is now: 8:c64bba67b8e5631ab1de409fc343561f
-
-	at liquibase.changelog.DatabaseChangeLog.validate(DatabaseChangeLog.java:299)
-	at liquibase.Liquibase.lambda$update$1(Liquibase.java:237)
-	at liquibase.Scope.lambda$child$0(Scope.java:160)
-	at liquibase.Scope.child(Scope.java:169)
-	at liquibase.Scope.child(Scope.java:159)
-	at liquibase.Scope.child(Scope.java:138)
-	at liquibase.Liquibase.runInScope(Liquibase.java:2369)
-	at liquibase.Liquibase.update(Liquibase.java:217)
-	at liquibase.Liquibase.update(Liquibase.java:203)
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:321)
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:275)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	... 23 common frames omitted
-2021-12-13 10:21:01,106 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 9912 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:21:01,107 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:21:01,156 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:21:01,157 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:21:01,157 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:21:01,983 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:21:02,038 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:21:02,918 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:21:02,936 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:21:02,936 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:21:03,043 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:21:03,043 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1885 ms
-2021-12-13 10:21:03,171 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:21:03,354 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:21:03,754 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:21:04,184 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:21:04,250 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:21:04,255 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:21:04,256 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 10:21:04,329 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:21:04,332 WARN  [restartedMain] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set changelog/v1.0/initial.xml::1::ryzhkov:
-     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "customers" уже существует [Failed SQL: (0) CREATE TABLE public.customers (id BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, name VARCHAR(255), phone VARCHAR(255), password VARCHAR(255), CONSTRAINT customer_pk PRIMARY KEY (id))]
-2021-12-13 10:21:04,333 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:21:04,341 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:21:04,346 INFO  [restartedMain] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
-2021-12-13 10:21:04,359 INFO  [restartedMain] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2021-12-13 10:21:04,393 ERROR [restartedMain] org.springframework.boot.SpringApplication : Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set changelog/v1.0/initial.xml::1::ryzhkov:
-     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "customers" уже существует [Failed SQL: (0) CREATE TABLE public.customers (id BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, name VARCHAR(255), phone VARCHAR(255), password VARCHAR(255), CONSTRAINT customer_pk PRIMARY KEY (id))]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
-	at com.neoflex.customer_service.CustomerServiceApplication.main(CustomerServiceApplication.java:11)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set changelog/v1.0/initial.xml::1::ryzhkov:
-     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "customers" уже существует [Failed SQL: (0) CREATE TABLE public.customers (id BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, name VARCHAR(255), phone VARCHAR(255), password VARCHAR(255), CONSTRAINT customer_pk PRIMARY KEY (id))]
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:124)
-	at liquibase.Liquibase.lambda$null$0(Liquibase.java:272)
-	at liquibase.Scope.lambda$child$0(Scope.java:160)
-	at liquibase.Scope.child(Scope.java:169)
-	at liquibase.Scope.child(Scope.java:159)
-	at liquibase.Scope.child(Scope.java:138)
-	at liquibase.Scope.child(Scope.java:222)
-	at liquibase.Liquibase.lambda$update$1(Liquibase.java:271)
-	at liquibase.Scope.lambda$child$0(Scope.java:160)
-	at liquibase.Scope.child(Scope.java:169)
-	at liquibase.Scope.child(Scope.java:159)
-	at liquibase.Scope.child(Scope.java:138)
-	at liquibase.Liquibase.runInScope(Liquibase.java:2369)
-	at liquibase.Liquibase.update(Liquibase.java:217)
-	at liquibase.Liquibase.update(Liquibase.java:203)
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:321)
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:275)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	... 23 common frames omitted
-Caused by: liquibase.exception.MigrationFailedException: Migration failed for change set changelog/v1.0/initial.xml::1::ryzhkov:
-     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "customers" уже существует [Failed SQL: (0) CREATE TABLE public.customers (id BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, name VARCHAR(255), phone VARCHAR(255), password VARCHAR(255), CONSTRAINT customer_pk PRIMARY KEY (id))]
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:672)
-	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:49)
-	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:111)
-	at liquibase.Scope.lambda$child$0(Scope.java:160)
-	at liquibase.Scope.child(Scope.java:169)
-	at liquibase.Scope.child(Scope.java:159)
-	at liquibase.Scope.child(Scope.java:138)
-	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:110)
-	at liquibase.Scope.lambda$child$0(Scope.java:160)
-	at liquibase.Scope.child(Scope.java:169)
-	at liquibase.Scope.child(Scope.java:159)
-	at liquibase.Scope.child(Scope.java:138)
-	at liquibase.Scope.child(Scope.java:222)
-	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:94)
-	at liquibase.Scope.lambda$child$0(Scope.java:160)
-	at liquibase.Scope.child(Scope.java:169)
-	at liquibase.Scope.child(Scope.java:159)
-	at liquibase.Scope.child(Scope.java:138)
-	at liquibase.Scope.child(Scope.java:222)
-	at liquibase.Scope.child(Scope.java:226)
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:66)
-	... 41 common frames omitted
-Caused by: liquibase.exception.DatabaseException: ОШИБКА: отношение "customers" уже существует [Failed SQL: (0) CREATE TABLE public.customers (id BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, name VARCHAR(255), phone VARCHAR(255), password VARCHAR(255), CONSTRAINT customer_pk PRIMARY KEY (id))]
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:393)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:82)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:150)
-	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1278)
-	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1260)
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:637)
-	... 61 common frames omitted
-Caused by: org.postgresql.util.PSQLException: ОШИБКА: отношение "customers" уже существует
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2565)
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2297)
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:322)
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:481)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:401)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:322)
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:308)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:284)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:279)
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:389)
-	... 66 common frames omitted
-2021-12-13 10:21:38,301 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 9920 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:21:38,302 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:21:38,349 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:21:38,349 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:21:38,349 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:21:39,163 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:21:39,223 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:21:40,033 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:21:40,050 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:21:40,050 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:21:40,172 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:21:40,172 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1822 ms
-2021-12-13 10:21:40,295 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:21:40,468 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:21:40,925 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:21:41,460 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:21:41,542 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:21:41,548 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:21:41,550 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 10:21:41,594 INFO  [restartedMain] liquibase.changelog : Table customers created
-2021-12-13 10:21:41,595 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::1::ryzhkov ran successfully in 41ms
-2021-12-13 10:21:41,621 INFO  [restartedMain] liquibase.changelog : Unique constraint added to customers(phone)
-2021-12-13 10:21:41,622 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::users_unique_phone_idx::ryzhkov ran successfully in 11ms
-2021-12-13 10:21:41,640 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 10:21:41,641 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 14ms
-2021-12-13 10:21:41,644 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:21:41,805 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 10:21:41,914 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 10:21:42,166 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 10:21:42,342 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 10:21:42,969 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 10:21:42,976 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:21:43,482 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 10:21:43,960 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 10:21:44,010 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8090 (http) with context path ''
-2021-12-13 10:21:44,022 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 6.264 seconds (JVM running for 6.925)
-2021-12-13 10:22:01,013 INFO  [http-nio-8090-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-12-13 10:22:01,014 INFO  [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
-2021-12-13 10:22:01,016 INFO  [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet : Completed initialization in 2 ms
-2021-12-13 10:22:01,265 WARN  [http-nio-8090-exec-1] com.neoflex.customer_service.exception.GlobalExceptionHandler : Validation failed for argument [0] in public com.neoflex.customer_service.model.to.CustomerDto com.neoflex.customer_service.controller.CustomerController.authenticate(com.neoflex.customer_service.model.to.CustomerEditDto): [Field error in object 'customerEditDto' on field 'password': rejected value [test1]; codes [Length.customerEditDto.password,Length.password,Length.java.lang.String,Length]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [customerEditDto.password,password]; arguments []; default message [password],15,7]; default message [длина должна составлять от 7 до 15]] 
-2021-12-13 10:22:01,315 WARN  [http-nio-8090-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.neoflex.customer_service.model.to.CustomerDto com.neoflex.customer_service.controller.CustomerController.authenticate(com.neoflex.customer_service.model.to.CustomerEditDto): [Field error in object 'customerEditDto' on field 'password': rejected value [test1]; codes [Length.customerEditDto.password,Length.password,Length.java.lang.String,Length]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [customerEditDto.password,password]; arguments []; default message [password],15,7]; default message [длина должна составлять от 7 до 15]] ]
-2021-12-13 10:24:07,099 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:24:07,105 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:24:07,118 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:24:11,922 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 12132 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:24:11,923 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:24:11,968 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:24:11,968 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:24:11,969 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:24:12,737 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:24:12,816 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:24:13,644 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:24:13,664 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:24:13,664 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:24:13,778 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:24:13,779 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1810 ms
-2021-12-13 10:24:13,913 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:24:14,140 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:24:14,534 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:24:15,003 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:24:15,056 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:24:15,065 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:24:15,067 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 10:24:15,095 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 10:24:15,098 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 25ms
-2021-12-13 10:24:15,104 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:24:15,194 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 10:24:15,277 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 10:24:15,473 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 10:24:15,602 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 10:24:16,133 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 10:24:16,139 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:24:16,573 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 10:24:16,991 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 10:24:17,035 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8090 (http) with context path ''
-2021-12-13 10:24:17,047 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 5.734 seconds (JVM running for 6.41)
-2021-12-13 10:24:22,999 INFO  [http-nio-8090-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-12-13 10:24:22,999 INFO  [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
-2021-12-13 10:24:23,000 INFO  [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
-2021-12-13 10:24:23,139 INFO  [http-nio-8090-exec-1] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-99
-2021-12-13 10:25:06,546 INFO  [http-nio-8090-exec-2] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-9
-2021-12-13 10:25:06,550 WARN  [http-nio-8090-exec-2] com.neoflex.customer_service.exception.GlobalExceptionHandler : Phone not valid 
-2021-12-13 10:25:06,553 WARN  [http-nio-8090-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver : Resolved [com.neoflex.customer_service.exception.NotValidException: Phone not valid ]
-2021-12-13 10:25:22,459 INFO  [http-nio-8090-exec-4] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-99
-2021-12-13 10:26:58,147 INFO  [http-nio-8090-exec-6] org.apache.coyote.http11.Http11Processor : Error parsing HTTP request header
- Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
-java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x030x01x0x010x000x01t0x030x030xb70xf9}i0x9c0xb850xe5z0xc10xb70xff0xe90xe5b0x020x880xd10x9eNEC0xce0xff0x8d0x91e)I0xa2*- ]. HTTP method names must be tokens
-	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:419)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:833)
-2021-12-13 10:28:21,211 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:28:21,216 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:28:21,228 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:28:25,380 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 13460 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:28:25,381 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:28:25,426 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:28:25,427 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:28:25,427 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:28:26,270 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:28:26,342 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:28:27,396 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:28:27,531 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2103 ms
-2021-12-13 10:28:27,700 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:28:27,986 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:28:29,382 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 10:28:29,481 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 10:28:29,670 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 10:28:29,805 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 10:28:30,384 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 10:28:30,392 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:28:30,948 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 10:28:31,400 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 10:28:31,455 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8090 (http) with context path ''
-2021-12-13 10:28:31,471 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 6.763 seconds (JVM running for 7.586)
-2021-12-13 10:28:31,503 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:28:31,508 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:28:31,516 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:28:34,965 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 6788 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:28:34,966 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:28:35,025 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:28:35,026 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:28:35,026 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:28:35,938 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:28:36,007 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:28:36,780 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:28:36,797 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:28:36,798 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:28:36,901 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:28:36,902 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1875 ms
-2021-12-13 10:28:37,043 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:28:37,282 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:28:37,692 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:28:38,158 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:28:38,190 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:28:38,195 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:28:38,197 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 10:28:38,224 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 10:28:38,225 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 15ms
-2021-12-13 10:28:38,232 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:28:38,310 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 10:28:38,373 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 10:28:38,547 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 10:28:38,677 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 10:28:39,156 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 10:28:39,162 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:28:39,626 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 10:28:40,079 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 10:28:40,140 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8090 (http) with context path ''
-2021-12-13 10:28:40,155 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 5.831 seconds (JVM running for 6.577)
-2021-12-13 10:28:46,684 INFO  [http-nio-8090-exec-1] org.apache.coyote.http11.Http11Processor : Error parsing HTTP request header
- Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
-java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x030x01x0x010x000x01t0x030x03c0xf9\0xd90xefB0x940x130x940x8f0x89.0x800xbe0x91r0xbc0xffq0x10r0xdeu0xb20xf30x830xab0xa50xb90xd3~0xb3 ]. HTTP method names must be tokens
-	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:419)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:833)
-2021-12-13 10:40:47,303 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:40:47,315 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:40:47,326 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:40:50,757 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 8796 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:40:50,758 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:40:50,831 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:40:50,832 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:40:50,832 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:40:51,564 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:40:51,623 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:40:52,465 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:40:52,481 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:40:52,481 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:40:52,580 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:40:52,581 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1748 ms
-2021-12-13 10:40:52,730 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:40:52,970 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:40:53,438 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:40:53,893 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:40:53,935 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:40:53,941 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:40:53,942 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 10:40:53,970 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 10:40:53,971 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 17ms
-2021-12-13 10:40:53,980 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:40:54,087 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 10:40:54,199 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 10:40:54,439 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 10:40:54,596 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 10:40:55,154 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 10:40:55,163 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:40:55,608 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 10:40:56,034 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 10:40:56,082 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8090 (http) with context path ''
-2021-12-13 10:40:56,094 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 5.88 seconds (JVM running for 6.633)
-2021-12-13 10:45:37,745 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:45:37,751 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:45:37,762 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:45:41,065 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 14940 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:45:41,066 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:45:41,117 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:45:41,117 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:45:41,117 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:45:41,895 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:45:41,953 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:45:42,726 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:45:42,743 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:45:42,744 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:45:42,846 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:45:42,846 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1728 ms
-2021-12-13 10:45:42,962 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:45:43,143 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:45:43,671 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:45:44,258 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:45:44,296 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:45:44,301 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:45:44,302 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 10:45:44,317 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 10:45:44,318 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 12ms
-2021-12-13 10:45:44,323 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:45:44,410 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 10:45:44,464 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 10:45:44,618 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 10:45:44,778 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 10:45:45,299 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 10:45:45,305 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:45:45,762 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 10:45:46,209 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 10:45:46,251 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8090 (http) with context path ''
-2021-12-13 10:45:46,265 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 5.794 seconds (JVM running for 6.582)
-2021-12-13 10:46:07,433 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:46:07,437 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:46:07,442 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:46:11,498 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 568 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:46:11,500 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:46:11,561 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:46:11,561 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:46:11,561 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:46:12,630 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:46:12,731 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:46:13,909 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:46:13,924 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:46:13,925 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:46:14,036 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:46:14,036 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2474 ms
-2021-12-13 10:46:14,224 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:46:14,512 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:46:15,061 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:46:15,620 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:46:15,663 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:46:15,670 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:46:15,672 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 10:46:15,695 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 10:46:15,696 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 17ms
-2021-12-13 10:46:15,705 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:46:15,811 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 10:46:15,901 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 10:46:16,085 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 10:46:16,226 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 10:46:16,913 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 10:46:16,922 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:46:17,476 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 10:46:18,022 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 10:46:18,077 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8090 (http) with context path ''
-2021-12-13 10:46:18,092 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 7.114 seconds (JVM running for 8.285)
-2021-12-13 10:46:45,211 INFO  [http-nio-8090-exec-1] org.apache.coyote.http11.Http11Processor : Error parsing HTTP request header
- Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
-java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x030x01x0x010x000x01t0x030x030x96!f^0xd60x0b0x860xe2t0x9e^0x870xe10x1d0x040xcawl0xedG0xa5K0x19hK0x1b)0xe100x870xb3@ ]. HTTP method names must be tokens
-	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:419)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:269)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:833)
-2021-12-13 10:49:06,977 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:49:06,980 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 10:49:06,985 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 10:49:10,341 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 13408 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
-2021-12-13 10:49:10,342 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 10:49:10,390 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 10:49:10,390 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 10:49:10,390 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 10:49:11,217 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 10:49:11,273 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 1 JPA repository interfaces.
-2021-12-13 10:49:12,046 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8090 (http)
-2021-12-13 10:49:12,063 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 10:49:12,064 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 10:49:12,163 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 10:49:12,163 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1772 ms
-2021-12-13 10:49:12,285 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 10:49:12,521 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 10:49:13,029 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:49:13,454 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 10:49:13,491 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:49:13,497 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 10:49:13,498 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 10:49:13,512 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 10:49:13,513 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 11ms
-2021-12-13 10:49:13,517 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 10:49:13,603 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 10:49:13,694 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 10:49:13,957 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 10:49:14,065 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 10:49:14,562 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 10:49:14,569 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 10:49:15,013 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 10:49:15,368 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 10:49:15,406 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8090 (http) with context path ''
-2021-12-13 10:49:15,415 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 5.635 seconds (JVM running for 6.386)
-2021-12-13 10:49:48,422 INFO  [http-nio-8090-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-12-13 10:49:48,422 INFO  [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
-2021-12-13 10:49:48,423 INFO  [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
-2021-12-13 10:49:48,587 INFO  [http-nio-8090-exec-1] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-99
-2021-12-13 10:50:40,220 INFO  [http-nio-8090-exec-2] com.neoflex.customer_service.controller.CustomerController : create customer CustomerEditDto(name=new, phone=999-99-999, password=test1)
-2021-12-13 11:02:03,413 INFO  [http-nio-8090-exec-4] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-99
-2021-12-13 11:02:24,942 WARN  [http-nio-8090-exec-5] org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
-2021-12-13 11:15:31,642 INFO  [http-nio-8090-exec-9] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-99
-2021-12-13 11:16:10,850 WARN  [http-nio-8090-exec-10] org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
-2021-12-13 11:17:24,223 WARN  [http-nio-8090-exec-4] org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
-2021-12-13 11:17:28,111 INFO  [http-nio-8090-exec-5] com.neoflex.customer_service.controller.CustomerController : create customer CustomerEditDto(name=tttt, phone=999-99-999, password=test1)
-2021-12-13 11:17:28,782 WARN  [http-nio-8090-exec-5] org.hibernate.engine.jdbc.spi.SqlExceptionHelper : SQL Error: 0, SQLState: 23505
-2021-12-13 11:17:28,783 ERROR [http-nio-8090-exec-5] org.hibernate.engine.jdbc.spi.SqlExceptionHelper : ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "users_unique_phone_idx"
-  Подробности: Ключ "(phone)=(999-99-999)" уже существует.
-2021-12-13 11:17:28,851 WARN  [http-nio-8090-exec-5] com.neoflex.customer_service.exception.GlobalExceptionHandler : Phone already exist
-2021-12-13 11:17:28,872 WARN  [http-nio-8090-exec-5] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver : Resolved [java.lang.IllegalArgumentException: Phone already exist]
-2021-12-13 11:17:34,455 INFO  [http-nio-8090-exec-6] com.neoflex.customer_service.controller.CustomerController : create customer CustomerEditDto(name=tttt, phone=999-99-9999, password=test1)
-2021-12-13 14:55:32,847 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17 on Fjrds-MacBook-Pro.local with PID 5953 (/Users/fjrd/IdeaProjects/neoflex-food/customer_service/target/classes started by fjrd in /Users/fjrd/IdeaProjects/neoflex-food)
-2021-12-13 14:55:32,849 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 14:55:32,968 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in /Users/fjrd/.m2/repository/org/liquibase/liquibase-core/4.3.5/liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/Users/fjrd/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/Users/fjrd/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 14:55:32,969 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 14:55:32,970 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 14:55:34,137 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 14:55:34,235 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 1 JPA repository interfaces.
-2021-12-13 14:55:35,167 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8092 (http)
-2021-12-13 14:55:35,182 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 14:55:35,183 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 14:55:35,331 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 14:55:35,332 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2361 ms
-2021-12-13 14:55:35,495 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 14:55:36,541 ERROR [restartedMain] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Exception during pool initialization.
-org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:303)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:51)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:225)
-	at org.postgresql.Driver.makeConnection(Driver.java:465)
-	at org.postgresql.Driver.connect(Driver.java:264)
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
-	at com.neoflex.customer_service.CustomerServiceApplication.main(CustomerServiceApplication.java:11)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: java.net.ConnectException: Connection refused
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:633)
-	at org.postgresql.core.PGStream.createSocket(PGStream.java:231)
-	at org.postgresql.core.PGStream.<init>(PGStream.java:95)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:98)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:213)
-	... 37 common frames omitted
-2021-12-13 14:55:36,544 WARN  [restartedMain] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-2021-12-13 14:55:36,547 INFO  [restartedMain] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
-2021-12-13 14:55:36,562 INFO  [restartedMain] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2021-12-13 14:55:36,592 ERROR [restartedMain] org.springframework.boot.SpringApplication : Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
-	at com.neoflex.customer_service.CustomerServiceApplication.main(CustomerServiceApplication.java:11)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:277)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	... 23 common frames omitted
-Caused by: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:303)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:51)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:225)
-	at org.postgresql.Driver.makeConnection(Driver.java:465)
-	at org.postgresql.Driver.connect(Driver.java:264)
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272)
-	... 25 common frames omitted
-Caused by: java.net.ConnectException: Connection refused
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:633)
-	at org.postgresql.core.PGStream.createSocket(PGStream.java:231)
-	at org.postgresql.core.PGStream.<init>(PGStream.java:95)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:98)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:213)
-	... 37 common frames omitted
-2021-12-13 14:56:24,025 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17 on Fjrds-MacBook-Pro.local with PID 5965 (/Users/fjrd/IdeaProjects/neoflex-food/customer_service/target/classes started by fjrd in /Users/fjrd/IdeaProjects/neoflex-food)
-2021-12-13 14:56:24,026 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 14:56:24,099 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in /Users/fjrd/.m2/repository/org/liquibase/liquibase-core/4.3.5/liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/Users/fjrd/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/Users/fjrd/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 14:56:24,100 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 14:56:24,100 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 14:56:24,915 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 14:56:24,992 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 1 JPA repository interfaces.
-2021-12-13 14:56:25,727 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8092 (http)
-2021-12-13 14:56:25,744 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 14:56:25,745 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 14:56:25,836 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 14:56:25,837 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1737 ms
-2021-12-13 14:56:25,959 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 14:56:26,188 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 14:56:26,625 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 14:56:27,193 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 14:56:27,241 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 14:56:27,256 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 14:56:27,259 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 14:56:27,288 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 14:56:27,290 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 23ms
-2021-12-13 14:56:27,307 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 14:56:27,387 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 14:56:27,448 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 14:56:27,609 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 14:56:27,756 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 14:56:28,425 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 14:56:28,436 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 14:56:28,863 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 14:56:29,221 WARN  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : Unable to start LiveReload server
-2021-12-13 14:56:29,265 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8092 (http) with context path ''
-2021-12-13 14:56:29,281 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 5.89 seconds (JVM running for 7.231)
-2021-12-13 14:57:17,997 INFO  [http-nio-8092-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-12-13 14:57:17,998 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
-2021-12-13 14:57:17,999 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
-2021-12-13 15:13:41,239 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 15:13:41,256 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2021-12-13 15:13:41,265 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
-2021-12-13 15:18:57,200 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17 on Fjrds-MacBook-Pro.local with PID 6215 (/Users/fjrd/IdeaProjects/neoflex-food/customer_service/target/classes started by fjrd in /Users/fjrd/IdeaProjects/neoflex-food)
-2021-12-13 15:18:57,209 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
-2021-12-13 15:18:57,385 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in /Users/fjrd/.m2/repository/org/liquibase/liquibase-core/4.3.5/liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/Users/fjrd/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/Users/fjrd/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
-2021-12-13 15:18:57,385 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-12-13 15:18:57,385 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-12-13 15:18:59,068 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-12-13 15:18:59,155 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 1 JPA repository interfaces.
-2021-12-13 15:19:00,048 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8092 (http)
-2021-12-13 15:19:00,061 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-12-13 15:19:00,061 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2021-12-13 15:19:00,165 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-12-13 15:19:00,165 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2778 ms
-2021-12-13 15:19:00,380 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
-2021-12-13 15:19:00,633 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
-2021-12-13 15:19:01,171 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 15:19:01,746 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
-2021-12-13 15:19:01,800 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 15:19:01,816 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
-2021-12-13 15:19:01,819 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
-2021-12-13 15:19:01,859 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
-2021-12-13 15:19:01,863 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 34ms
-2021-12-13 15:19:01,884 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
-2021-12-13 15:19:01,963 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-12-13 15:19:02,029 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-12-13 15:19:02,206 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-12-13 15:19:02,352 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
-2021-12-13 15:19:03,002 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-12-13 15:19:03,014 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-12-13 15:19:03,489 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-12-13 15:19:03,915 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-12-13 15:19:03,962 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8092 (http) with context path ''
-2021-12-13 15:19:03,980 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 7.802 seconds (JVM running for 9.251)
-2021-12-13 15:25:57,660 INFO  [http-nio-8092-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-12-13 15:25:57,661 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
-2021-12-13 15:25:57,672 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Completed initialization in 10 ms
-2021-12-13 15:25:57,924 INFO  [http-nio-8092-exec-1] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-99
+2021-12-15 02:43:56,101 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h48m28s112ms400µs600ns).
+2021-12-15 06:26:01,199 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h42m5s98ms223µs200ns).
+2021-12-15 07:49:37,263 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h16m6s425ms594µs).
+2021-12-15 08:22:00,910 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=19m50s169ms118µs100ns).
+2021-12-15 08:24:48,912 INFO  [http-nio-8092-exec-10] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-99
+2021-12-15 09:17:20,164 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 8496 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
+2021-12-15 09:17:20,166 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
+2021-12-15 09:17:20,233 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
+2021-12-15 09:17:20,234 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-12-15 09:17:20,234 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-12-15 09:17:21,854 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-15 09:17:21,979 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 103 ms. Found 1 JPA repository interfaces.
+2021-12-15 09:17:23,468 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8092 (http)
+2021-12-15 09:17:23,493 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2021-12-15 09:17:23,494 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-12-15 09:17:23,683 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2021-12-15 09:17:23,684 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3449 ms
+2021-12-15 09:17:23,948 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2021-12-15 09:17:24,442 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2021-12-15 09:17:25,180 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
+2021-12-15 09:17:25,906 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
+2021-12-15 09:17:25,959 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
+2021-12-15 09:17:25,966 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
+2021-12-15 09:17:25,967 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
+2021-12-15 09:17:26,027 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
+2021-12-15 09:17:26,028 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 54ms
+2021-12-15 09:17:26,041 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
+2021-12-15 09:17:26,139 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-15 09:17:26,232 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-12-15 09:17:26,466 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-15 09:17:26,619 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+2021-12-15 09:17:27,327 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-15 09:17:27,340 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-15 09:17:27,774 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-15 09:17:28,193 WARN  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : Unable to start LiveReload server
+2021-12-15 09:17:28,238 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8092 (http) with context path ''
+2021-12-15 09:17:28,251 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 8.809 seconds (JVM running for 9.618)
+2021-12-15 09:17:40,815 INFO  [http-nio-8092-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-15 09:17:40,816 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2021-12-15 09:17:40,817 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2021-12-15 09:42:34,989 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-15 09:42:34,994 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2021-12-15 09:42:34,999 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2021-12-15 09:42:38,164 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 3500 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
+2021-12-15 09:42:38,165 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
+2021-12-15 09:42:38,214 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
+2021-12-15 09:42:38,214 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-12-15 09:42:38,214 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-12-15 09:42:38,946 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-15 09:42:39,010 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 1 JPA repository interfaces.
+2021-12-15 09:42:39,730 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8092 (http)
+2021-12-15 09:42:39,744 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2021-12-15 09:42:39,744 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-12-15 09:42:39,833 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2021-12-15 09:42:39,833 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1618 ms
+2021-12-15 09:42:39,959 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2021-12-15 09:42:40,187 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2021-12-15 09:42:40,663 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
+2021-12-15 09:42:41,126 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
+2021-12-15 09:42:41,179 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
+2021-12-15 09:42:41,186 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
+2021-12-15 09:42:41,188 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
+2021-12-15 09:42:41,209 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
+2021-12-15 09:42:41,211 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 16ms
+2021-12-15 09:42:41,219 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
+2021-12-15 09:42:41,328 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-15 09:42:41,416 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-12-15 09:42:41,572 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-15 09:42:41,666 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+2021-12-15 09:42:42,157 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-15 09:42:42,164 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-15 09:42:42,607 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-15 09:42:43,015 WARN  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : Unable to start LiveReload server
+2021-12-15 09:42:43,067 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8092 (http) with context path ''
+2021-12-15 09:42:43,082 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 5.471 seconds (JVM running for 6.027)
+2021-12-15 09:42:54,691 INFO  [http-nio-8092-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-15 09:42:54,692 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2021-12-15 09:42:54,696 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Completed initialization in 2 ms
+2021-12-15 09:43:09,539 INFO  [http-nio-8092-exec-2] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-99
+2021-12-15 09:46:20,775 INFO  [http-nio-8092-exec-5] com.neoflex.customer_service.controller.CustomerController : authenticate customer with phone999-99-99
+2021-12-15 09:47:28,638 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-15 09:47:28,643 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2021-12-15 09:47:28,653 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2021-12-15 09:47:33,425 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Starting CustomerServiceApplication using Java 17.0.1 on NB58-061 with PID 2196 (C:\projects\neoflex-food\customer_service\target\classes started by sryzhkov in C:\projects\neoflex-food)
+2021-12-15 09:47:33,426 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : No active profile set, falling back to default profiles: default
+2021-12-15 09:47:33,470 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls : The Class-Path manifest attribute in C:\Users\sryzhkov\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/sryzhkov/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
+2021-12-15 09:47:33,471 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-12-15 09:47:33,471 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-12-15 09:47:34,236 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-15 09:47:34,316 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 1 JPA repository interfaces.
+2021-12-15 09:47:35,125 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8092 (http)
+2021-12-15 09:47:35,141 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2021-12-15 09:47:35,142 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-12-15 09:47:35,234 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2021-12-15 09:47:35,235 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1763 ms
+2021-12-15 09:47:35,355 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2021-12-15 09:47:35,581 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2021-12-15 09:47:35,959 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
+2021-12-15 09:47:36,368 INFO  [restartedMain] liquibase.changelog : Reading from public.databasechangelog
+2021-12-15 09:47:36,396 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
+2021-12-15 09:47:36,400 INFO  [restartedMain] liquibase.lockservice : Successfully acquired change log lock
+2021-12-15 09:47:36,400 WARN  [restartedMain] liquibase.hub : Skipping auto-registration
+2021-12-15 09:47:36,415 INFO  [restartedMain] liquibase.changelog : SQL in file data/init_db.sql executed
+2021-12-15 09:47:36,416 INFO  [restartedMain] liquibase.changelog : ChangeSet changelog/v1.0/initial.xml::2::sryzhkov ran successfully in 12ms
+2021-12-15 09:47:36,426 INFO  [restartedMain] liquibase.lockservice : Successfully released change log lock
+2021-12-15 09:47:36,514 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-15 09:47:36,577 INFO  [restartedMain] org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-12-15 09:47:36,762 INFO  [restartedMain] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-15 09:47:36,900 INFO  [restartedMain] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+2021-12-15 09:47:37,443 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-15 09:47:37,449 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-15 09:47:37,884 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-15 09:47:38,327 WARN  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : Unable to start LiveReload server
+2021-12-15 09:47:38,368 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8092 (http) with context path ''
+2021-12-15 09:47:38,381 INFO  [restartedMain] com.neoflex.customer_service.CustomerServiceApplication : Started CustomerServiceApplication in 5.496 seconds (JVM running for 6.133)
+2021-12-15 09:47:53,450 INFO  [http-nio-8092-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-15 09:47:53,450 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2021-12-15 09:47:53,451 INFO  [http-nio-8092-exec-1] org.springframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2021-12-15 09:47:53,595 INFO  [http-nio-8092-exec-1] com.neoflex.customer_service.controller.CustomerController : Authenticate customer with phone 999-99-99
