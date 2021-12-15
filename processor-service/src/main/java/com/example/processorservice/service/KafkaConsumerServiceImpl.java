@@ -9,22 +9,24 @@ import org.springframework.stereotype.Service;
 
 @Service
 public record KafkaConsumerServiceImpl(CommonService commonService,
-                                       ProcessorService processorService) implements KafkaConsumerService {
+                                       OrderProcessService orderProcessService,
+                                       PaymentProcessService paymentProcessService) implements KafkaConsumerService {
     @KafkaListener(topics = "${kafka-manual-settings.topic-in}")
     public void consumeOrders(String message) {
         try {
             var orderDto = (OrderDto) commonService.stringToObject(message, OrderDto.class);
-            processorService.processOrders(orderDto);
+            orderProcessService.ordersProcess(orderDto);
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
+
     @KafkaListener(topics = "${kafka-manual-settings.topic-in-payments}")
     public void consumePayments(String message) {
         try {
             var paymentDto = (PaymentDto) commonService.stringToObject(message, PaymentDto.class);
-            processorService.processPayments(paymentDto);
+            paymentProcessService.paymentsProcess(paymentDto);
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();

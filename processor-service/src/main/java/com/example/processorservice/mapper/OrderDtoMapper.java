@@ -2,7 +2,6 @@ package com.example.processorservice.mapper;
 
 import dto.OrderDto;
 import dto.PaymentDto;
-import dto.PaymentStatus;
 
 public class OrderDtoMapper {
     public static OrderDto paymentToOrder(OrderDto orderDto, PaymentDto paymentDto) {
