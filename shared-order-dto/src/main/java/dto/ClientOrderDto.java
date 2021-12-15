@@ -6,23 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.UUID;
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDto implements Serializable {
-
-    UUID id;
-
-    @NotNull
-    UUID customerId;
-
-    @NotBlank
-    String orderStatus;
+public class ClientOrderDto implements Serializable {
 
     @NotBlank
     String deliveryAddress;
@@ -33,12 +23,4 @@ public class OrderDto implements Serializable {
     @NotBlank
     String dishesList;
 
-    @NotBlank
-    String paymentStatus;
-
-    @NotBlank
-    String restaurantStatus;
-
-    @NotBlank
-    String deliveryStatus;
 }
