@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDto implements Serializable {
+public class OrderMessageDto implements Serializable {
 
     @NotNull
     UUID id;

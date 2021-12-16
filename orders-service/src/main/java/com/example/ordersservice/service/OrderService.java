@@ -1,15 +1,16 @@
 package com.example.ordersservice.service;
 
-import dto.ClientOrderDto;
-import dto.FullOrderDto;
+import org.example.dto.order.request.OrderRequestDto;
+import org.example.dto.order.message.OrderMessageDto;
+import org.example.dto.order.response.OrderResponseDto;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface OrderService {
 
-    List<FullOrderDto> getOrdersByCustomerId(UUID customerId);
-    FullOrderDto createOrder(UUID customerId, ClientOrderDto clientOrderDto);
-    FullOrderDto updateOrder(UUID orderId, UUID customerId, ClientOrderDto clientOrderDto);
-    void updateOrder(FullOrderDto fullOrderDto);
+    List<OrderResponseDto> getOrdersByCustomerId(UUID customerId);
+    OrderResponseDto createOrder(UUID customerId, OrderRequestDto clientOrderDto);
+    OrderResponseDto updateOrder(UUID orderId, UUID customerId, OrderRequestDto clientOrderDto);
+    void updateOrder(OrderMessageDto fullOrderDto);
 }

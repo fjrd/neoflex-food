@@ -1,10 +1,10 @@
 package com.example.ordersservice.controller;
 
 import com.example.ordersservice.service.OrderService;
-import dto.ClientOrderDto;
-import dto.FullOrderDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.dto.order.request.OrderRequestDto;
+import org.example.dto.order.response.OrderResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,20 +20,20 @@ public class OrderController {
     private final OrderService service;
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<List<FullOrderDto>> getOrdersByCustomerId(@PathVariable UUID customerId){
+    public ResponseEntity<List<OrderResponseDto>> getOrdersByCustomerId(@PathVariable UUID customerId){
         log.info("getOrdersByCustomerId(), customerId = {}", customerId);
         return ResponseEntity.ok(service.getOrdersByCustomerId(customerId));
     }
 
     @PostMapping
-    public ResponseEntity<FullOrderDto> createOrder(@RequestHeader("x-user-id") UUID customerId, @RequestBody @Valid ClientOrderDto dto){
+    public ResponseEntity<OrderResponseDto> createOrder(@RequestHeader("x-user-id") UUID customerId, @RequestBody @Valid OrderRequestDto dto){
         log.info("createOrder(), customerId{}, orderDto = {}", customerId, dto);
 
         return ResponseEntity.ok(service.createOrder(customerId, dto));
     }
 
     @PutMapping("/{orderId}")
-    public ResponseEntity<FullOrderDto> updateOrder(@RequestParam UUID orderId, @RequestHeader("x-user-id") UUID customerId, @RequestBody @Valid ClientOrderDto dto){
+    public ResponseEntity<OrderResponseDto> updateOrder(@RequestParam UUID orderId, @RequestHeader("x-user-id") UUID customerId, @RequestBody @Valid OrderRequestDto dto){
         log.info("createOrder(), orderId = {}, orderDto = {}", orderId, dto);
         return ResponseEntity.ok(service.updateOrder(orderId, customerId, dto));
     }

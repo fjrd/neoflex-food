@@ -1,7 +1,7 @@
 package com.example.ordersservice.service.impl;
 
 import com.example.ordersservice.service.KafkaProducerService;
-import dto.FullOrderDto;
+import org.example.dto.order.message.OrderMessageDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.KafkaException;
@@ -18,13 +18,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class KafkaProducerServiceImpl implements KafkaProducerService {
 
-    private final KafkaTemplate<UUID, FullOrderDto> kafkaTemplate;
+    private final KafkaTemplate<UUID, OrderMessageDto> kafkaTemplate;
     private static final String KAFKA_TO_TOPIC = "new_orders";
 
-    public void send(FullOrderDto dto) {
+    public void send(OrderMessageDto dto) {
         log.info("sendToProcessorByKafka(), orderDto = {}", dto);
 
-        ListenableFuture<SendResult<UUID, FullOrderDto>> future = kafkaTemplate.send(KAFKA_TO_TOPIC, dto);
+        ListenableFuture<SendResult<UUID, OrderMessageDto>> future = kafkaTemplate.send(KAFKA_TO_TOPIC, dto);
         future.addCallback(new ListenableFutureCallback<>() {
 
             @Override
@@ -34,7 +34,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
             }
 
             @Override
-            public void onSuccess(SendResult<UUID, FullOrderDto> result) {
+            public void onSuccess(SendResult<UUID, OrderMessageDto> result) {
                 log.info("Successful message sending, orderDto = {}", dto);
             }
         });
