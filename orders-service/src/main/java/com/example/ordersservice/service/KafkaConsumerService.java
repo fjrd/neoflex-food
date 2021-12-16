@@ -1,9 +1,9 @@
 package com.example.ordersservice.service;
 
-import dto.FullOrderDto;
+import org.example.dto.order.message.OrderMessageDto;
 
 public interface KafkaConsumerService {
 
-    void loadProcessedOrder(FullOrderDto dto);
+    void loadProcessedOrder(OrderMessageDto dto);
 
 }

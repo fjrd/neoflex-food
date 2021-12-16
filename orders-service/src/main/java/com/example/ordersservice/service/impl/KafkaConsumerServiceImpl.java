@@ -2,7 +2,7 @@ package com.example.ordersservice.service.impl;
 
 import com.example.ordersservice.service.KafkaConsumerService;
 import com.example.ordersservice.service.OrderService;
-import dto.FullOrderDto;
+import org.example.dto.order.message.OrderMessageDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -18,7 +18,7 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
 
     @Override
     @KafkaListener(topics = KAFKA_FROM_TOPIC, groupId = "orders")
-    public void loadProcessedOrder(FullOrderDto dto) {
+    public void loadProcessedOrder(OrderMessageDto dto) {
         KafkaConsumerServiceImpl.log.info("loadProcessedOrder(), orderDto = {}", dto);
         service.updateOrder(dto);
     }
