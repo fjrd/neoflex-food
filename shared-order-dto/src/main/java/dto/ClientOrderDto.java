@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -17,8 +18,8 @@ public class ClientOrderDto implements Serializable {
     @NotBlank
     String deliveryAddress;
 
-    @NotBlank
-    String cardDetails;
+    @NotNull
+    CardDetailDto cardDetails;
 
     @NotBlank
     String dishesList;
