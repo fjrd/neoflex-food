@@ -45,8 +45,11 @@ public class OrderServiceImpl implements OrderService {
         log.info("createOrder(), orderDto = {}", clientOrderDto);
 
         Order order = clientOrderMapper.dtoToModel(clientOrderDto);
-        order = order.toBuilder().customerId(customerId).build();
-        FullOrderDto fullOrderDto = fullOrderMapper.modelToDto(repository.save(order));
+        order.setCustomerId(customerId);
+        repository.save(order);
+
+        FullOrderDto fullOrderDto = fullOrderMapper.modelToDto(order);
+        fullOrderDto.setCardDetails(clientOrderDto.getCardDetails());
         kafkaProducerService.send(fullOrderDto);
         return fullOrderDto;
     }
