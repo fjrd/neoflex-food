@@ -41,12 +41,13 @@ services:
     ports:
     - 8081:8081
     environment:
+      - SERVER_PORT=8081
       - POSTGRES_URL=jdbc:postgresql://nf-postgres-orders:5432/postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - SERVER_PORT=8081
-      - KAFKA_HOST_NAME=nf-kafka
-    command: [ 'java', '-jar', '/app.jar' ]
+      - KAFKA_HOST_NAME=nf-kafka:9092
+      - REDIS_HOST=nf-redis
+      - REDIS_PORT=6379
 
  #Processors
   processor:
@@ -75,9 +76,10 @@ services:
     depends_on:
       - zookeeper
     environment:
-      - KAFKA_ADVERTISED_HOST_NAME=kafka
+      - KAFKA_ADVERTISED_HOST_NAME=nf-kafka
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_CREATE_TOPIC=orders
+    restart: unless-stopped
 
   #Redis
   redis:

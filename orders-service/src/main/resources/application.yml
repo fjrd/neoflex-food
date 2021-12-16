@@ -1,11 +1,15 @@
 server:
-  port: 8081
+  port: ${SERVER_PORT:8081}
 
 spring:
   datasource:
     url: ${POSTGRES_URL:jdbc:postgresql://localhost:5433/postgres}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
+
+  data:
+    rest:
+      detection-strategy: annotated
 
   jpa:
     show-sql: true
@@ -24,7 +28,7 @@ spring:
     name: auth2
 
   redis:
-    host: ${REDIS_HOST:nf-redis}
+    host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
 
   kafka:
