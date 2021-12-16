@@ -1,4 +1,4 @@
-package dto;
+package org.example.dto.order.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class FullOrderDto implements Serializable {
+public class OrderResponseDto implements Serializable {
 
     @NotNull
     UUID id;
@@ -27,9 +27,6 @@ public class FullOrderDto implements Serializable {
 
     @NotBlank
     String deliveryAddress;
-
-    @NotBlank
-    CardDetailDto cardDetails;
 
     @NotBlank
     String dishesList;
