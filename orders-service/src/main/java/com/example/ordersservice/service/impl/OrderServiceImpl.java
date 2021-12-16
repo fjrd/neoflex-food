@@ -16,6 +16,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,6 +36,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Cacheable
+    @Transactional
     public List<OrderResponseDto> getOrdersByCustomerId(UUID customerId) {
         log.info("getOrdersByCustomersId(), customerId = {}", customerId);
         return repository.getOrdersByCustomerId(customerId)
@@ -44,12 +46,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderResponseDto createOrder(UUID customerId, OrderRequestDto clientOrderDto) {
         log.info("createOrder(), orderDto = {}", clientOrderDto);
 
         Order order = orderRequestMaper.dtoToModel(clientOrderDto);
         order.setCustomerId(customerId);
-        repository.save(order);
+        order = repository.save(order);
 
         OrderMessageDto fullOrderDto = orderMessageMapper.modelToDto(order);
         fullOrderDto.setCardDetails(clientOrderDto.getCardDetails());
@@ -59,6 +62,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderResponseDto updateOrder(UUID orderId, UUID customerId, OrderRequestDto clientOrderDto) {
         log.info("createOrder(), orderDto = {}", clientOrderDto);
         repository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException(orderId.toString()));
@@ -75,6 +79,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public void updateOrder(OrderMessageDto dto) {
         log.info("updateOrder(), fullOrderDto = {}", dto);
         repository.findById(dto.getId()).orElseThrow(() -> new ResourceNotFoundException(dto.getId().toString()));
