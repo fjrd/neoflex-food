@@ -1,4 +1,4 @@
-package org.example.dto.card.message;
+package org.example.dto.payment.message;
 
 import lombok.Builder;
 
