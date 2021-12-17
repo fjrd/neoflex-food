@@ -20,6 +20,7 @@ public class OrderController {
     private final OrderService service;
 
     @GetMapping("/{customerId}")
+
     public ResponseEntity<List<OrderResponseDto>> getOrdersByCustomerId(@PathVariable UUID customerId){
         log.info("getOrdersByCustomerId(), customerId = {}", customerId);
         return ResponseEntity.ok(service.getOrdersByCustomerId(customerId));
@@ -32,9 +33,9 @@ public class OrderController {
         return ResponseEntity.ok(service.createOrder(customerId, dto));
     }
 
-    @PutMapping("/{orderId}")
-    public ResponseEntity<OrderResponseDto> updateOrder(@RequestParam UUID orderId, @RequestHeader("x-user-id") UUID customerId, @RequestBody @Valid OrderRequestDto dto){
-        log.info("createOrder(), orderId = {}, orderDto = {}", orderId, dto);
-        return ResponseEntity.ok(service.updateOrder(orderId, customerId, dto));
+    @PutMapping
+    public ResponseEntity<OrderResponseDto> updateOrder(@RequestHeader("x-user-id") UUID customerId, @RequestBody @Valid OrderRequestDto dto){
+        log.info("createOrder(), customerId = {}, orderDto = {}", customerId, dto);
+        return ResponseEntity.ok(service.updateOrder(customerId, dto));
     }
 }
