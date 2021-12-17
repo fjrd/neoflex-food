@@ -52,8 +52,7 @@ public class OrderServiceImpl implements OrderService {
 
         Order order = orderRequestMaper.dtoToModel(clientOrderDto);
         order.setCustomerId(customerId);
-        order = repository.save(order);
-
+        order = repository.saveAndFlush(order);
         OrderMessageDto fullOrderDto = orderMessageMapper.modelToDto(order);
         fullOrderDto.setCardDetails(clientOrderDto.getCardDetails());
         kafkaProducerService.send(fullOrderDto);
@@ -68,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
         repository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException(orderId.toString()));
 
         Order order = orderRequestMaper.dtoToModel(clientOrderDto);
-        order.setId(orderId);
+        order.setOrderId(orderId);
         order.setCustomerId(customerId);
         order = repository.save(order);
 
@@ -82,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void updateOrder(OrderMessageDto dto) {
         log.info("updateOrder(), fullOrderDto = {}", dto);
-        repository.findById(dto.getId()).orElseThrow(() -> new ResourceNotFoundException(dto.getId().toString()));
+        repository.findById(dto.getOrderId()).orElseThrow(() -> new ResourceNotFoundException(dto.getOrderId().toString()));
         repository.save(orderMessageMapper.dtoToModel(dto));
     }
 }
