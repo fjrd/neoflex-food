@@ -9,6 +9,7 @@ import org.example.dto.payment.message.CardDetailDto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class OrderMessageDto implements Serializable {
 
     @NotNull
-    UUID id;
+    UUID orderId;
 
     @NotNull
     UUID customerId;
@@ -43,4 +44,10 @@ public class OrderMessageDto implements Serializable {
 
     @NotBlank
     String deliveryStatus;
+
+    @NotNull
+    LocalDateTime orderTime;
+
+    @NotNull
+    Integer orderCounter;
 }

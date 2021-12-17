@@ -9,12 +9,16 @@ import org.example.dto.payment.message.CardDetailDto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderRequestDto implements Serializable {
+
+    @NotNull
+    UUID orderId;
 
     @NotBlank
     String deliveryAddress;
