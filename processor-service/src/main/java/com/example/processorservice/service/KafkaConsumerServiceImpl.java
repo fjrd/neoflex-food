@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 public record KafkaConsumerServiceImpl(CommonService commonService,
                                        OrderProcessService orderProcessService,
                                        PaymentProcessService paymentProcessService) implements KafkaConsumerService {
-    @KafkaListener(topics = "${kafka-manual-settings.topic-in}")
+    @KafkaListener(topics = "${kafka-manual-settings.topic-in}",
+            groupId = "${kafka-manual-settings.group-id}")
     public void consumeOrders(String message) {
         try {
             var orderDto = (OrderMessageDto) commonService.stringToObject(message, OrderMessageDto.class);
@@ -22,7 +23,8 @@ public record KafkaConsumerServiceImpl(CommonService commonService,
         }
     }
 
-    @KafkaListener(topics = "${kafka-manual-settings.topic-in-payments}")
+    @KafkaListener(topics = "${kafka-manual-settings.topic-in-payments}",
+            groupId = "${kafka-manual-settings.group-id}")
     public void consumePayments(String message) {
         try {
             var paymentDto = (PaymentDto) commonService.stringToObject(message, PaymentDto.class);

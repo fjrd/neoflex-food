@@ -1,11 +1,22 @@
 package com.example.processorservice.mapper;
 
-import dto.OrderDto;
-import dto.PaymentDto;
+
+import org.example.dto.order.message.OrderMessageDto;
+import org.example.dto.payment.message.PaymentDto;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Currency;
 
 public class OrderDtoMapper {
-    public static OrderDto paymentToOrder(OrderDto orderDto, PaymentDto paymentDto) {
-        orderDto.setPaymentStatus(paymentDto.status().name());
+    public static PaymentDto toPaymentToOrder(OrderMessageDto orderDto, PaymentDto paymentDto) {
+        PaymentDto.builder()
+                .cardNumber()
+                .cvvCode()
+                .cardExpireDate()
+                .cardHolderName()
+                .build();
+
         return orderDto;
     }
 }

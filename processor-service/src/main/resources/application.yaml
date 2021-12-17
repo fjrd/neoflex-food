@@ -20,6 +20,7 @@ kafka-manual-settings:
   topic-out: processed_orders
   topic-in-payments: new_payments
   topic-out-payments: processed_payments
+  group-id: orders
 
 #springdoc:
 #  swagger-ui:
