@@ -1,6 +1,6 @@
 package com.example.processorservice.service;
 
-import dto.PaymentDto;
+import org.example.dto.payment.message.PaymentDto;
 import org.springframework.stereotype.Service;
 
 @Service

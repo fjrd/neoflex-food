@@ -1,12 +1,12 @@
 package com.example.processorservice.service;
 
-import dto.OrderDto;
+import org.example.dto.order.message.OrderMessageDto;
 import org.springframework.stereotype.Service;
 
 @Service
 public record OrderProcessServiceImpl() implements OrderProcessService{
     @Override
-    public void ordersProcess(OrderDto orderDto) {
+    public void ordersProcess(OrderMessageDto orderDto) {
 
     }
 }

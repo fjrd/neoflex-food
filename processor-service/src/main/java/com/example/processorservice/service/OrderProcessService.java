@@ -1,7 +1,8 @@
 package com.example.processorservice.service;
 
-import dto.OrderDto;
+
+import org.example.dto.order.message.OrderMessageDto;
 
 public interface OrderProcessService {
-     void ordersProcess(OrderDto orderDto);
+     void ordersProcess(OrderMessageDto orderDto);
 }

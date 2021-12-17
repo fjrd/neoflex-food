@@ -2,8 +2,8 @@ package com.example.processorservice.service;
 
 import com.example.processorservice.service.common.CommonService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import dto.OrderDto;
-import dto.PaymentDto;
+import org.example.dto.order.message.OrderMessageDto;
+import org.example.dto.payment.message.PaymentDto;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public record KafkaConsumerServiceImpl(CommonService commonService,
     @KafkaListener(topics = "${kafka-manual-settings.topic-in}")
     public void consumeOrders(String message) {
         try {
-            var orderDto = (OrderDto) commonService.stringToObject(message, OrderDto.class);
+            var orderDto = (OrderMessageDto) commonService.stringToObject(message, OrderMessageDto.class);
             orderProcessService.ordersProcess(orderDto);
 
         } catch (JsonProcessingException e) {
