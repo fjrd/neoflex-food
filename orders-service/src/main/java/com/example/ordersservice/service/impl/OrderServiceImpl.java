@@ -1,26 +1,27 @@
 package com.example.ordersservice.service.impl;
 
-import com.example.ordersservice.mapper.OrderRequestMaper;
 import com.example.ordersservice.mapper.OrderMessageMapper;
+import com.example.ordersservice.mapper.OrderRequestMaper;
 import com.example.ordersservice.mapper.OrderResponseMapper;
 import com.example.ordersservice.model.Order;
 import com.example.ordersservice.repository.OrderRepository;
 import com.example.ordersservice.service.KafkaProducerService;
 import com.example.ordersservice.service.OrderService;
-import org.example.dto.order.request.OrderRequestDto;
-import org.example.dto.order.message.OrderMessageDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.dto.order.message.OrderMessageDto;
+import org.example.dto.order.request.OrderRequestDto;
 import org.example.dto.order.response.OrderResponseDto;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityExistsException;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -35,53 +36,62 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository repository;
 
     @Override
-    @Cacheable
     @Transactional
+    @Cacheable(key = "#customerId")
     public List<OrderResponseDto> getOrdersByCustomerId(UUID customerId) {
         log.info("getOrdersByCustomersId(), customerId = {}", customerId);
-        return repository.getOrdersByCustomerId(customerId)
+        return repository.getAllByCustomerId(customerId)
                 .stream()
                 .map(orderResponseMapper::modelToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
     @Transactional
-    public OrderResponseDto createOrder(UUID customerId, OrderRequestDto clientOrderDto) {
-        log.info("createOrder(), orderDto = {}", clientOrderDto);
+    @CacheEvict(key = "#customerId")
+    public OrderResponseDto createOrder(UUID customerId, OrderRequestDto requestDto) {
+        log.info("createOrder(), orderDto = {}", requestDto);
 
-        Order order = orderRequestMaper.dtoToModel(clientOrderDto);
+        if (repository.existsById(requestDto.getOrderId()))
+            throw new EntityExistsException("This order already exists");
+
+        Order order = orderRequestMaper.dtoToModel(requestDto);
         order.setCustomerId(customerId);
         order = repository.saveAndFlush(order);
-        OrderMessageDto fullOrderDto = orderMessageMapper.modelToDto(order);
-        fullOrderDto.setCardDetails(clientOrderDto.getCardDetails());
-        kafkaProducerService.send(fullOrderDto);
+
+        OrderMessageDto messageDto = orderMessageMapper.modelToDto(order);
+        messageDto.setCardDetails(requestDto.getCardDetails());
+        kafkaProducerService.send(messageDto);
 
         return orderResponseMapper.modelToDto(order);
     }
 
     @Override
     @Transactional
-    public OrderResponseDto updateOrder(UUID orderId, UUID customerId, OrderRequestDto clientOrderDto) {
-        log.info("createOrder(), orderDto = {}", clientOrderDto);
-        repository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException(orderId.toString()));
+    @CacheEvict(key = "#customerId")
+    public OrderResponseDto updateOrder(UUID customerId, OrderRequestDto requestDto) {
+        log.info("createOrder(), orderDto = {}", requestDto);
 
-        Order order = orderRequestMaper.dtoToModel(clientOrderDto);
-        order.setOrderId(orderId);
-        order.setCustomerId(customerId);
-        order = repository.save(order);
+        Order order = repository.findById(requestDto.getOrderId())
+                .orElseThrow(() -> new ResourceNotFoundException(requestDto.getOrderId().toString()));
 
-        OrderMessageDto orderMessageDto = orderMessageMapper.modelToDto(order);
-        kafkaProducerService.send(orderMessageDto);
+        order.setDeliveryAddress(requestDto.getDeliveryAddress());
+        order.setDishesList(requestDto.getDishesList());
+        order = repository.saveAndFlush(order);
+
+        OrderMessageDto messageDto = orderMessageMapper.modelToDto(order);
+        messageDto.setCardDetails(requestDto.getCardDetails());
+        kafkaProducerService.send(messageDto);
 
         return orderResponseMapper.modelToDto(order);
     }
 
     @Override
     @Transactional
+    @CacheEvict(key = "#result.getCustomerId()")
     public void updateOrder(OrderMessageDto dto) {
         log.info("updateOrder(), fullOrderDto = {}", dto);
         repository.findById(dto.getOrderId()).orElseThrow(() -> new ResourceNotFoundException(dto.getOrderId().toString()));
-        repository.save(orderMessageMapper.dtoToModel(dto));
+        repository.saveAndFlush(orderMessageMapper.dtoToModel(dto));
     }
 }
