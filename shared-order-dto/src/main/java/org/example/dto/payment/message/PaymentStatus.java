@@ -1,10 +1,9 @@
 package org.example.dto.payment.message;
 
 public enum PaymentStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive");
+    SUCCESS("success"),
+    FAIL("fail");
 
     PaymentStatus(String status) {
-
     }
 }
