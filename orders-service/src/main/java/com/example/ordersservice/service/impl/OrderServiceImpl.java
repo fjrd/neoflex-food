@@ -53,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
         log.info("createOrder(), orderDto = {}", requestDto);
 
         if (repository.existsById(requestDto.getOrderId()))
-            throw new EntityExistsException("This order already exists");
+            throw new EntityExistsException("This order already exists, order id = " + requestDto.getOrderId());
 
         Order order = orderRequestMaper.dtoToModel(requestDto);
         order.setCustomerId(customerId);
@@ -70,10 +70,10 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @CacheEvict(key = "#customerId")
     public OrderResponseDto updateOrder(UUID customerId, OrderRequestDto requestDto) {
-        log.info("createOrder(), orderDto = {}", requestDto);
+        log.info("createOrder(), customerId = {}, orderDto = {}", customerId, requestDto);
 
         Order order = repository.findById(requestDto.getOrderId())
-                .orElseThrow(() -> new ResourceNotFoundException(requestDto.getOrderId().toString()));
+                .orElseThrow(() -> new ResourceNotFoundException("There is no such order, order id = " + requestDto.getOrderId()));
 
         order.setDeliveryAddress(requestDto.getDeliveryAddress());
         order.setDishesList(requestDto.getDishesList());
@@ -88,10 +88,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    @CacheEvict(key = "#result.getCustomerId()")
-    public void updateOrder(OrderMessageDto dto) {
+    @CacheEvict(key = "#dto.customerId")
+    public Order updateOrder(OrderMessageDto dto) {
         log.info("updateOrder(), fullOrderDto = {}", dto);
         repository.findById(dto.getOrderId()).orElseThrow(() -> new ResourceNotFoundException(dto.getOrderId().toString()));
-        repository.saveAndFlush(orderMessageMapper.dtoToModel(dto));
+        return repository.saveAndFlush(orderMessageMapper.dtoToModel(dto));
     }
 }

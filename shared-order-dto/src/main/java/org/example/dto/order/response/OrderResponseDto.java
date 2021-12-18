@@ -5,9 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -46,4 +48,8 @@ public class OrderResponseDto implements Serializable {
 
     @NotNull
     Integer orderCounter;
+
+    @Min(0)
+    @NotNull
+    BigDecimal orderAmount;
 }
