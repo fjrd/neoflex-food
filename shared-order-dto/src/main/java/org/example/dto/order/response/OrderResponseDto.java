@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.dto.payment.message.PaymentStatus;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -34,8 +35,8 @@ public class OrderResponseDto implements Serializable {
     @NotBlank
     String dishesList;
 
-    @NotBlank
-    String paymentStatus;
+    @NotNull
+    PaymentStatus paymentStatus;
 
     @NotBlank
     String restaurantStatus;

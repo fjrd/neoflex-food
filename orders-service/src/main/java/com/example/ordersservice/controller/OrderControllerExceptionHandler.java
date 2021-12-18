@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
 
 @Slf4j
 @ControllerAdvice
@@ -23,6 +24,12 @@ public class OrderControllerExceptionHandler {
     @ExceptionHandler(EntityExistsException.class)
     public ResponseEntity<String> handleEntityExistsException(EntityExistsException exception){
         log.info("handleEntityExistsException()", exception);
+        return ResponseEntity.badRequest().body(exception.getMessage());
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<String> handleEntityNonFoundException(EntityNotFoundException exception){
+        log.info("handleEntityNotFoundException()", exception);
         return ResponseEntity.badRequest().body(exception.getMessage());
     }
 }
