@@ -20,15 +20,20 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "orders")
+@Table(name = "orders", indexes = {
+        @Index(name = "idx_order_order_time_unq", columnList = "order_time, order_counter", unique = true)
+})
 public class Order {
+
+    private static final String DEFAULT_STATUS = "UNPROCESSED";
 
     @Id
     @Column(name = "order_id", nullable = false)
     private UUID orderId;
 
-    @Column(name = "customer_id", nullable = false)
-    private UUID customerId;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
 
     @NotNull
     @Column(name = "delivery_address", nullable = false)
@@ -40,7 +45,7 @@ public class Order {
 
     @Builder.Default
     @Column(name = "order_status", nullable = false)
-    private String orderStatus = "unprocessed";
+    private String orderStatus = DEFAULT_STATUS;
 
     @Builder.Default
     @Enumerated(EnumType.STRING)
@@ -49,11 +54,11 @@ public class Order {
 
     @Builder.Default
     @Column(name = "restaurant_status", nullable = false)
-    private String restaurantStatus = "unprocessed";
+    private String restaurantStatus = DEFAULT_STATUS;
 
     @Builder.Default
     @Column(name = "delivery_status", nullable = false)
-    private String deliveryStatus = "unprocessed";
+    private String deliveryStatus = DEFAULT_STATUS;
 
     @Builder.Default
     @Column(name = "order_time", nullable = false)
@@ -66,4 +71,12 @@ public class Order {
     @Min(0)
     @Column(name = "order_amount")
     private BigDecimal orderAmount;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }
