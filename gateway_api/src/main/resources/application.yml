@@ -12,11 +12,9 @@ feign:
 #restUri: http://localhost:8090/auth
 restUri: http://${CUSTOMERS_HOST:localhost}:${CUSTOMERS_PORT:8092}/auth
 
-
 jwt:
   secret: "spring"
   expiration: 604800
-
 
 #eureka:
 #  client:

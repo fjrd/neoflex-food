@@ -33,7 +33,6 @@ public class CustomerService {
         Customer customer = repository
                 .getByPhone(phone)
                 .orElseThrow(() -> new NotValidException("Phone not valid "));
-        System.out.println(customer.getPassword());
         validatePassword(password, customer.getPassword());
         return mapper.entityToDto(customer);
     }
