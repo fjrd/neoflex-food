@@ -7,7 +7,9 @@ Demo application developed as part of microservice architecture training at Neof
 ## Installation
 
 ```bash
-TODO
+mvn clean install
+docker build -f DockerfileCopyJar -t nf-api-gateway-service:0.0.1 .
+docker-compose -f docker-compose.yml up --build
 ```
 
 ## Usage
