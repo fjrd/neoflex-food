@@ -15,6 +15,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @Service
 @RequiredArgsConstructor
 public class KafkaProducerServiceImpl implements KafkaProducerService {
+
     private final KafkaTemplate<String, OrderMessageDto> kafkaTemplate;
     private static final String KAFKA_TO_ORDERS_TOPIC = "processed_orders";
 

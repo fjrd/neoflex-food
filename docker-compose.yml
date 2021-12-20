@@ -5,6 +5,9 @@ services:
   gateway:
     container_name: nf-api-gateway-service
     image: nf-api-gateway-service:0.0.1
+    build:
+      context: gateway_api
+      dockerfile: DockerfileCopyJar
     ports:
       - 8080:8080
     environment:
@@ -19,6 +22,9 @@ services:
   customers:
     container_name: nf-customers-service
     image: nf-customers-service:0.0.1
+    build:
+      context: customer_service
+      dockerfile: DockerfileCopyJar
     depends_on:
       - postgres-customers
     ports:
@@ -34,6 +40,9 @@ services:
   orders:
     container_name: nf-orders-service
     image: nf-orders-service:0.0.1
+    build:
+      context: orders-service
+      dockerfile: DockerfileCopyJar
     depends_on:
       - kafka
       - postgres-orders
@@ -49,12 +58,13 @@ services:
       - REDIS_HOST=nf-redis
       - REDIS_PORT=6379
 
-
+  #Processor
   processor:
     container_name: nf-processor-service
-    image: fjrd/nf-processor-service:0.0.1
+    image: nf-processor-service:0.0.1
     build:
       context: processor-service
+      dockerfile: DockerfileCopyJar
     depends_on:
       - kafka
     environment:

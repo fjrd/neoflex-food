@@ -5,13 +5,6 @@ Demo application developed as part of microservice architecture training at Neof
 [link to MSA schema](https://miro.com/app/board/uXjVOd7LGZE=/?invite_link_id=860322798548)
 
 ## Installation
-Manual build maven and docker
-```bash
-mvn clean install
-docker build -f DockerfileCopyJar -t nf-<modeule-name-service>:0.0.1 .
-```
-
-Run application
 ```bash
 docker-compose -f docker-compose.yml up --build
 
