@@ -2,16 +2,14 @@ package com.example.processorservice.service;
 
 import com.example.processorservice.service.common.CommonService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import dto.OrderDto;
-import dto.PaymentDto;
+import org.example.dto.order.message.OrderMessageDto;
+import org.example.dto.payment.message.PaymentDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
-public record KafkaProducerServiceImpl(KafkaTemplate<UUID, String> kafkaTemplate,
+public record KafkaProducerServiceImpl(KafkaTemplate<String, String> kafkaTemplate,
                                        CommonService commonService)
         implements KafkaProducerService {
 
@@ -21,10 +19,10 @@ public record KafkaProducerServiceImpl(KafkaTemplate<UUID, String> kafkaTemplate
     private static String topicPayments;
 
     @Override
-    public void produceOrders(OrderDto orderDto) {
+    public void produceOrders(OrderMessageDto orderMessageDto) {
 
         try {
-            kafkaTemplate.send(topicOrders, orderDto.getCustomerId(), commonService.objectToString(orderDto));
+            kafkaTemplate.send(topicOrders, orderMessageDto.getOrderId().toString(), commonService.objectToString(orderMessageDto));
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();
