@@ -24,7 +24,7 @@ services:
     ports:
       - 8092:8092
     environment:
-      - POSTGRES_URL=jdbc:postgresql://nf-postgres-customers:5432/postgres
+      - POSTGRES_URL=jdbc:postgresql://nf-pg-customers-db:5432/postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - SERVER_PORT=8092
@@ -33,7 +33,7 @@ services:
   #Orders
   orders:
     container_name: nf-orders-service
-    image: fjrd/nf-orders-service:0.0.1
+    image: nf-orders-service:0.0.1
     depends_on:
       - kafka
       - postgres-orders
@@ -42,7 +42,7 @@ services:
     - 8081:8081
     environment:
       - SERVER_PORT=8081
-      - POSTGRES_URL=jdbc:postgresql://nf-postgres-orders:5432/postgres
+      - POSTGRES_URL=jdbc:postgresql://nf-pg-orders-db:5432/postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - KAFKA_HOST_NAME=nf-kafka:9092
@@ -60,7 +60,7 @@ services:
     image: wurstmeister/kafka
     container_name: nf-kafka
     ports:
-      - "9092:9092"
+      - 9092:9092
     depends_on:
       - zookeeper
     environment:
@@ -78,7 +78,7 @@ services:
 
   #Orders DataBase
   postgres-orders:
-    container_name: nf-postgres-orders
+    container_name: nf-pg-orders-db
     image: postgres:alpine3.14
     ports:
       - 5433:5432
@@ -92,7 +92,7 @@ services:
 
   #Customers DataBase
   postgres-customers:
-    container_name: nf-postgres-customers
+    container_name: nf-pg-customers-db
     image: postgres:alpine3.14
     ports:
       - 5432:5432
