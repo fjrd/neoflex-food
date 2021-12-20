@@ -7,6 +7,10 @@ import lombok.*;
 @Getter
 @Setter
 public class AuthResponse {
-    private String jwtToken;
+    private long id;
+    private String name;
     private String phone;
+    private String jwtToken;
+
+
 }
