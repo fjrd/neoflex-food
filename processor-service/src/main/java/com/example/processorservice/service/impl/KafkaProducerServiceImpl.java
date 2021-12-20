@@ -1,6 +1,6 @@
-package com.example.ordersservice.service.impl;
+package com.example.processorservice.service.impl;
 
-import com.example.ordersservice.service.KafkaProducerService;
+import com.example.processorservice.service.KafkaProducerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.order.message.OrderMessageDto;
@@ -15,15 +15,14 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @Service
 @RequiredArgsConstructor
 public class KafkaProducerServiceImpl implements KafkaProducerService {
-
     private final KafkaTemplate<String, OrderMessageDto> kafkaTemplate;
-    private static final String KAFKA_TO_TOPIC = "new_orders";
+    private static final String KAFKA_TO_ORDERS_TOPIC = "processed_orders";
 
     @Override
-    public void send(OrderMessageDto dto) {
-        log.info("sendToProcessorByKafka(), orderDto = {}", dto);
+    public void sendUpdatedOrderToOrdersService(OrderMessageDto dto) {
+        log.info("sendUpdatedOrderToOrdersService(), dto = {}", dto);
 
-        ListenableFuture<SendResult<String, OrderMessageDto>> future = kafkaTemplate.send(KAFKA_TO_TOPIC, dto.getOrderId().toString(), dto);
+        ListenableFuture<SendResult<String, OrderMessageDto>> future = kafkaTemplate.send(KAFKA_TO_ORDERS_TOPIC, dto.getOrderId().toString(), dto);
         future.addCallback(new ListenableFutureCallback<>() {
 
             @Override

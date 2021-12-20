@@ -74,6 +74,17 @@ services:
 #      - mvn-cache:/root/.m2
 #      - "${HOME}/.m2:/root/.m2"
 
+
+  processor:
+    container_name: nf-processor-service
+    image: fjrd/nf-processor-service:0.0.1
+    build:
+      context: processor-service
+    depends_on:
+      - kafka
+    environment:
+      - KAFKA_HOST_NAME=nf-kafka:9092
+
   #Kafka
   zookeeper:
     image: wurstmeister/zookeeper
@@ -85,7 +96,7 @@ services:
     image: wurstmeister/kafka
     container_name: nf-kafka
     ports:
-      - "9092:9092"
+      - 9092:9092
     depends_on:
       - zookeeper
     environment:
