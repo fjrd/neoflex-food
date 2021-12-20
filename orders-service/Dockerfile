@@ -5,7 +5,10 @@ WORKDIR /app
 COPY pom.xml ./
 COPY src ./src
 
-RUN mvn clean install
+#RUN --mount=type=cache,target=/mvn-cache/root/.m2 mvn clean package
+
+RUN --mount=type=cache,target=/root/.m2 mvn clean package
+#RUN mvn --batch-mode clean package
 
 FROM openjdk:17-jdk-alpine3.14
 
