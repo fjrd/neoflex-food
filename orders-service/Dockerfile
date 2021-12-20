@@ -1,16 +1,17 @@
-FROM maven:3.8.1-openjdk-11 AS MAVEN_BUILD
+FROM maven:3.8.1-openjdk-17 AS MAVEN_BUILD
 
-RUN cd ../ $
-RUN cd shared-order-dto/ $
-RUN mvn clean install
+WORKDIR /app
 
 COPY pom.xml ./
 COPY src ./src
 
-WORKDIR /app
+#RUN --mount=type=cache,target=/mvn-cache/root/.m2 mvn clean package
 
-RUN mvn clean install
+RUN --mount=type=cache,target=/root/.m2 mvn clean package
+#RUN mvn --batch-mode clean package
 
-FROM openjdk:18-jdk-alpine3.14
+FROM openjdk:17-jdk-alpine3.14
 
 COPY --from=MAVEN_BUILD /app/target/*.jar app.jar
+
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
