@@ -1,62 +1,40 @@
 version: '3.9'
 services:
 
-#  maven:
-#    image: maven:3.8.1-openjdk-17
-#    volumes:
-#    - mvn-cache:/home/.m2
+  #ApiGateway
+  gateway:
+    container_name: nf-api-gateway-service
+    image: nf-api-gateway-service:0.0.1
+    ports:
+      - 8080:8080
+    environment:
+      - SERVER_PORT=8080
+      - CUSTOMERS_HOST=nf-customers-service
+      - CUSTOMERS_PORT=8092
+      - ORDERS_HOST=nf-orders-service
+      - ORDERS_PORT=8081
+    command: [ 'java', '-jar', '/app.jar' ]
 
-#  #ApiGateway
-#  gateway:
-#    container_name: nf-api-gateway-service
-#    image: ryzhkov/nf-api-gateway-service:0.0.1
-#    build:
-#      context: gateway_api
-#    ports:
-#      - 8083:8083
-#    environment:
-#      - SERVER_PORT=8083
-#      - CUSTOMERS_HOST=nf-customers-service
-#      - CUSTOMERS_PORT=8091
-#      - ORDERS_HOST=nf-orders-service
-#      - ORDERS_PORT=8081
-#    command: [ 'java', '-jar', '/app.jar' ]
-#
-#  #Customers
-#  customers:
-#    container_name: nf-customers-service
-#    image: ryzhkov/nf-customers-service:0.0.1
-#    build:
-#      context: customer_service
-#    depends_on:
-#      - postgres-customers
-#    ports:
-#      - 8091:8091
-#    environment:
-#      - POSTGRES_URL=jdbc:postgresql://nf-postgres-customers:5432/postgres
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#      - SERVER_PORT=8091
-#    command: [ 'java', '-jar', '/app.jar' ]
-
-#  #Shared library
-#  shared:
-#    container_name: nf-shared
-#    image: fjrd/nf-share-library:0.0.1
-#    build:
-#      context: shared-order-dto
-#    volumes:
-#      - mvn-cache:/root/.m2
-#  #      - "${HOME}/.m2:/root/.m2"
+  #Customers
+  customers:
+    container_name: nf-customers-service
+    image: nf-customers-service:0.0.1
+    depends_on:
+      - postgres-customers
+    ports:
+      - 8092:8092
+    environment:
+      - POSTGRES_URL=jdbc:postgresql://nf-postgres-customers:5432/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - SERVER_PORT=8092
+    command: [ 'java', '-jar', '/app.jar' ]
 
   #Orders
   orders:
     container_name: nf-orders-service
     image: fjrd/nf-orders-service:0.0.1
-    build:
-      context: orders-service
     depends_on:
-#      - shared
       - kafka
       - postgres-orders
       - redis
@@ -70,9 +48,6 @@ services:
       - KAFKA_HOST_NAME=nf-kafka:9092
       - REDIS_HOST=nf-redis
       - REDIS_PORT=6379
-#    volumes:
-#      - mvn-cache:/root/.m2
-#      - "${HOME}/.m2:/root/.m2"
 
   #Kafka
   zookeeper:
@@ -130,6 +105,5 @@ services:
       - pg-orders-data:/var/lib/postgresql/data/
 
 volumes:
-#  mvn-cache:
   pg-orders-data:
   pg-customers-data:
