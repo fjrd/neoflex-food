@@ -20,7 +20,7 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
     @KafkaListener(topics = KAFKA_FROM_TOPIC, groupId = "orders")
     public void loadProcessedOrder(OrderMessageDto dto) {
         KafkaConsumerServiceImpl.log.info("loadProcessedOrder(), orderDto = {}", dto);
-        service.updateOrder(dto);
+        service.updateOrderFromProcessor(dto);
     }
 
 }
