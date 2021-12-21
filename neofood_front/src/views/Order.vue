@@ -1,21 +1,21 @@
 <template>
-  <master-layout pageTitle="MyProfile">
-    <ion-card v-if="user">
+  <master-layout pageTitle="My Order Info">
+    <ion-card v-if="order">
       <ion-card-header>
-        <ion-card-title>{{user.name}}</ion-card-title>
+        <ion-card-title>{{order.orderId}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-item>
-          <ion-label>ID:</ion-label>
-          <ion-label>{{ user.id }}</ion-label>
+          <ion-label>Address:</ion-label>
+          <ion-label>{{ order.deliveryAddress }}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>Phone:</ion-label>
-          <ion-label>{{ user.phone }}</ion-label>
+          <ion-label>Dishes:</ion-label>
+          <ion-label>{{ order.dishesList }}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>Token:</ion-label>
-          <ion-label>{{ user.jwtToken }}</ion-label>
+          <ion-label>Amount:</ion-label>
+          <ion-label>{{ order.orderAmount }}</ion-label>
         </ion-item>
       </ion-card-content>
     </ion-card>
@@ -32,12 +32,9 @@ export default {
     IonCard,IonCardHeader,IonCardTitle,IonCardContent,IonItem,IonLabel,
   },
   computed: {
-    ...mapGetters("auth", {
-      user: "getUser",
+    ...mapGetters("orderStore", {
+    order: "getOrder",
     }),
   },
-  methods: {
-    
-  }
 };
 </script>

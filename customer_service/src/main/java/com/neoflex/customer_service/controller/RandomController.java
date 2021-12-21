@@ -1,10 +1,8 @@
 package com.neoflex.customer_service.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.dto.order.request.OrderRequestDto;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -17,6 +15,19 @@ public class RandomController {
     @GetMapping("message")
     public String test() {
         return "Hello JavaInUse Called in Second Service";
+    }
+
+    @PostMapping("order")
+    public OrderRequestDto postDto(@RequestBody OrderRequestDto requestDto) {
+        System.out.println(requestDto.getOrderId());
+        System.out.println(requestDto.getDeliveryAddress());
+        System.out.println(requestDto.getCardDetails().cardNumber());
+        System.out.println(requestDto.getCardDetails().validDate());
+        System.out.println(requestDto.getCardDetails().firstName());
+        System.out.println(requestDto.getCardDetails().lastName());
+        System.out.println(requestDto.getDishesList());
+        System.out.println(requestDto.getOrderAmount());
+        return requestDto;
     }
 
 }

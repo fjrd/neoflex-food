@@ -73,8 +73,7 @@ export default {
           },
           (error) => {
             if (error.message) {
-              this.errorMessage = "Please, enter correct credentials"
-            }
+              this.errorMessage = error.response.data.message;            }
           }
         )
       }

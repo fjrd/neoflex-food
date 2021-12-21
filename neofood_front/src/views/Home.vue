@@ -3,14 +3,16 @@
     <ion-card>
       <img style="width:100%" src="../image/neoflex.png" />
       <ion-card-header>
-        <ion-card-subtitle>Make order, please</ion-card-subtitle>
+        <ion-card-subtitle>Make order, please
+          <ion-label v-if="errorMessage" color="danger" >{{errorMessage}}</ion-label>
+        </ion-card-subtitle>
         <ion-card-title>Order form</ion-card-title>
       </ion-card-header>
       <ion-card-content>
          <OrderForm/>
       </ion-card-content>
     </ion-card>
-    <ion-button @click="handleMakeOrder">MAKE ORDER</ion-button>
+    <ion-button @click="giveMeFormPlease()">MAKE ORDER</ion-button>
   </master-layout>
 </template>
 
@@ -26,6 +28,8 @@ import { useForm } from "vee-validate";
 import OrderForm, { orderInfoSchema } from "../components/OrderForm.vue"
 import { mapActions } from "vuex";
 
+
+
 export default {
 components: {
     IonButton,
@@ -35,25 +39,43 @@ components: {
     IonCardTitle,
     OrderForm
   },
+  data() {
+    return {
+      errorMessage: "",
+    };
+  },
   setup() {
     const theForm = useForm({
       validationSchema: orderInfoSchema
     });
-    return {
-      handleMakeOrder: async () => {
+    async function handleForm() {
         const resp = await theForm.validate();
         if (resp.valid) {
-          const orderInfo = theForm.values;
-          this.makeOrder(orderInfo);
-          this.$router.push("/order");
+          return theForm.values;
         }
       }
-    };
+    return {
+      handleForm
+      }
   },
   methods: {
-    ...mapActions("order", {
+    ...mapActions("orderStore", {
     makeOrder: "makeOrder",
     }),
-  }
+    async giveMeFormPlease(){
+        this.handleForm()
+        .then(result => this.makeOrder(JSON.parse(JSON.stringify(result))))
+        .then(
+          () => {
+            this.$router.push("/order");
+          },
+          ( error ) => {
+            if (error.message) {
+              this.errorMessage = error.response.data.message;
+          }
+        }
+      );   
+    }
+  } 
 };
 </script>

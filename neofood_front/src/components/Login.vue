@@ -66,9 +66,11 @@ export default {
             this.$router.push("/profile");
             this.closeModal();
           },
-          (error) => {
+          ( error ) => {
+            console.log(error.response.data.message);
             if (error.message) {
-              this.errorMessage = "Please, enter correct login and password";
+              this.errorMessage = error.response.data.message;
+              this.message = error.message;
             }
           }
         )

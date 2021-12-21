@@ -5,7 +5,7 @@ const initialState = order
   ? {  order }
   : {  order: null };
 
-export const auth = {
+export const orderStore = {
   namespaced: true,
   state: initialState,
   getters: {

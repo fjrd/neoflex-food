@@ -1,9 +1,6 @@
 package org.example.dto.order.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.dto.payment.message.CardDetailDto;
 
 import javax.validation.constraints.Min;

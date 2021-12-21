@@ -8,17 +8,20 @@ class OrderService {
     makeOrder(order) {
         return axios
           .post(ORDER_API_URL,
-            { headers: authHeader() },
             {
-            orderId: uuid.v1(),
-            address: order.address,
-            cardNumber: order.cardNumber,
-            validDate: order.validDate,
-            firstName: order.firstName,
-            lastName: order.lastName,
-            dishes: order.dishes,
-            amount: order.amount,
-          })
+              orderId: uuid.v1(),
+              deliveryAddress: order.address,
+              cardDetails: {
+                cardNumber: order.cardNumber,
+                validDate: order.validDate,
+                firstName: order.firstName,
+                lastName: order.lastName,
+              },
+              dishesList: order.dishes,
+              orderAmount: order.amount,
+            },
+            { headers: authHeader() },
+            )
           .then(response => {
             if (response.data.orderId) {
               localStorage.setItem('order', JSON.stringify(response.data));
