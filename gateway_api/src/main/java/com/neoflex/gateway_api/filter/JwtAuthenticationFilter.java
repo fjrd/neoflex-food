@@ -47,7 +47,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
                 response.setStatusCode(HttpStatus.BAD_REQUEST);
                 return response.setComplete();
             }
-            exchange.getResponse().getHeaders().add("x-user-id", tokenProvider.getCustomerId(token));
+            exchange.getRequest().mutate().header("x-user-id", tokenProvider.getCustomerId(token)).build();
         }
 
         return chain.filter(exchange);
