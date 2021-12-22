@@ -36,19 +36,19 @@ public class ProcessorServiceImpl implements ProcessorService {
         producerService.sendUpdatedOrderToOrdersService(dto);
 
         Thread.sleep(5000);
-        dto.setRestaurantStatus("Cooking");
+        dto.setRestaurantStatus("COOKING_IN_PROGRESS");
         producerService.sendUpdatedOrderToOrdersService(dto);
 
         Thread.sleep(5000);
-        dto.setRestaurantStatus("Done");
+        dto.setRestaurantStatus("COOKED");
         producerService.sendUpdatedOrderToOrdersService(dto);
 
         Thread.sleep(5000);
-        dto.setDeliveryStatus("ON_THE_WAY");
+        dto.setDeliveryStatus("DELIVERY_IN_PROGRESS");
         producerService.sendUpdatedOrderToOrdersService(dto);
 
         Thread.sleep(5000);
-        dto.setDeliveryStatus("SUCCESSFULLY_DELIVERED");
+        dto.setDeliveryStatus("DELIVERED");
         dto.setOrderStatus("COMPLETED");
         producerService.sendUpdatedOrderToOrdersService(dto);
 
