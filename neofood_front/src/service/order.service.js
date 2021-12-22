@@ -23,16 +23,13 @@ class OrderService {
             },
             { headers: authHeader() },
             )
-          .then(response => {
-            if (response.data.orderId) {
-              localStorage.setItem('order', JSON.stringify(response.data));
-            }
-            return response.data;
-          });
+          .then(response => response.data);
       }
     
-      getOrder(id) {
-        return axios.post(ORDER_API_URL + "/" + id);
+      getOrders(id) {
+        return axios.get(ORDER_API_URL + "/" + id,
+        { headers: authHeader() },
+        ).then(response => response.data);
       }
 }
 

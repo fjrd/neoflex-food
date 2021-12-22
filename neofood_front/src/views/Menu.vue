@@ -10,11 +10,14 @@
         <ion-item button @click="menuNavigation('/home')">
           <ion-label>Home</ion-label>
         </ion-item>
+        <ion-item v-if="currentUser" button @click="menuNavigation('/profile')">
+          <ion-label>Profile</ion-label>
+        </ion-item>
+        <ion-item v-if="currentUser" button @click="menuNavigation('/orders')">
+          <ion-label>My orders</ion-label>
+        </ion-item>
         <ion-item button @click="menuNavigation('/about')">
           <ion-label>About</ion-label>
-        </ion-item>
-         <ion-item v-if="currentUser" button @click="menuNavigation('/profile')">
-          <ion-label>Profile</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>

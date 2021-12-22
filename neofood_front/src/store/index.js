@@ -9,4 +9,6 @@ const store = createStore({
   },
 });
 
+store.dispatch("initOrdersStore");
+
 export default store;

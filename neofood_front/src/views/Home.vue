@@ -67,7 +67,7 @@ components: {
         .then(result => this.makeOrder(JSON.parse(JSON.stringify(result))))
         .then(
           () => {
-            this.$router.push("/order");
+            this.$router.push("/orders");
           },
           ( error ) => {
             if (error.message) {

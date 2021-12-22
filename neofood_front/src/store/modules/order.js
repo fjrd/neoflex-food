@@ -1,19 +1,42 @@
 import OrderService from '../../service/order.service';
 
-const order = JSON.parse(localStorage.getItem('order'));
-const initialState = order
-  ? {  order }
-  : {  order: null };
+const userId = JSON.parse(localStorage.getItem('user'))
+  ? JSON.parse(localStorage.getItem('user')).id
+  :null;
+
+function serializeResponse(orders) {
+  return orders.reduce((acc, order) => {
+    acc[order.orderId] = order;
+    return acc;
+  }, {});
+}
 
 export const orderStore = {
   namespaced: true,
-  state: initialState,
+  state: {
+    orders: {}
+  },
   getters: {
-     getOrder(state){
-       return state.order;
-     }
+    ordersList: ({ orders }) => orders,
+    getOrder(state){
+      return state.order;
+    }
   },
   actions: {
+    initOrdersStore: {
+      handler({ dispatch }) {
+        dispatch('fetchOrders');
+      },
+      root: true,
+    },
+    async fetchOrders({ commit }) {
+      if(userId){
+         const response = await OrderService.getOrders(userId);
+        const orders = serializeResponse(response);
+        commit('orders', orders);
+      }
+       
+    },
     makeOrder({ commit }, order) {
       return OrderService.makeOrder(order).then(
         order => {
@@ -21,18 +44,21 @@ export const orderStore = {
           return Promise.resolve(order);
         },
         error => {
-          commit('orderFailure');
+          // commit('orderFailure');
           return Promise.reject(error);
         }
       );
     },
   },
   mutations: {
-    orderSuccess(state, order) {
-      state.order = order;
+    orders(state, value) {
+      state.orders = value;
     },
-    orderFailure(state) {
-      state.order = null;
-    },
+    orderSuccess(state, order){
+      state.orders[order.orderId] = order;
+    }
+    // orderFailure(state) {
+    //   state.order = null;
+    // },
   }
 };
