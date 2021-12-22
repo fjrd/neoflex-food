@@ -101,7 +101,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     @CacheEvict(key = "#dto.customerId")
-    public void updateOrder(OrderMessageDto dto) {
+    public void updateOrderFromProcessor(OrderMessageDto dto) {
         log.info("updateOrder(), fullOrderDto = {}", dto);
 
         Order order = findOrderByIdIfExists(dto.getOrderId());
@@ -123,7 +123,7 @@ public class OrderServiceImpl implements OrderService {
 
     private void checkIfOrderExists(UUID orderId) {
         if (orderRepository.existsById(orderId))
-            throw new EntityExistsException("Order with ID = " + orderId + "already exists");
+            throw new EntityExistsException("Order with ID = " + orderId + " already exists");
     }
 
     private Order findOrderByIdIfExists(UUID orderId) {
