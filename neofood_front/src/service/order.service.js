@@ -16,6 +16,7 @@ class OrderService {
                 validDate: order.validDate,
                 firstName: order.firstName,
                 lastName: order.lastName,
+                cvc: order.cvc
               },
               dishesList: order.dishes,
               orderAmount: order.amount,

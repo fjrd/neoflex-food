@@ -31,6 +31,12 @@
     </ion-item>
     <p>{{ errors["lastName"] }}</p>
 
+     <ion-item>
+      <ion-label>cvc</ion-label>
+      <ion-input name="cvc" v-model="cvc" type="text" />
+    </ion-item>
+    <p>{{ errors["cvc"] }}</p>
+
     <ion-item>
       <ion-label>Dishes</ion-label>
       <ion-input name="dishes" v-model="dishes" type="text" />
@@ -57,6 +63,7 @@ export const orderInfoSchema = yup
     validDate: yup.string().required("Valid Date Is Required"),
     firstName: yup.string().required("First Name Is Required"),
     lastName: yup.string().required("Last Name Is Required"),
+    cvc: yup.string().required("CVC Is Required"),
     dishes: yup.string().required("Dishes Is Required"),
     amount: yup.string().required("Amount Is Required")
   })
@@ -68,6 +75,7 @@ export default {
     const { value: validDate } = useField("validDate");
     const { value: firstName } = useField("firstName");
     const { value: lastName } = useField("lastName");
+    const { value: cvc } = useField("cvc");
     const { value: dishes } = useField("dishes");
     const { value: amount } = useField("amount");
 
@@ -77,6 +85,7 @@ export default {
       validDate,
       firstName,
       lastName,
+      cvc,
       dishes,
       amount,
       errors: useFormErrors()

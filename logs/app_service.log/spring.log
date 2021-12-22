@@ -4430,3 +4430,4 @@ Caused by: java.lang.ClassNotFoundException: org.example.dto.order.request.Order
 2021-12-22 11:29:19,822 INFO  [http-nio-8092-exec-5] com.neoflex.customer_service.controller.CustomerController : Create customer CustomerEditDto(name=qqqq, phone=999999999, password=9999)
 2021-12-22 11:30:03,553 INFO  [http-nio-8092-exec-6] com.neoflex.customer_service.controller.CustomerController : Create customer CustomerEditDto(name=1112145, phone=12121212, password=121212)
 2021-12-22 11:30:34,223 INFO  [http-nio-8092-exec-7] com.neoflex.customer_service.controller.CustomerController : Authenticate customer with phone 999-99-99
+2021-12-22 11:35:38,349 INFO  [http-nio-8092-exec-10] com.neoflex.customer_service.controller.CustomerController : Authenticate customer with phone 999-99-99
