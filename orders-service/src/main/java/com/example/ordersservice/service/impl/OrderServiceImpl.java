@@ -106,8 +106,7 @@ public class OrderServiceImpl implements OrderService {
 
         Order order = findOrderByIdIfExists(dto.getOrderId());
 
-        orderRepository.saveAndFlush(order
-                .toBuilder()
+        orderRepository.save(order.toBuilder()
                 .orderStatus(dto.getOrderStatus())
                 .paymentStatus(dto.getPaymentStatus())
                 .restaurantStatus(dto.getRestaurantStatus())

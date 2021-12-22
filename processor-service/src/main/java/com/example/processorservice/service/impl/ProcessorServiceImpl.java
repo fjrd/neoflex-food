@@ -6,14 +6,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.order.message.OrderMessageDto;
+import org.example.dto.payment.message.PaymentStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-
-import static org.example.dto.payment.message.PaymentStatus.UNPROCESSED;
-import static org.example.dto.payment.message.PaymentStatus.values;
 
 @Slf4j
 @Service
@@ -26,22 +22,36 @@ public class ProcessorServiceImpl implements ProcessorService {
     @Override
     public void processOrder(OrderMessageDto dto) {
         log.info("processOrder(), dto = {}", dto);
-
-        //this is mocking order processing unless payment, restaurant, delivery services would be developed
-        producerService.sendUpdatedOrderToOrdersService(mockStatusProcessing(dto));
-
+        mockStatusProcessing(dto);
     }
 
+    //this method is mocking order processing unless payment, restaurant, delivery services would be developed
     @SneakyThrows
-    private OrderMessageDto mockStatusProcessing(OrderMessageDto dto){
+    private void mockStatusProcessing(OrderMessageDto dto){
         log.info("mockStatusProcessing(), dto = {}", dto);
 
-        Thread.sleep(10000);
-        dto.setPaymentStatus(Arrays.stream(values()).filter(ps -> !ps.equals(UNPROCESSED)).skip(random.nextInt(2)).findFirst().get());
-        dto.setRestaurantStatus(List.of("COOKING", "DONE").stream().skip(random.nextInt(2)).findFirst().get());
-        dto.setDeliveryStatus(List.of("ON_THE_WAY", "SUCCESSFULLY_DELIVERED").stream().skip(random.nextInt(2)).findFirst().get());
+        Thread.sleep(5000);
+        dto.setPaymentStatus(PaymentStatus.SUCCESS);
         dto.setOrderStatus("IN_PROGRESS");
-        return dto;
+        producerService.sendUpdatedOrderToOrdersService(dto);
+
+        Thread.sleep(5000);
+        dto.setRestaurantStatus("Cooking");
+        producerService.sendUpdatedOrderToOrdersService(dto);
+
+        Thread.sleep(5000);
+        dto.setRestaurantStatus("Done");
+        producerService.sendUpdatedOrderToOrdersService(dto);
+
+        Thread.sleep(5000);
+        dto.setDeliveryStatus("ON_THE_WAY");
+        producerService.sendUpdatedOrderToOrdersService(dto);
+
+        Thread.sleep(5000);
+        dto.setDeliveryStatus("SUCCESSFULLY_DELIVERED");
+        dto.setOrderStatus("COMPLETED");
+        producerService.sendUpdatedOrderToOrdersService(dto);
+
     }
 
 }
