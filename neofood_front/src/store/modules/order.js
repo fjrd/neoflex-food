@@ -2,7 +2,7 @@ import OrderService from '../../service/order.service';
 
 const userId = JSON.parse(localStorage.getItem('user'))
   ? JSON.parse(localStorage.getItem('user')).id
-  :null;
+  : null;
 
 function serializeResponse(orders) {
   return orders.reduce((acc, order) => {
@@ -18,9 +18,6 @@ export const orderStore = {
   },
   getters: {
     ordersList: ({ orders }) => orders,
-    getOrder(state){
-      return state.order;
-    }
   },
   actions: {
     initOrdersStore: {
@@ -31,7 +28,7 @@ export const orderStore = {
     },
     async fetchOrders({ commit }) {
       if(userId){
-         const response = await OrderService.getOrders(userId);
+        const response = await OrderService.getOrders(userId);
         const orders = serializeResponse(response);
         commit('orders', orders);
       }
@@ -44,11 +41,13 @@ export const orderStore = {
           return Promise.resolve(order);
         },
         error => {
-          // commit('orderFailure');
           return Promise.reject(error);
         }
       );
     },
+    clearOrders({ commit }) {
+      commit('clearOrders');
+    }
   },
   mutations: {
     orders(state, value) {
@@ -56,9 +55,10 @@ export const orderStore = {
     },
     orderSuccess(state, order){
       state.orders[order.orderId] = order;
+    },
+    clearOrders(state) {
+      state.orders = {};
     }
-    // orderFailure(state) {
-    //   state.order = null;
-    // },
+ 
   }
 };

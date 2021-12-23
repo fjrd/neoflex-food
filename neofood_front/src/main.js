@@ -22,13 +22,13 @@ import '@ionic/vue/css/display.css';
 import MasterLayout from './components/MasterLayout.vue'
 import ModalLayout from './components/ModalLayout.vue'
 import store from "./store";
-
-
+import VCalendar from 'v-calendar';
 
 /* Theme variables */
 import './theme/variables.css';
 
 const app = createApp(App)
+  .use(VCalendar, {})
   .use(IonicVue)
   .use(router);
 
