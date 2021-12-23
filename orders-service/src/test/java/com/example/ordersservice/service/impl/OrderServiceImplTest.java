@@ -128,7 +128,7 @@ class OrderServiceImplTest {
     @Test
     void updateOrderFromProcessorCallsSaveTest() {
         service.updateOrderFromProcessor(messageDto);
-        Mockito.verify(orderRepository, Mockito.times(1)).save(any(Order.class));
+        Mockito.verify(orderRepository, Mockito.times(1)).saveAndFlush(any(Order.class));
     }
 
     @Test
