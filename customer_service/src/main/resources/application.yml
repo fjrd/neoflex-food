@@ -6,7 +6,7 @@ spring:
       connection-timeout: 30000
       maximum-pool-size: 10
     driver-class-name: org.postgresql.Driver
-    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/postgres}
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/customer_db}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
   jpa:

@@ -1,5 +1,6 @@
-orders:
-  host: http://${ORDERS_HOST:localhost}:${ORDERS_PORT:8081}/
+application:
+  ordersHost: ${ORDERS_HOST:http://localhost:8081/}
+  customersHost: ${CUSTOMERS_HOST:http://localhost:8092/}
 
 feign:
   client:
@@ -10,13 +11,11 @@ feign:
         loggerLevel: basic
 
 #restUri: http://localhost:8090/auth
-restUri: http://${CUSTOMERS_HOST:localhost}:${CUSTOMERS_PORT:8092}/auth
-
+restUri: ${CUSTOMERS_HOST:http://localhost:8092}/auth
 
 jwt:
   secret: "spring"
   expiration: 604800
-
 
 #eureka:
 #  client:

@@ -4,11 +4,19 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
                    http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+<!--    <property name="uuid_type" value="uuid" dbms="postgresql"/>-->
+<!--    <property name="uuid_function" value="public.uuid_generate_v4()" dbms="postgresql"/>-->
+<!--    <preConditions>-->
+<!--        <dbms type="postgresql"/>-->
+<!--    </preConditions>-->
     <changeSet author="ryzhkov" id="1">
         <createTable tableName="customers">
-            <column autoIncrement="true" name="id" type="BIGSERIAL">
-                <constraints primaryKey="true" primaryKeyName="customer_pk"/>
+            <column name="customer_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_customer"/>
             </column>
+<!--            <column name="id" type="uuid"/>-->
             <column name="name" type="VARCHAR(255)"/>
             <column name="phone" type="VARCHAR(255)"/>
             <column name="password" type="VARCHAR(255)"/>

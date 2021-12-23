@@ -5,15 +5,16 @@ Demo application developed as part of microservice architecture training at Neof
 [link to MSA schema](https://miro.com/app/board/uXjVOd7LGZE=/?invite_link_id=860322798548)
 
 ## Installation
-
 ```bash
-TODO
+docker-compose -f docker-compose.yml up --build
+
+ionic serve
 ```
 
 ## Usage
 
 ```bash
-TODO
+http://localhost:8100/home
 ```
 
 ## Contributing

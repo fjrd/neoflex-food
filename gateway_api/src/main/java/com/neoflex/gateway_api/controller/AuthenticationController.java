@@ -1,20 +1,17 @@
 package com.neoflex.gateway_api.controller;
 
+import com.neoflex.gateway_api.model.to.AuthResponse;
 import com.neoflex.gateway_api.model.to.CustomerAuthDto;
 import com.neoflex.gateway_api.model.to.CustomerDto;
 import com.neoflex.gateway_api.service.CustomerService;
 import com.neoflex.gateway_api.util.JwtTokenProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 @RequestMapping("/api")
 public class AuthenticationController {
 
@@ -29,12 +26,9 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody CustomerAuthDto authDto) {
+        log.info("Authenticate customer with phone {}", authDto.getPhone());
         CustomerDto customerDto = customerService.getCustomer(authDto);
         String token = tokenProvider.createToken(customerDto.getPhone(), customerDto.getId());
-        Map<Object, Object> response = new HashMap<>();
-        response.put("phone", authDto.getPhone());
-        response.put("token", token);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new AuthResponse(customerDto.getId(), customerDto.getName(), customerDto.getPhone(), token));
     }
-
 }
