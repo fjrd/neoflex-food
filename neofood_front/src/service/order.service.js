@@ -2,7 +2,7 @@ import axios from 'axios';
 import { uuid } from 'vue-uuid'; 
 import authHeader from './auth-header';
 
-const ORDER_API_URL = 'http://localhost:8080/auth/orders';
+const ORDER_API_URL = 'http://localhost:8080/api/v1/orders';
 
 class OrderService {
     makeOrder(order) {
