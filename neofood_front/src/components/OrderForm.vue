@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <ion-item>
       <ion-label>Delivery Address</ion-label>
       <ion-input name="address" v-model="address" type="text" />
@@ -48,7 +47,6 @@
       <ion-input name="amount" v-model="amount" type="text" />
     </ion-item>
     <p>{{ errors["amount"] }}</p>
-
   </div>
 </template>
 
@@ -78,7 +76,6 @@ export default {
     const { value: cvc } = useField("cvc");
     const { value: dishes } = useField("dishes");
     const { value: amount } = useField("amount");
-
     return {
       address,
       cardNumber,

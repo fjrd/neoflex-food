@@ -1,7 +1,7 @@
 <template>
     <ion-grid>
-        <ion-row v-if="isExist">
-            <ion-col class="ion-align-self-center" size="6" v-for="(order, key) in list" :key="key">
+        <ion-row class="ion-align-self-center" v-if="isExist">
+            <ion-col  size="auto" v-for="(order, key) in list" :key="key">
                 <OrderItem :order="order"/>
             </ion-col>
         </ion-row>

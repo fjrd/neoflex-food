@@ -34,7 +34,8 @@ import {
   IonLabel, 
   IonInput,
   IonButton, 
-  modalController
+  modalController,
+  alertController 
 } from "@ionic/vue";
 import { mapGetters, mapActions } from "vuex";
 
@@ -70,6 +71,7 @@ export default {
           () => {
             this.$router.push("/home");
             this.closeModal();
+            this.presentAlert();
           },
           (error) => {
             if (error.message) {
@@ -77,6 +79,18 @@ export default {
           }
         )
       }
+    },
+    async presentAlert() {
+      const alert = await alertController
+        .create({
+          header: 'Register successful',
+          message: 'Login, please to make an order',
+          buttons: ['OK'],
+        });
+      await alert.present();
+
+      const { role } = await alert.onDidDismiss();
+      console.log('onDidDismiss resolved with role', role);
     },
   },
 };

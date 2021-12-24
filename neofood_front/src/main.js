@@ -23,8 +23,6 @@ import MasterLayout from './components/MasterLayout.vue'
 import ModalLayout from './components/ModalLayout.vue'
 import store from "./store";
 
-
-
 /* Theme variables */
 import './theme/variables.css';
 

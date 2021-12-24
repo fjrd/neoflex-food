@@ -78,10 +78,14 @@ export default {
     },
     logOut(){
       this.logoutUser();
+      this.clearOrders();
       this.$router.push('/home');
     },
       ...mapActions("auth", {
       logoutUser: "logoutUser",
+    }),
+     ...mapActions("orderStore", {
+      clearOrders: "clearOrders",
     }),
   },
 };

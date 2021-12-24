@@ -63,14 +63,15 @@ export default {
       if (this.userInfo.phone && this.userInfo.password) {
         this.loginUser(this.userInfo).then(
           () => {
+            this.$store.dispatch("initOrdersStore");
             this.$router.push("/profile");
             this.closeModal();
           },
           ( error ) => {
             console.log(error.response.data.message);
+            console.log(error.message);
             if (error.message) {
               this.errorMessage = error.response.data.message;
-              this.message = error.message;
             }
           }
         )
