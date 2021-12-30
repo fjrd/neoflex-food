@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.dto.payment.message.PaymentStatus;
+import org.example.dto.payment.PaymentStatus;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
@@ -72,11 +72,4 @@ public class Order {
     @Column(name = "order_amount")
     private BigDecimal orderAmount;
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }
