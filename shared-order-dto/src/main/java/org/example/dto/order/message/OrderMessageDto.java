@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.dto.delivery.CourierDto;
 import org.example.dto.delivery.DeliveryStatus;
 import org.example.dto.order.OrderStatus;
 import org.example.dto.payment.CardDetailDto;
@@ -66,5 +67,7 @@ public class OrderMessageDto implements Serializable {
 
     @NotNull
     private RestaurantDto restaurant;
+
+    private CourierDto assignedCourier;
 
 }
