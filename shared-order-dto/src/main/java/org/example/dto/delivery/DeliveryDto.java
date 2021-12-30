@@ -41,4 +41,7 @@ public class DeliveryDto {
 
     @NotNull
     private RestaurantDto restaurant;
+
+    @NotNull
+    private CourierDto assignedCourier;
 }
