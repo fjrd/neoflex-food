@@ -4,7 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.dto.payment.message.PaymentStatus;
+import org.example.dto.delivery.DeliveryStatus;
+import org.example.dto.order.OrderStatus;
+import org.example.dto.payment.PaymentStatus;
+import org.example.dto.restaurant.DishDto;
+import org.example.dto.restaurant.RestaurantDto;
+import org.example.dto.restaurant.RestaurantStatus;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -21,36 +27,39 @@ import java.util.UUID;
 public class OrderResponseDto implements Serializable {
 
     @NotNull
-    UUID orderId;
+    private UUID orderId;
 
     @NotNull
-    UUID customerId;
-
-    @NotBlank
-    String orderStatus;
-
-    @NotBlank
-    String deliveryAddress;
-
-    @NotBlank
-    String dishesList;
+    private UUID customerId;
 
     @NotNull
-    PaymentStatus paymentStatus;
+    private OrderStatus orderStatus;
 
     @NotBlank
-    String restaurantStatus;
-
-    @NotBlank
-    String deliveryStatus;
+    private String deliveryAddress;
 
     @NotNull
-    LocalDateTime orderTime;
+    private List<DishDto> dishesList;
 
     @NotNull
-    Integer orderCounter;
+    private PaymentStatus paymentStatus;
+
+    @NotNull
+    private RestaurantStatus restaurantStatus;
+
+    @NotNull
+    private DeliveryStatus deliveryStatus;
+
+    @NotNull
+    private LocalDateTime orderTime;
+
+    @NotNull
+    private Integer orderCounter;
 
     @Min(0)
     @NotNull
-    BigDecimal orderAmount;
+    private BigDecimal orderTotalCost;
+
+    @NotNull
+    private RestaurantDto restaurant;
 }
