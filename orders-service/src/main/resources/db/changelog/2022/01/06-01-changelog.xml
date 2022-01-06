@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="1641455779818-1" author="fjrd">
+        <renameTable oldTableName="customer" newTableName="customers"/>
+    </changeSet>
+    <changeSet id="1641455824884-1" author="fjrd">
+        <renameColumn tableName="orders" oldColumnName="order_amount" newColumnName="order_total_cost"/>
+    </changeSet>
+    <changeSet id="1641455860020-1" author="fjrd">
+        <dropColumn tableName="orders" columnName="dishes_list"/>
+    </changeSet>
+
+
+</databaseChangeLog>

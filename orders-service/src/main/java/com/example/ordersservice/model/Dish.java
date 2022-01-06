@@ -1,7 +1,6 @@
 package com.example.ordersservice.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -10,15 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.UUID;
 
-@Data
 @NoArgsConstructor
-@Builder(toBuilder = true)
+@AllArgsConstructor
 @Entity
-@Table(name = "customers")
-public class Customer{
+@Table(name = "dishes")
+public class Dish {
 
     @Id
-    @Column(name = "customer_id", nullable = false)
-    private UUID customerId;
+    @Column(name = "dish_id")
+    private UUID dishId;
 
 }

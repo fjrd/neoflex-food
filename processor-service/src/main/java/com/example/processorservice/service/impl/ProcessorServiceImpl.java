@@ -5,8 +5,11 @@ import com.example.processorservice.service.ProcessorService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.example.dto.delivery.DeliveryStatus;
+import org.example.dto.order.OrderStatus;
 import org.example.dto.order.message.OrderMessageDto;
-import org.example.dto.payment.message.PaymentStatus;
+import org.example.dto.payment.PaymentStatus;
+import org.example.dto.restaurant.RestaurantOrderStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -32,24 +35,24 @@ public class ProcessorServiceImpl implements ProcessorService {
 
         Thread.sleep(5000);
         dto.setPaymentStatus(PaymentStatus.SUCCESS);
-        dto.setOrderStatus("IN_PROGRESS");
+        dto.setOrderStatus(OrderStatus.IN_PROGRESS);
         producerService.sendUpdatedOrderToOrdersService(dto);
 
         Thread.sleep(5000);
-        dto.setRestaurantStatus("COOKING_IN_PROGRESS");
+        dto.setRestaurantStatus(RestaurantOrderStatus.COOKING);
         producerService.sendUpdatedOrderToOrdersService(dto);
 
         Thread.sleep(5000);
-        dto.setRestaurantStatus("COOKED");
+        dto.setRestaurantStatus(RestaurantOrderStatus.DONE);
         producerService.sendUpdatedOrderToOrdersService(dto);
 
         Thread.sleep(5000);
-        dto.setDeliveryStatus("DELIVERY_IN_PROGRESS");
+        dto.setDeliveryStatus(DeliveryStatus.IN_PROGRESS);
         producerService.sendUpdatedOrderToOrdersService(dto);
 
         Thread.sleep(5000);
-        dto.setDeliveryStatus("DELIVERED");
-        dto.setOrderStatus("COMPLETED");
+        dto.setDeliveryStatus(DeliveryStatus.SUCCESS);
+        dto.setOrderStatus(OrderStatus.COMPLETED);
         producerService.sendUpdatedOrderToOrdersService(dto);
 
     }

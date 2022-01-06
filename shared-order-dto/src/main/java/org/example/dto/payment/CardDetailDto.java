@@ -5,11 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
-public class CardDetailDto{
+public class CardDetailDto implements Serializable {
 
     @NotBlank
     String cardNumber;

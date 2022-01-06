@@ -1,14 +1,15 @@
-package org.example.dto.delivery;
+package org.example.dto.delivery.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.example.dto.restaurant.DishDto;
-import org.example.dto.restaurant.RestaurantDto;
-import org.example.dto.restaurant.RestaurantStatus;
+import org.example.dto.delivery.DeliveryStatus;
+import org.example.dto.restaurant.RestaurantOrderStatus;
+import org.example.dto.restaurant.response.DishResponseDto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
-public class DeliveryDto {
+public class DeliveryMessageDto implements Serializable {
 
     @NotNull
     private UUID orderId;
@@ -28,10 +29,10 @@ public class DeliveryDto {
     private String deliveryAddress;
 
     @NotNull
-    private List<DishDto> dishesList;
+    private List<DishResponseDto> dishesList;
 
     @NotNull
-    private RestaurantStatus restaurantStatus;
+    private RestaurantOrderStatus restaurantStatus;
 
     @NotBlank
     private DeliveryStatus deliveryStatus;
@@ -40,8 +41,5 @@ public class DeliveryDto {
     private LocalDateTime orderTime;
 
     @NotNull
-    private RestaurantDto restaurant;
-
-    @NotNull
-    private CourierDto assignedCourier;
+    private CourierMessageDto assignedCourier;
 }
