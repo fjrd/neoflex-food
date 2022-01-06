@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.dto.delivery.DeliveryStatus;
+import org.example.dto.order.OrderStatus;
 import org.example.dto.payment.PaymentStatus;
+import org.example.dto.restaurant.RestaurantOrderStatus;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
@@ -13,6 +16,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -25,40 +29,13 @@ import java.util.UUID;
 })
 public class Order {
 
-    private static final String DEFAULT_STATUS = "UNPROCESSED";
-
     @Id
     @Column(name = "order_id", nullable = false)
     private UUID orderId;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
-
     @NotNull
     @Column(name = "delivery_address", nullable = false)
     private String deliveryAddress;
-
-    @NotNull
-    @Column(name = "dishes_list", nullable = false)
-    private String dishesList;
-
-    @Builder.Default
-    @Column(name = "order_status", nullable = false)
-    private String orderStatus = DEFAULT_STATUS;
-
-    @Builder.Default
-    @Enumerated(EnumType.STRING)
-    @Column(name = "payment_status", nullable = false)
-    private PaymentStatus paymentStatus = PaymentStatus.UNPROCESSED;
-
-    @Builder.Default
-    @Column(name = "restaurant_status", nullable = false)
-    private String restaurantStatus = DEFAULT_STATUS;
-
-    @Builder.Default
-    @Column(name = "delivery_status", nullable = false)
-    private String deliveryStatus = DEFAULT_STATUS;
 
     @Builder.Default
     @Column(name = "order_time", nullable = false)
@@ -69,7 +46,43 @@ public class Order {
     private Integer orderCounter;
 
     @Min(0)
-    @Column(name = "order_amount")
-    private BigDecimal orderAmount;
+    @NotNull
+    @Column(name = "order_total_cost", nullable = false)
+    private BigDecimal orderTotalCost;
+
+    @NotNull
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<DishOrder> dishesSet;
+
+
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    @Column(name = "order_status", nullable = false)
+    private OrderStatus orderStatus = OrderStatus.UNPROCESSED;
+
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_status", nullable = false)
+    private PaymentStatus paymentStatus = PaymentStatus.UNPROCESSED;
+
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    @Column(name = "restaurant_status", nullable = false)
+    private RestaurantOrderStatus restaurantStatus = RestaurantOrderStatus.UNPROCESSED;
+
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    @Column(name = "delivery_status", nullable = false)
+    private DeliveryStatus deliveryStatus = DeliveryStatus.UNPROCESSED;
+
+
+    @NotNull
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "assigned_courier_id")
+    private Courier assignedCourier;
 
 }

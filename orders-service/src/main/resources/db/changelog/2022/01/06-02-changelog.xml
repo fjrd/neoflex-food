@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+
+
+    <changeSet id="1641454765705-1" author="fjrd">
+        <createTable tableName="couriers">
+            <column name="courier_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_couriers"/>
+            </column>
+        </createTable>
+        <addColumn tableName="orders">
+            <column name="assigned_courier_id" type="UUID"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="assigned_courier_id" referencedTableName="couriers"
+                                 referencedColumnNames="courier_id" constraintName="FK_couriers_to_orders"/>
+    </changeSet>
+
+    <changeSet id="1641454791338-1" author="fjrd">
+        <createTable tableName="dishes">
+            <column name="dish_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dishes"/>
+            </column>
+        </createTable>
+        <createTable tableName="dish_orders">
+            <column name="quantity" type="INT"/>
+            <column name="order_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dish_orders"/>
+            </column>
+            <column name="dish_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dish_orders"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="dish_id" baseTableName="dish_orders" constraintName="FK_DISH_ORDERS_ON_DISH_DISH" referencedColumnNames="dish_id" referencedTableName="dishes"/>
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="dish_orders" constraintName="FK_DISH_ORDERS_ON_ORDER_ORDER" referencedColumnNames="order_id" referencedTableName="orders"/>
+    </changeSet>
+
+
+</databaseChangeLog>

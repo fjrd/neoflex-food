@@ -5,8 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.dto.payment.CardDetailDto;
-import org.example.dto.restaurant.DishDto;
-import org.example.dto.restaurant.RestaurantDto;
+import org.example.dto.restaurant.message.DishMessageDto;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -32,13 +31,10 @@ public class OrderRequestDto implements Serializable {
     private CardDetailDto cardDetails;
 
     @NotNull
-    private List<DishDto> dishesList;
+    private List<DishMessageDto> dishesList;
 
     @Min(0)
     @NotNull
     private BigDecimal orderTotalCost;
-
-    @NotNull
-    private RestaurantDto restaurant;
 
 }

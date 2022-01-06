@@ -1,29 +1,33 @@
-package org.example.dto.restaurant;
+package org.example.dto.restaurant.response;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
-public class RestaurantDto {
+public class DishResponseDto implements Serializable {
 
     @NotNull
-    private UUID restaurantId;
+    private UUID dishId;
 
     @NotBlank
     private String name;
 
-    @NotNull
-    private List<DishDto> menu;
-
     @NotBlank
-    private String restaurantAddress;
+    private String description;
+
+    @Min(0)
+    @NotNull
+    private BigDecimal cost;
 
 }
