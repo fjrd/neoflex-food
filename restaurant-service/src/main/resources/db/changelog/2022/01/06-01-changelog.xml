@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="1641478287258-1" author="fjrd">
+        <createTable tableName="dishes">
+            <column name="dish_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dishes"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cost" type="DECIMAL">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1641486303678-1" author="fjrd">
+        <createTable tableName="orders">
+            <column name="order_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_order"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1641478359424-1" author="fjrd">
+        <createTable tableName="customers">
+            <column name="customer_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_customers"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1641478056662-1" author="fjrd">
+        <createTable tableName="restaurant_orders">
+            <column name="restaurant_order_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_restaurant_orders"/>
+            </column>
+            <column name="order_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_counter" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_total_cost" type="DECIMAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restaurant_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="restaurant_orders" constraintName="FK_RESTAURANT_ORDERS_ON_CUSTOMER" referencedColumnNames="customer_id" referencedTableName="customers"/>
+        <addForeignKeyConstraint baseTableName="restaurant_orders" baseColumnNames="order_id" referencedTableName="orders" referencedColumnNames="order_id" constraintName="FK_orders_to_restaurant_orders"/>
+    </changeSet>
+
+    <changeSet id="1641478389723-1" author="fjrd">
+        <createTable tableName="dish_orders">
+            <column name="quantity" type="INT"/>
+            <column name="restaurant_order_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dish_orders"/>
+            </column>
+            <column name="dish_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dish_orders"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="dish_id" baseTableName="dish_orders" constraintName="FK_DISH_ORDERS_ON_DISH" referencedColumnNames="dish_id" referencedTableName="dishes"/>
+        <addForeignKeyConstraint baseColumnNames="restaurant_order_id" baseTableName="dish_orders" constraintName="FK_DISH_ORDERS_ON_RESTAURANT_ORDER" referencedColumnNames="restaurant_order_id" referencedTableName="restaurant_orders"/>
+    </changeSet>
+</databaseChangeLog>

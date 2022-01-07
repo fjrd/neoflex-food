@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -37,7 +37,7 @@ public class RestaurantOrderMessageDto implements Serializable {
     private BigDecimal orderTotalCost;
 
     @NotBlank
-    private List<DishMessageDto> dishesList;
+    private Set<DishMessageDto> dishesList;
 
     @NotNull
     private PaymentStatus paymentStatus;

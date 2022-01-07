@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="db-init" author="Alexander Reztsov">
+        <tagDatabase tag="db-init"/>
+    </changeSet>
+
+    <include file="db/changelog/2022/01/06-01-changelog.xml"/>
+
+    <changeSet id="db-v-1.0" author="Alexander Reztsov">
+        <tagDatabase tag="db-v-1.0"/>
+    </changeSet>
+
+</databaseChangeLog>
+
