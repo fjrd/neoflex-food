@@ -1,1 +1,43 @@
+server:
+  port: ${SERVER_PORT:8085}
 
+spring:
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5434/postgres}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+
+  data:
+    rest:
+      detection-strategy: annotated
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+    hibernate:
+      ddl-auto: validate
+
+  liquibase:
+    enabled: true
+    change-log: db/changelog/db.changelog-master.xml
+    #DONT FORGET TO REMOVE ME
+    drop-first: true
+
+  kafka:
+    producer:
+      bootstrap-servers: ${KAFKA_HOST_NAME:localhost:9092}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    consumer:
+      bootstrap-servers: ${KAFKA_HOST_NAME:localhost:9092}
+      group-id: restaurant
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"

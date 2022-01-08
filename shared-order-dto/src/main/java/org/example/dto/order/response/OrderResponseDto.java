@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.dto.delivery.message.CourierMessageDto;
 import org.example.dto.delivery.DeliveryStatus;
+import org.example.dto.delivery.message.CourierMessageDto;
 import org.example.dto.order.OrderStatus;
 import org.example.dto.payment.PaymentStatus;
 import org.example.dto.restaurant.RestaurantOrderStatus;
-import org.example.dto.restaurant.message.DishMessageDto;
+import org.example.dto.restaurant.response.DishResponseDto;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -46,7 +46,7 @@ public class OrderResponseDto implements Serializable {
     private BigDecimal orderTotalCost;
 
     @NotNull
-    private Set<DishMessageDto> dishesList;
+    private List<DishResponseDto> dishesList;
 
 
     @NotNull

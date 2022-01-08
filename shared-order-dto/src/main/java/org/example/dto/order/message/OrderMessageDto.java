@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.dto.delivery.message.CourierMessageDto;
 import org.example.dto.delivery.DeliveryStatus;
+import org.example.dto.delivery.message.CourierMessageDto;
 import org.example.dto.order.OrderStatus;
 import org.example.dto.payment.CardDetailDto;
 import org.example.dto.payment.PaymentStatus;
@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -47,7 +47,7 @@ public class OrderMessageDto implements Serializable {
     private BigDecimal orderTotalCost;
 
     @NotNull
-    private Set<DishMessageDto> dishesList;
+    private List<DishMessageDto> dishesList;
 
 
     @NotNull

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.example.dto.delivery.DeliveryStatus;
 import org.example.dto.restaurant.RestaurantOrderStatus;
-import org.example.dto.restaurant.response.DishResponseDto;
+import org.example.dto.restaurant.message.DishMessageDto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -29,7 +29,7 @@ public class DeliveryMessageDto implements Serializable {
     private String deliveryAddress;
 
     @NotNull
-    private List<DishResponseDto> dishesList;
+    private List<DishMessageDto> dishesList;
 
     @NotNull
     private RestaurantOrderStatus restaurantStatus;
