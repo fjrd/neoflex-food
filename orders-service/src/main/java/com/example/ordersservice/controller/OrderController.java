@@ -17,10 +17,10 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/orders")
 public class OrderController {
+
     private final OrderService service;
 
     @GetMapping("/{customerId}")
-
     public ResponseEntity<List<OrderResponseDto>> getOrdersByCustomerId(@PathVariable UUID customerId){
         log.info("getOrdersByCustomerId(), customerId = {}", customerId);
         return ResponseEntity.ok(service.getOrdersByCustomerId(customerId));
