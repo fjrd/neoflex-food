@@ -9,6 +9,6 @@ import java.util.UUID;
 
 public interface DishRepository extends JpaRepository<Dish, UUID> {
 
-    Optional<List<Dish>> findAllByIsOnTheMenuContaining(Boolean isOnTheMenu);
+    Optional<List<Dish>> findAllByIsOnTheMenuIsTrue();
 
 }

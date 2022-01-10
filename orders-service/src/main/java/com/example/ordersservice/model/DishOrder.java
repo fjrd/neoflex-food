@@ -1,5 +1,6 @@
 package com.example.ordersservice.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Min;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "dish_orders")
@@ -20,12 +22,14 @@ public class DishOrder {
     @Min(1)
     private Integer quantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("dishId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dish_id")
     private Dish dish;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("orderId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
     private Order order;
 
 

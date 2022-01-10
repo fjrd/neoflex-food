@@ -30,7 +30,7 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public void loadMenu() {
         log.info("loadMenu()");
-        menu = repository.findAllByIsOnTheMenuContaining(true)
+        menu = repository.findAllByIsOnTheMenuIsTrue()
                 .orElseThrow(() -> new EntityNotFoundException("Couldn't load menu"))
                 .stream()
                 .collect(Collectors.toMap(Dish::getDishId, Function.identity()));

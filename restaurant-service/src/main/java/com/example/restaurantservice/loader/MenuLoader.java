@@ -28,19 +28,19 @@ public class MenuLoader implements ApplicationListener<ContextRefreshedEvent> {
                         .name("Pizza 4 season")
                         .description("n/a")
                         .cost(BigDecimal.valueOf(444))
-                        .isOnTheMenu(true)
+                        .isOnTheMenu(Boolean.TRUE)
                         .build(),
                 Dish.builder()
                         .name("Pizza 5 cheeses")
                         .description("n/a")
                         .cost(BigDecimal.valueOf(555))
-                        .isOnTheMenu(true)
+                        .isOnTheMenu(Boolean.TRUE)
                         .build(),
                 Dish.builder()
                         .name("Pizza pepperoni")
                         .description("n/a")
                         .cost(BigDecimal.valueOf(666))
-                        .isOnTheMenu(true)
+                        .isOnTheMenu(Boolean.FALSE)
                         .build())
                 .collect(Collectors.toList());
 
