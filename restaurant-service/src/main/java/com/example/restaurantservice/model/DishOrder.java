@@ -23,12 +23,14 @@ public class DishOrder implements Serializable {
     @Min(1)
     private Integer quantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("dishId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dish_id")
     private Dish dish;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("restaurantOrderId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_order_id")
     private RestaurantOrder restaurantOrder;
 
 }

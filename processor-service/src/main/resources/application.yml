@@ -7,7 +7,7 @@ spring:
 
     consumer:
       bootstrap-servers: ${KAFKA_HOST_NAME:localhost:9092}
-      group-id: orders
+      group-id: processor
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer

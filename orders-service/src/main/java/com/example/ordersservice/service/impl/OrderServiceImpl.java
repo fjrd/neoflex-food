@@ -87,7 +87,7 @@ public class OrderServiceImpl implements OrderService {
         order = orderRepository.saveAndFlush(order
                 .toBuilder()
                 .deliveryAddress(requestDto.getDeliveryAddress())
-                .dishesList(requestDto.getDishesList())
+//                .dishesList(requestDto.getDishesList())
                 .build());
 
         kafkaProducerService.send(orderMessageMapper.modelToDto(order)
@@ -111,7 +111,7 @@ public class OrderServiceImpl implements OrderService {
                 .paymentStatus(dto.getPaymentStatus())
                 .restaurantStatus(dto.getRestaurantStatus())
                 .deliveryStatus(dto.getDeliveryStatus())
-                .orderAmount(dto.getOrderAmount())
+                .orderTotalCost(dto.getOrderTotalCost())
                 .build());
     }
 

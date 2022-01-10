@@ -70,7 +70,7 @@ services:
       - 8082:8082
     environment:
       - SERVER_PORT=8082
-      - POSTGRES_URL=jdbc:postgresql://nf-pg-restaurant-db:5434/postgres
+      - POSTGRES_URL=jdbc:postgresql://nf-pg-restaurant-db:5432/postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - KAFKA_HOST_NAME=nf-kafka:9092

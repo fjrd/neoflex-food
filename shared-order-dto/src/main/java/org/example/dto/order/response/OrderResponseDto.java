@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.dto.delivery.DeliveryStatus;
-import org.example.dto.delivery.message.CourierMessageDto;
 import org.example.dto.order.OrderStatus;
 import org.example.dto.payment.PaymentStatus;
 import org.example.dto.restaurant.RestaurantOrderStatus;
@@ -63,6 +62,6 @@ public class OrderResponseDto implements Serializable {
 
 
     @NotNull
-    private CourierMessageDto assignedCourier;
+    private UUID assignedCourierId;
 
 }
