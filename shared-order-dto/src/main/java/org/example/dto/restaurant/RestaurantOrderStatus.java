@@ -7,10 +7,12 @@ import lombok.Getter;
 @Getter
 public enum RestaurantOrderStatus {
 
+    CANCELED("Restaurant order was canceled"),
+    REJECTED("Restaurant order was rejected"),
     UNPROCESSED("Restaurant order has not been processed yet"),
     ACCEPTED("Restaurant order accepted"),
     COOKING("Cooking in progress"),
-    DONE("Cooking is completed");
+    SUCCESS("Cooking is completed");
 
     private String statusText;
 

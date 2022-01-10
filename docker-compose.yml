@@ -86,6 +86,8 @@ services:
       - kafka
     environment:
       - KAFKA_HOST_NAME=nf-kafka:9092
+      - REDIS_HOST=nf-redis
+      - REDIS_PORT=6379
 
   #Kafka
   zookeeper:
