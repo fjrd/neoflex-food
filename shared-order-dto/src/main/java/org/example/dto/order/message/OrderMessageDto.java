@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.dto.delivery.DeliveryStatus;
-import org.example.dto.delivery.message.CourierMessageDto;
 import org.example.dto.order.OrderStatus;
 import org.example.dto.payment.CardDetailDto;
 import org.example.dto.payment.PaymentStatus;
@@ -19,6 +18,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Data
@@ -63,9 +63,21 @@ public class OrderMessageDto implements Serializable {
     private DeliveryStatus deliveryStatus;
 
 
-    private CourierMessageDto assignedCourier;
+    private UUID assignedCourierId;
 
     @NotBlank
     private CardDetailDto cardDetails;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderMessageDto that = (OrderMessageDto) o;
+        return orderId.equals(that.orderId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId);
+    }
 }

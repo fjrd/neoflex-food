@@ -7,6 +7,8 @@ import lombok.Getter;
 @Getter
 public enum PaymentStatus {
 
+    CANCELED("Payment was canceled"),
+    REJECTED("Payment was rejected"),
     UNPROCESSED("Payment has not been processed yet"),
     SUCCESS("Payment completed successfully"),
     FAIL("Payment failed");
