@@ -34,7 +34,6 @@ public class DeliveryMessageDto implements Serializable {
     @NotNull
     private LocalDateTime orderTime;
 
-    @NotNull
     private UUID assignedCourierId;
 
 }
