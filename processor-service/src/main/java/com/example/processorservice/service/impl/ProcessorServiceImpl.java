@@ -38,6 +38,7 @@ public class ProcessorServiceImpl implements ProcessorService {
         switch (dto.getPaymentStatus()){
             case SUCCESS -> producerService.sendOrderToRestaurantService(mapper.orderToRestaurantOrder(order));
             case REJECTED, CANCELED -> redisTemplate.delete(order.getOrderId());
+            default ->
         }
     }
 

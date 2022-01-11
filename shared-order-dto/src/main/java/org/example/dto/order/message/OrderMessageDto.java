@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.dto.delivery.DeliveryStatus;
 import org.example.dto.order.OrderStatus;
-import org.example.dto.payment.CardDetailDto;
+import org.example.dto.payment.message.CardDetailMessageDto;
 import org.example.dto.payment.PaymentStatus;
 import org.example.dto.restaurant.RestaurantOrderStatus;
 import org.example.dto.restaurant.message.DishMessageDto;
@@ -66,7 +66,7 @@ public class OrderMessageDto implements Serializable {
     private UUID assignedCourierId;
 
     @NotBlank
-    private CardDetailDto cardDetails;
+    private CardDetailMessageDto cardDetails;
 
     @Override
     public boolean equals(Object o) {

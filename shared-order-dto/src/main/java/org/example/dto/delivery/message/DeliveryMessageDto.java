@@ -3,6 +3,7 @@ package org.example.dto.delivery.message;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.dto.delivery.DeliveryStatus;
 import org.example.dto.restaurant.RestaurantOrderStatus;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
+@NoArgsConstructor
 public class DeliveryMessageDto implements Serializable {
 
     @NotNull

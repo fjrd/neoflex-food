@@ -3,8 +3,7 @@ package com.example.ordersservice.service.impl;
 import com.example.ordersservice.mapper.OrderMessageMapper;
 import com.example.ordersservice.mapper.OrderRequestMapper;
 import com.example.ordersservice.mapper.OrderResponseMapper;
-import com.example.ordersservice.model.Customer;
-import com.example.ordersservice.model.Order;
+import com.example.ordersservice.model.*;
 import com.example.ordersservice.repository.CustomerRepository;
 import com.example.ordersservice.repository.OrderRepository;
 import com.example.ordersservice.service.KafkaProducerService;
@@ -24,6 +23,7 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -58,12 +58,36 @@ public class OrderServiceImpl implements OrderService {
         log.info("createOrder(), orderDto = {}", requestDto);
 
         checkIfOrderExists(requestDto.getOrderId());
+        UUID orderId = requestDto.getOrderId();
 
-        Order order = orderRepository.saveAndFlush(orderRequestMapper.dtoToModel(requestDto)
+
+
+        Order test = orderRequestMapper.dtoToModel(requestDto)
                 .toBuilder()
+                .dishesList(requestDto.getDishesList()
+                        .stream()
+                        .map(dto -> new DishOrder(
+                                new DishOrderPK(),
+                                dto.getQuantity(),
+                                new Dish(dto.getDishId()),
+                                test))
+                        .collect(Collectors.toList()))
                 .customer(customerRepository.findById(customerId)
-                        .orElse(new Customer(customerId)))
-                .build());
+                .orElse(new Customer(customerId)))
+                .build();
+
+
+
+
+        log.info("--------------------- test = {}", test);
+        Order order = orderRepository.saveAndFlush(test);
+
+
+//        Order order = orderRepository.saveAndFlush(orderRequestMapper.dtoToModel(requestDto)
+//                .toBuilder()
+//                .customer(customerRepository.findById(customerId)
+//                        .orElse(new Customer(customerId)))
+//                .build());
 
         kafkaProducerService.send(orderMessageMapper.modelToDto(order)
                 .toBuilder()
@@ -87,6 +111,7 @@ public class OrderServiceImpl implements OrderService {
         order = orderRepository.saveAndFlush(order
                 .toBuilder()
                 .deliveryAddress(requestDto.getDeliveryAddress())
+                //TODO
 //                .dishesList(requestDto.getDishesList())
                 .build());
 

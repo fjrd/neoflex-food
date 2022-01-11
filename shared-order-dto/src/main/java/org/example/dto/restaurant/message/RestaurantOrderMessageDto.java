@@ -3,6 +3,7 @@ package org.example.dto.restaurant.message;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.dto.payment.PaymentStatus;
 import org.example.dto.restaurant.RestaurantOrderStatus;
 
@@ -18,6 +19,7 @@ import java.util.UUID;
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
+@NoArgsConstructor
 public class RestaurantOrderMessageDto implements Serializable {
 
     @NotNull

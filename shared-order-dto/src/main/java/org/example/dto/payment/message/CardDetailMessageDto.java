@@ -1,16 +1,18 @@
-package org.example.dto.payment;
+package org.example.dto.payment.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Data
 @Builder(toBuilder = true)
+@NoArgsConstructor
 @AllArgsConstructor
-public class CardDetailDto implements Serializable {
+public class CardDetailMessageDto implements Serializable {
 
     @NotBlank
     String cardNumber;
