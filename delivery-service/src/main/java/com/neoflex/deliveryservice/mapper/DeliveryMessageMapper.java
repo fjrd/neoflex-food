@@ -10,10 +10,10 @@ import org.mapstruct.factory.Mappers;
 public interface DeliveryMessageMapper {
     DeliveryMessageMapper INSTANCE = Mappers.getMapper(DeliveryMessageMapper.class);
 
-    @Mapping(source = "courier.courierId", target = "courierId")
+    @Mapping(source = "courier.courierId", target = "assignedCourierId")
     DeliveryMessageDto toDto(DeliveryOrder deliveryOrder);
 
-    @Mapping(source = "courierId", target = "courier.courierId")
+    @Mapping(source = "assignedCourierId", target = "courier.courierId")
     DeliveryOrder toEntity(DeliveryMessageDto messageDto);
 
 }

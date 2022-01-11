@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1641909849091-1" author="sryzhkov">
+        <createTable tableName="couriers">
+            <column name="courier_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_couriers"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1641909925130-1" author="sryzhkov">
+        <createTable tableName="delivery_orders">
+            <column name="order_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_delivery_orders"/>
+            </column>
+            <column name="delivery_address" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restaurant_status" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_status" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="courier_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="courier_id"
+                                 baseTableName="delivery_orders"
+                                 constraintName="FK_DELIVERY_ORDERS_ON_COURIER"
+                                 referencedColumnNames="courier_id"
+                                 referencedTableName="couriers"/>
+    </changeSet>
+
+
+</databaseChangeLog>
