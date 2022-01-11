@@ -4,6 +4,7 @@ package org.example.dto.restaurant.request;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
+@NoArgsConstructor
 public class DishRequestDto implements Serializable {
 
     @NotNull

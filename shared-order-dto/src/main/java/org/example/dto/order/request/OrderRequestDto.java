@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.dto.payment.CardDetailDto;
+import org.example.dto.payment.message.CardDetailMessageDto;
 import org.example.dto.restaurant.request.DishRequestDto;
 
 import javax.validation.constraints.Min;
@@ -28,7 +28,7 @@ public class OrderRequestDto implements Serializable {
     private String deliveryAddress;
 
     @NotNull
-    private CardDetailDto cardDetails;
+    private CardDetailMessageDto cardDetails;
 
     @NotNull
     private List<DishRequestDto> dishesList;
