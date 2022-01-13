@@ -1,11 +1,11 @@
-package org.example.dto.order.request;
+package com.example.ordersservice.controller.dto.order;
 
+import com.example.ordersservice.controller.dto.dish.DishRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.dto.payment.message.CardDetailMessageDto;
-import org.example.dto.restaurant.request.DishRequestDto;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

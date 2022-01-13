@@ -1,10 +1,10 @@
 package com.example.ordersservice.controller;
 
+import com.example.ordersservice.controller.dto.order.OrderRequestDto;
+import com.example.ordersservice.controller.dto.order.OrderResponseDto;
 import com.example.ordersservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.dto.order.request.OrderRequestDto;
-import org.example.dto.order.response.OrderResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

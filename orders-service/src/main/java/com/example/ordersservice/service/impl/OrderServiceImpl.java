@@ -1,18 +1,20 @@
 package com.example.ordersservice.service.impl;
 
+import com.example.ordersservice.controller.dto.order.OrderRequestDto;
+import com.example.ordersservice.controller.dto.order.OrderResponseDto;
 import com.example.ordersservice.mapper.OrderMessageMapper;
 import com.example.ordersservice.mapper.OrderRequestMapper;
 import com.example.ordersservice.mapper.OrderResponseMapper;
-import com.example.ordersservice.model.*;
+import com.example.ordersservice.model.Customer;
+import com.example.ordersservice.model.Order;
+import com.example.ordersservice.repository.CourierRepository;
 import com.example.ordersservice.repository.CustomerRepository;
 import com.example.ordersservice.repository.OrderRepository;
 import com.example.ordersservice.service.KafkaProducerService;
 import com.example.ordersservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.dto.order.message.OrderMessageDto;
-import org.example.dto.order.request.OrderRequestDto;
-import org.example.dto.order.response.OrderResponseDto;
+import org.example.dto.order.OrderMessageDto;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -23,7 +25,6 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -36,6 +37,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderResponseMapper orderResponseMapper;
     private final KafkaProducerService kafkaProducerService;
     private final CustomerRepository customerRepository;
+    private final CourierRepository courierRepository;
     private final OrderRepository orderRepository;
 
     @Override
@@ -55,39 +57,17 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @CacheEvict(key = "#customerId")
     public OrderResponseDto createOrder(UUID customerId, OrderRequestDto requestDto) {
-        log.info("createOrder(), orderDto = {}", requestDto);
+        log.info("createOrder(), requestDto = {}", requestDto);
 
         checkIfOrderExists(requestDto.getOrderId());
-        UUID orderId = requestDto.getOrderId();
-
-
-
-        Order test = orderRequestMapper.dtoToModel(requestDto)
-                .toBuilder()
-                .dishesList(requestDto.getDishesList()
-                        .stream()
-                        .map(dto -> new DishOrder(
-                                new DishOrderPK(),
-                                dto.getQuantity(),
-                                new Dish(dto.getDishId()),
-                                test))
-                        .collect(Collectors.toList()))
-                .customer(customerRepository.findById(customerId)
-                .orElse(new Customer(customerId)))
-                .build();
-
-
-
-
-        log.info("--------------------- test = {}", test);
-        Order order = orderRepository.saveAndFlush(test);
-
-
-//        Order order = orderRepository.saveAndFlush(orderRequestMapper.dtoToModel(requestDto)
+//        java.lang.IllegalStateException: Multiple representations of the same entity
+//        Order saved = orderRepository.saveAndFlush(orderRequestMapper.dtoToModel(requestDto)
 //                .toBuilder()
-//                .customer(customerRepository.findById(customerId)
-//                        .orElse(new Customer(customerId)))
+//                .customer(customerRepository.findById(customerId).orElse(new Customer(customerId)))
 //                .build());
+        Order order = orderRequestMapper.dtoToModel(requestDto);
+        order.setCustomer(customerRepository.findById(customerId).orElse(new Customer(customerId)));
+        order = orderRepository.saveAndFlush(order);
 
         kafkaProducerService.send(orderMessageMapper.modelToDto(order)
                 .toBuilder()
@@ -102,18 +82,12 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @CacheEvict(key = "#customerId")
     public OrderResponseDto updateOrder(UUID customerId, OrderRequestDto requestDto) {
-        log.info("createOrder(), customerId = {}, orderDto = {}", customerId, requestDto);
+        log.info("update(), customerId = {}, requestDto = {}", customerId, requestDto);
 
         Order order = findOrderByIdIfExists(requestDto.getOrderId());
-
         checkIfOrderBelongsToCustomer(order, customerId);
-
-        order = orderRepository.saveAndFlush(order
-                .toBuilder()
-                .deliveryAddress(requestDto.getDeliveryAddress())
-                //TODO
-//                .dishesList(requestDto.getDishesList())
-                .build());
+        orderRequestMapper.updateFromDtoToModel(requestDto, order);
+        order = orderRepository.saveAndFlush(order);
 
         kafkaProducerService.send(orderMessageMapper.modelToDto(order)
                 .toBuilder()
@@ -127,17 +101,11 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @CacheEvict(key = "#dto.customerId")
     public void updateOrderFromProcessor(OrderMessageDto dto) {
-        log.info("updateOrder(), fullOrderDto = {}", dto);
+        log.info("updateOrderFromProcessor(), dto = {}", dto);
 
         Order order = findOrderByIdIfExists(dto.getOrderId());
-
-        orderRepository.save(order.toBuilder()
-                .orderStatus(dto.getOrderStatus())
-                .paymentStatus(dto.getPaymentStatus())
-                .restaurantStatus(dto.getRestaurantStatus())
-                .deliveryStatus(dto.getDeliveryStatus())
-                .orderTotalCost(dto.getOrderTotalCost())
-                .build());
+        orderMessageMapper.updateFromDtoToModel(dto, order);
+        orderRepository.saveAndFlush(order);
     }
 
 

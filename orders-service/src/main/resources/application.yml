@@ -1,6 +1,5 @@
 server:
   port: ${SERVER_PORT:8081}
-
 spring:
   datasource:
     url: ${POSTGRES_URL:jdbc:postgresql://localhost:5433/postgres}
@@ -14,7 +13,11 @@ spring:
   jpa:
     show-sql: true
     properties:
-      hibernate.format_sql: true
+      hibernate:
+        format_sql: true
+        jdbc:
+          batch_size: 50
+          default_batch_fetch_size: 50
     hibernate:
       ddl-auto: validate
 

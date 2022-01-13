@@ -2,7 +2,7 @@ package com.example.ordersservice.service.impl;
 
 import com.example.ordersservice.service.KafkaConsumerService;
 import com.example.ordersservice.service.OrderService;
-import org.example.dto.order.message.OrderMessageDto;
+import org.example.dto.order.OrderMessageDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;

@@ -1,4 +1,4 @@
-package org.example.dto.order.response;
+package com.example.processorservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 import org.example.dto.delivery.DeliveryStatus;
 import org.example.dto.order.OrderStatus;
 import org.example.dto.payment.PaymentStatus;
+import org.example.dto.payment.message.CardDetailMessageDto;
 import org.example.dto.restaurant.RestaurantOrderStatus;
-import org.example.dto.restaurant.response.DishResponseDto;
+import org.example.dto.restaurant.message.DishMessageDto;
+import org.springframework.data.redis.core.RedisHash;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -17,16 +19,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderResponseDto implements Serializable {
+@RedisHash("Message")
+public class OrderMessage implements Serializable {
 
     @NotNull
-    private UUID orderId;
+    private UUID id;
 
     @NotNull
     private UUID customerId;
@@ -45,7 +49,7 @@ public class OrderResponseDto implements Serializable {
     private BigDecimal orderTotalCost;
 
     @NotNull
-    private List<DishResponseDto> dishesList;
+    private List<DishMessageDto> dishesList;
 
 
     @NotNull
@@ -61,7 +65,21 @@ public class OrderResponseDto implements Serializable {
     private DeliveryStatus deliveryStatus;
 
 
-    @NotNull
     private UUID assignedCourierId;
 
+    @NotBlank
+    private CardDetailMessageDto cardDetails;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderMessage that = (OrderMessage) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
