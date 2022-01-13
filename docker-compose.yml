@@ -84,6 +84,7 @@ services:
       dockerfile: DockerfileCopyJar
     depends_on:
       - kafka
+      - redis
     environment:
       - KAFKA_HOST_NAME=nf-kafka:9092
       - REDIS_HOST=nf-redis
@@ -125,7 +126,6 @@ services:
     environment:
       - KAFKA_ADVERTISED_HOST_NAME=nf-kafka
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_CREATE_TOPIC=orders
     restart: unless-stopped
 
   #Redis
