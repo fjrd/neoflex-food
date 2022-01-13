@@ -21,7 +21,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
 
     @Override
     public void send(OrderMessageDto dto) {
-        log.info("sendToProcessorByKafka(), orderDto = {}", dto);
+        log.info("send(), dto = {}", dto);
 
         ListenableFuture<SendResult<String, OrderMessageDto>> future = kafkaTemplate.send(KAFKA_TO_PROCESSOR_TOPIC, dto.getOrderId().toString(), dto);
         future.addCallback(new ListenableFutureCallback<>() {
