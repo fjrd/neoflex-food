@@ -1,5 +1,6 @@
-package org.example.dto.order.response;
+package com.example.ordersservice.controller.dto.order;
 
+import com.example.ordersservice.controller.dto.dish.DishResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +9,6 @@ import org.example.dto.delivery.DeliveryStatus;
 import org.example.dto.order.OrderStatus;
 import org.example.dto.payment.PaymentStatus;
 import org.example.dto.restaurant.RestaurantOrderStatus;
-import org.example.dto.restaurant.response.DishResponseDto;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

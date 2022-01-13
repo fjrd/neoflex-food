@@ -1,14 +1,18 @@
 package com.example.ordersservice.model;
 
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Embeddable
-@EqualsAndHashCode
 public class DishOrderPK implements Serializable {
 
     @Column(name = "order_id", nullable = false)

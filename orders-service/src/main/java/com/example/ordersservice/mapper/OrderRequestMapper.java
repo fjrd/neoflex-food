@@ -1,28 +1,19 @@
 package com.example.ordersservice.mapper;
 
-import com.example.ordersservice.model.DishOrder;
+import com.example.ordersservice.controller.dto.order.OrderRequestDto;
 import com.example.ordersservice.model.Order;
-import org.example.dto.order.request.OrderRequestDto;
-import org.example.dto.restaurant.request.DishRequestDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 
-import java.util.List;
-
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = DishRequestMapper.class, builder = @Builder(disableBuilder = true))
 public interface OrderRequestMapper {
-
 
     Order dtoToModel(OrderRequestDto dto);
 
-    @Mapping(source = "dishId", target = "dish.dishId")
-    @Mapping(source = "", target = "order")
-    List<DishOrder> dishOrderRequestsToDishOrder(List<DishRequestDto> dishRequestDtoList);
+    @BeanMapping(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL)
+    void updateFromDtoToModel(OrderRequestDto dto, @MappingTarget Order order);
 
-
-//    @Mapping(
-//            target = "orderId",
-//            expression = "java(new TimeAndFormat( s.getTime(), s.getFormat() ))"
-//    )
-
+    @AfterMapping
+    default void setOrderToDishOrders(@MappingTarget Order order){
+        order.getDishesList().forEach(dishOrder -> dishOrder.setOrder(order));
+    }
 }

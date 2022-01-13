@@ -14,7 +14,12 @@ spring:
   jpa:
     show-sql: true
     properties:
-      hibernate.format_sql: true
+      hibernate:
+        format_sql: true
+        jdbc:
+          batch_size: 50
+          default_batch_fetch_size: 50
+#      hibernate.format_sql: true
     hibernate:
       ddl-auto: validate
 

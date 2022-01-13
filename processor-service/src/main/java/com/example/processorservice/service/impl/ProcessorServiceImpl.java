@@ -6,7 +6,7 @@ import com.example.processorservice.service.ProcessorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.delivery.message.DeliveryMessageDto;
-import org.example.dto.order.message.OrderMessageDto;
+import org.example.dto.order.OrderMessageDto;
 import org.example.dto.payment.message.PaymentMessageDto;
 import org.example.dto.restaurant.message.RestaurantOrderMessageDto;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -38,7 +38,6 @@ public class ProcessorServiceImpl implements ProcessorService {
         switch (dto.getPaymentStatus()){
             case SUCCESS -> producerService.sendOrderToRestaurantService(mapper.orderToRestaurantOrder(order));
             case REJECTED, CANCELED -> redisTemplate.delete(order.getOrderId());
-            default ->
         }
     }
 

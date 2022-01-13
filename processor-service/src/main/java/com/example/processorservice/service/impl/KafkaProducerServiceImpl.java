@@ -4,7 +4,7 @@ import com.example.processorservice.service.KafkaProducerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.delivery.message.DeliveryMessageDto;
-import org.example.dto.order.message.OrderMessageDto;
+import org.example.dto.order.OrderMessageDto;
 import org.example.dto.payment.message.PaymentMessageDto;
 import org.example.dto.restaurant.message.RestaurantOrderMessageDto;
 import org.springframework.kafka.KafkaException;
