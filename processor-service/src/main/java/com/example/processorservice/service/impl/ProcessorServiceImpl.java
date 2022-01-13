@@ -25,12 +25,14 @@ public class ProcessorServiceImpl implements ProcessorService {
 
     @Override
     public void processOrder(OrderMessageDto dto) {
+        log.info("processOrder(), dto = {}", dto);
         redisTemplate.opsForValue().set(dto.getOrderId(), dto);
         producerService.sendOrderToPaymentService(mapper.orderToPayment(dto));
     }
 
     @Override
     public void updatePayment(PaymentMessageDto dto) {
+        log.info("updatePayment(), dto = {}", dto);
         OrderMessageDto order = (OrderMessageDto) redisTemplate.opsForValue().get(dto.getOrderId());
         order.setPaymentStatus(dto.getPaymentStatus());
         redisTemplate.opsForValue().set(order.getOrderId(), order);
@@ -43,6 +45,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 
     @Override
     public void updateRestaurantOrder(RestaurantOrderMessageDto dto) {
+        log.info("updateRestaurantOrder(), dto = {}", dto);
         OrderMessageDto order = (OrderMessageDto) redisTemplate.opsForValue().get(dto.getOrderId());
         order.setRestaurantStatus(dto.getRestaurantStatus());
         redisTemplate.opsForValue().set(order.getOrderId(), order);
@@ -55,6 +58,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 
     @Override
     public void updateDelivery(DeliveryMessageDto dto) {
+        log.info("updateDelivery(), dto = {}", dto);
         OrderMessageDto order = (OrderMessageDto) redisTemplate.opsForValue().getAndDelete(dto.getOrderId());
         order.setDeliveryStatus(dto.getDeliveryStatus());
         redisTemplate.opsForValue().set(order.getOrderId(), order);

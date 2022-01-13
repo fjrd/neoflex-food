@@ -9,6 +9,7 @@ import org.example.dto.order.OrderMessageDto;
 import org.example.dto.payment.message.PaymentMessageDto;
 import org.example.dto.restaurant.message.RestaurantOrderMessageDto;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -24,28 +25,28 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
 
     @Override
     @KafkaListener(topics = KAFKA_FROM_ORDERS_TOPIC, groupId = "orders")
-    public void getNewOrders(String id, OrderMessageDto dto) {
+    public void getNewOrders(@Payload OrderMessageDto dto) {
         log.info("getNewOrders(), dto = {}", dto);
         service.processOrder(dto);
     }
 
     @Override
     @KafkaListener(topics = KAFKA_FROM_PAYMENT, groupId = "payment")
-    public void updateFromPayments(PaymentMessageDto dto) {
+    public void updateFromPayments(@Payload PaymentMessageDto dto) {
         log.info("updateFromPayments(), dto = {}", dto);
         service.updatePayment(dto);
     }
 
     @Override
     @KafkaListener(topics = KAFKA_FROM_RESTAURANT, groupId = "Restaurant")
-    public void updateFromRestaurants(RestaurantOrderMessageDto dto) {
+    public void updateFromRestaurants(@Payload RestaurantOrderMessageDto dto) {
         log.info("updateFromRestaurants(), dto = {}", dto);
         service.updateRestaurantOrder(dto);
     }
 
     @Override
     @KafkaListener(topics = KAFKA_FROM_DELIVERY, groupId = "delivery")
-    public void updateFromDelivery(DeliveryMessageDto dto) {
+    public void updateFromDelivery(@Payload DeliveryMessageDto dto) {
         log.info("updateFromDelivery(), dto = {}", dto);
         service.updateDelivery(dto);
     }
