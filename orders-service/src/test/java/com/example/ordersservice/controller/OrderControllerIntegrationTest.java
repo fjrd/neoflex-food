@@ -229,13 +229,15 @@ class OrderControllerIntegrationTest {
                 .andExpect(jsonPath("$.customerId").value(customerId.toString()))
                 .andExpect(jsonPath("$.orderStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.deliveryAddress").value(deliveryAddress))
-                .andExpect(jsonPath("$.dishesList").value(dishesList1))
-                .andExpect(jsonPath("$.paymentStatus").value(defaultStatus))
+                .andExpect(jsonPath("$.dishesList[0].dishId").value(dishId1.toString()))
+                .andExpect(jsonPath("$.dishesList[0].quantity").value(4))
+                .andExpect(jsonPath("$.dishesList[1].dishId").value(dishId2.toString()))
+                .andExpect(jsonPath("$.dishesList[1].quantity").value(1))                .andExpect(jsonPath("$.paymentStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.restaurantStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.deliveryStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.orderTime").exists())
                 .andExpect(jsonPath("$.orderCounter").isNumber())
-                .andExpect(jsonPath("$.orderAmount").value(String.valueOf(orderTotalCost)));
+                .andExpect(jsonPath("$.orderTotalCost").value(String.valueOf(orderTotalCost)));
     }
 
     @Test
@@ -250,13 +252,16 @@ class OrderControllerIntegrationTest {
                 .andExpect(jsonPath("$.customerId").value(customerId.toString()))
                 .andExpect(jsonPath("$.orderStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.deliveryAddress").value(deliveryAddress))
-                .andExpect(jsonPath("$.dishesList").value(dishesList1))
+                .andExpect(jsonPath("$.dishesList[0].dishId").value(dishId1.toString()))
+                .andExpect(jsonPath("$.dishesList[0].quantity").value(4))
+                .andExpect(jsonPath("$.dishesList[1].dishId").value(dishId2.toString()))
+                .andExpect(jsonPath("$.dishesList[1].quantity").value(1))
                 .andExpect(jsonPath("$.paymentStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.restaurantStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.deliveryStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.orderTime").exists())
                 .andExpect(jsonPath("$.orderCounter").isNumber())
-                .andExpect(jsonPath("$.orderAmount").value(String.valueOf(orderTotalCost)));
+                .andExpect(jsonPath("$.orderTotalCost").value(String.valueOf(orderTotalCost)));
 
         mockMvc.perform(get("/api/v1/orders/" + customerId))
                 .andExpect(status().isOk())
