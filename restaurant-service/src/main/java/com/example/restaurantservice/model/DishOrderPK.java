@@ -1,14 +1,18 @@
 package com.example.restaurantservice.model;
 
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.UUID;
 
+@Data
 @Embeddable
-@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 public class DishOrderPK implements Serializable {
 
     @Column(name = "restaurant_order_id", nullable = false)

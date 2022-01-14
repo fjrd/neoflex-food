@@ -1,9 +1,6 @@
 package com.example.restaurantservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.dto.payment.PaymentStatus;
 import org.example.dto.restaurant.RestaurantOrderStatus;
 
@@ -15,21 +12,18 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "restaurant_orders")
 @Entity
+@Table(name = "restaurant_orders")
 public class RestaurantOrder implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @EqualsAndHashCode.Include
     @Column(name = "restaurant_order_id", nullable = false)
     private UUID restaurantOrderId;
-
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
@@ -45,7 +39,7 @@ public class RestaurantOrder implements Serializable {
     private BigDecimal orderTotalCost;
 
     @OneToMany(mappedBy = "restaurantOrder", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<DishOrder> dishes;
+    private List<DishOrder> dishesList;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_status", nullable = false)

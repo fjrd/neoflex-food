@@ -1,7 +1,7 @@
 package com.example.ordersservice.mapper;
 
 import com.example.ordersservice.model.DishOrder;
-import org.example.dto.restaurant.message.DishMessageDto;
+import org.example.dto.restaurant.DishMessageDto;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")

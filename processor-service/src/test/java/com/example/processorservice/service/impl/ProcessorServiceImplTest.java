@@ -29,6 +29,7 @@ class ProcessorServiceImplTest {
     void test() throws JsonProcessingException {
 
         System.out.println(repository.save(message));
+        System.out.println(repository.findById(message.getId()));
 
     }
 }

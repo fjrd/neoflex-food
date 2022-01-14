@@ -1,4 +1,4 @@
-package org.example.dto.restaurant.response;
+package com.example.restaurantservice.controller.dto.response;
 
 
 import lombok.AllArgsConstructor;

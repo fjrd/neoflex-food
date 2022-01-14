@@ -10,8 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.dto.delivery.message.DeliveryMessageDto;
 import org.example.dto.order.OrderMessageDto;
 import org.example.dto.payment.message.PaymentMessageDto;
-import org.example.dto.restaurant.message.RestaurantOrderMessageDto;
+import org.example.dto.restaurant.RestaurantOrderMessageDto;
 import org.springframework.stereotype.Service;
+
+import java.util.NoSuchElementException;
 
 @Slf4j
 @Service
@@ -27,7 +29,9 @@ public class ProcessorServiceImpl implements ProcessorService {
         log.info("processOrder(), dto = {}", dto);
 
         repository.save(mapper.dtoToModel(dto));
-        producerService.sendOrderToPaymentService(mapper.orderToPayment(dto));
+        producerService.sendOrderToRestaurantService(mapper.orderToRestaurantOrder(dto));
+        //TODO - FOR TESTING PURPOSE - DONT FORGET TO UNCOMMENT BELOW LINE AND DELETE ABOVE LINE AFTER THE PAYMENT SERVICE IS DEVELOPED
+//        producerService.sendOrderToPaymentService(mapper.orderToPayment(dto));
     }
 
     @Override
@@ -50,12 +54,13 @@ public class ProcessorServiceImpl implements ProcessorService {
     public void updateRestaurantOrder(RestaurantOrderMessageDto dto) {
         log.info("updateRestaurantOrder(), dto = {}", dto);
 
-        OrderMessage orderMessage = repository.findById(dto.getOrderId()).orElseThrow();
+        OrderMessage orderMessage = repository.findById(dto.getOrderId()).orElseThrow(() -> new NoSuchElementException("There is no order with ID = " + dto.getOrderId()));
+        log.info("updateRestaurantOrder(), findById = {}", orderMessage);
         orderMessage.setRestaurantStatus(dto.getRestaurantStatus());
         orderMessage = repository.save(orderMessage);
         OrderMessageDto orderMessageDto = mapper.modelToDto(orderMessage);
         producerService.sendUpdatedOrderToOrdersService(orderMessageDto);
-
+        System.out.println("____________________________________");
         switch (dto.getRestaurantStatus()){
             case SUCCESS -> producerService.sendOrderToDeliveryService(mapper.orderToDelivery(orderMessageDto));
             case REJECTED, CANCELED -> producerService.rollbackPayments(mapper.orderToPayment(orderMessageDto));

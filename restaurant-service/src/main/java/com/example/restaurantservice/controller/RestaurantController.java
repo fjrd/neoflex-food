@@ -4,10 +4,10 @@ import com.example.restaurantservice.service.MenuService;
 import com.example.restaurantservice.service.RestaurantOrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.dto.restaurant.request.RestaurantOrderRequestDto;
-import org.example.dto.restaurant.response.RestaurantOrderResponseDto;
-import org.example.dto.restaurant.request.DishRequestDto;
-import org.example.dto.restaurant.response.DishResponseDto;
+import com.example.restaurantservice.controller.dto.request.RestaurantOrderRequestDto;
+import com.example.restaurantservice.controller.dto.response.RestaurantOrderResponseDto;
+import com.example.restaurantservice.controller.dto.request.DishRequestDto;
+import com.example.restaurantservice.controller.dto.response.DishResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +29,7 @@ public class RestaurantController {
         return ResponseEntity.ok(menuService.getMenuAsList());
     }
 
-    @PostMapping("/checkOrder")
+    @PostMapping("/check_order")
     public ResponseEntity<String> checkOrder(@RequestBody @Valid List<DishRequestDto> dishesList){
         log.info("cherOrder(), dto = {}", dishesList);
         return ResponseEntity.ok(service.checkOrder(dishesList));

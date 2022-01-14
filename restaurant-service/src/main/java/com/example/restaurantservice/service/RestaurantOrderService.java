@@ -1,9 +1,9 @@
 package com.example.restaurantservice.service;
 
-import org.example.dto.restaurant.request.RestaurantOrderRequestDto;
-import org.example.dto.restaurant.response.RestaurantOrderResponseDto;
-import org.example.dto.restaurant.message.RestaurantOrderMessageDto;
-import org.example.dto.restaurant.request.DishRequestDto;
+import com.example.restaurantservice.controller.dto.request.RestaurantOrderRequestDto;
+import com.example.restaurantservice.controller.dto.response.RestaurantOrderResponseDto;
+import org.example.dto.restaurant.RestaurantOrderMessageDto;
+import com.example.restaurantservice.controller.dto.request.DishRequestDto;
 
 import java.util.List;
 

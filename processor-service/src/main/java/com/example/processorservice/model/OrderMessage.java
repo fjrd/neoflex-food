@@ -9,7 +9,7 @@ import org.example.dto.order.OrderStatus;
 import org.example.dto.payment.PaymentStatus;
 import org.example.dto.payment.message.CardDetailMessageDto;
 import org.example.dto.restaurant.RestaurantOrderStatus;
-import org.example.dto.restaurant.message.DishMessageDto;
+import org.example.dto.restaurant.DishMessageDto;
 import org.springframework.data.redis.core.RedisHash;
 
 import javax.validation.constraints.Min;

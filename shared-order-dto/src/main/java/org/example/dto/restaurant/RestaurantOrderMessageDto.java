@@ -1,11 +1,10 @@
-package org.example.dto.restaurant.message;
+package org.example.dto.restaurant;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.dto.payment.PaymentStatus;
-import org.example.dto.restaurant.RestaurantOrderStatus;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
