@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class KafkaConsumerServiceImpl implements KafkaConsumerService {
 
     private static final String KAFKA_FROM_TOPIC = "new_restaurant_orders";
+    private static final String KAFKA_ROLLBACK_TOPIC = "rollback_restaurant_orders";
     private final RestaurantOrderService service;
 
     @Override
@@ -22,5 +23,12 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
     public void addNewRestaurantOrder(RestaurantOrderMessageDto dto) {
         log.info("loadNewRestaurantOrder(), dto = {}", dto);
         service.addNewOrder(dto);
+    }
+
+    @Override
+    @KafkaListener(topics = KAFKA_ROLLBACK_TOPIC, groupId = "restaurant")
+    public void rollbackOrder(RestaurantOrderMessageDto dto) {
+        log.info("rollbackOrder(), dto = {}", dto);
+        service.rollbackOrder(dto);
     }
 }

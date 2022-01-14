@@ -20,8 +20,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.example.dto.restaurant.RestaurantOrderStatus.REJECTED;
-import static org.example.dto.restaurant.RestaurantOrderStatus.UNPROCESSED;
+import static org.example.dto.restaurant.RestaurantOrderStatus.*;
 
 @Slf4j
 @Service
@@ -80,6 +79,14 @@ public class RestaurantOrderServiceImpl implements RestaurantOrderService {
                 .findAny()
                 .ifPresent(dish -> {throw new IllegalArgumentException("Dish with id " + dish.getDishId() + " has wrong cost");});
         return "Order is correct";
+    }
+
+    @Override
+    public void rollbackOrder(RestaurantOrderMessageDto dto) {
+        log.info("rollbackOrder(), dto = {}", dto);
+        orderRepository.deleteById(dto.getOrderId());
+        dto.setRestaurantStatus(CANCELED);
+        kafkaProducerService.send(dto);
     }
 
     boolean checkThatDishesFromOrderIsOnMenu(RestaurantOrder restaurantOrder){
