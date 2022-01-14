@@ -123,7 +123,7 @@ services:
       - 8086:8086
     environment:
       - SERVER_PORT=8086
-      - POSTGRES_URL=jdbc:postgresql://nf-pg-payment-db:5436/postgres
+      - POSTGRES_URL=jdbc:postgresql://nf-pg-payment-db:5437/postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - KAFKA_HOST_NAME=nf-kafka:9092
@@ -215,7 +215,7 @@ services:
     container_name: nf-pg-payment-db
     image: postgres:alpine3.14
     ports:
-      - 5436:5432
+      - 5437:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
