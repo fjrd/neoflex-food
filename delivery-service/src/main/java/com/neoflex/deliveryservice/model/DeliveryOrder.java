@@ -18,7 +18,6 @@ import java.util.UUID;
 public class DeliveryOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id", nullable = false)
     private UUID orderId;
 
@@ -26,12 +25,12 @@ public class DeliveryOrder {
     @Column(name = "delivery_address", nullable = false)
     private String deliveryAddress;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @NotNull
     @Column(name = "restaurant_status", nullable = false)
     private RestaurantOrderStatus restaurantStatus;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "delivery_status", nullable = false)
     private DeliveryStatus deliveryStatus;
 
@@ -39,8 +38,8 @@ public class DeliveryOrder {
     @Column(name = "order_time", nullable = false)
     private LocalDateTime orderTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "courier_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "courier_id")
     private Courier courier;
 
 }

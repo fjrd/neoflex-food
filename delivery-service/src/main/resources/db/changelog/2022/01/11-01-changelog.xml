@@ -5,17 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <changeSet id="1641909849091-1" author="sryzhkov">
+
+    <changeSet id="1642071205131-1" author="sryzhkov">
         <createTable tableName="couriers">
             <column name="courier_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_couriers"/>
             </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1641909925130-1" author="sryzhkov">
+    <changeSet id="1642151385636-1" author="sryzhkov">
         <createTable tableName="delivery_orders">
             <column name="order_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_delivery_orders"/>
@@ -23,18 +22,16 @@
             <column name="delivery_address" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="restaurant_status" type="INT">
+            <column name="restaurant_status" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="delivery_status" type="INT">
+            <column name="delivery_status" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="order_time" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column name="courier_id" type="UUID">
-                <constraints nullable="false"/>
-            </column>
+            <column name="courier_id" type="UUID"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="courier_id"
                                  baseTableName="delivery_orders"

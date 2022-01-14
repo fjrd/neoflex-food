@@ -69,10 +69,7 @@ public class DeliveryService {
 
     private boolean isNotInJobAndNotSuccessAndNotRejectOrder(DeliveryOrder order){
         DeliveryStatus status = order.getDeliveryStatus();
-        return !status.equals(DeliveryStatus.SUCCESS)
-                && !status.equals(DeliveryStatus.CANCELED)
-                && !status.equals(DeliveryStatus.REJECTED)
-                && !status.equals(DeliveryStatus.UNPROCESSED)
-                && !status.equals(DeliveryStatus.IN_PROGRESS);
+        return status.equals(DeliveryStatus.UNPROCESSED) || status.equals(DeliveryStatus.ACCEPTED);
+
     }
 }

@@ -18,7 +18,7 @@ public class ConsumerService {
 
     @KafkaListener(
             topics = "new_deliveries",
-            groupId = "${spring.kafka.consumer.groupId}",
+            groupId = "${spring.kafka.consumer.group-id}",
             containerFactory = "applicationKafkaListenerContainerFactory")
     public void consume(DeliveryMessageDto messageDto) {
         log.info("consume order for delivery {}", messageDto);

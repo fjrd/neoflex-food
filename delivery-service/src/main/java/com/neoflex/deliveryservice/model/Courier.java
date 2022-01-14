@@ -18,10 +18,10 @@ public class Courier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "courier_id", nullable = false)
+    @Column(name = "courier_id")
     private UUID courierId;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neoflex.deliveryservice.model.DeliveryOrder;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.example.dto.delivery.message.DeliveryMessageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,16 +27,16 @@ public class KafkaProducerConfig {
     private ObjectMapper objectMapper;
 
     @Bean
-    public ProducerFactory<String, DeliveryOrder> applicationProducerFactory() {
+    public ProducerFactory<String, DeliveryMessageDto> deliveryProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         StringSerializer keySerializer = new StringSerializer();
-        JsonSerializer<DeliveryOrder> valueSerializer = new JsonSerializer<>(objectMapper);
+        JsonSerializer<DeliveryMessageDto> valueSerializer = new JsonSerializer<>(objectMapper);
         return new DefaultKafkaProducerFactory<>(configProps, keySerializer, valueSerializer);
     }
 
     @Bean
-    public KafkaTemplate<String, DeliveryOrder> applicationKafkaTemplate() {
-        return new KafkaTemplate<>(applicationProducerFactory());
+    public KafkaTemplate<String, DeliveryMessageDto> deliveryKafkaTemplate() {
+        return new KafkaTemplate<>(deliveryProducerFactory());
     }
 }
