@@ -13,4 +13,5 @@ public interface RestaurantOrderService {
     RestaurantOrderResponseDto updateOrder(RestaurantOrderRequestDto requestDto);
     void addNewOrder(RestaurantOrderMessageDto dto);
     String checkOrder(List<DishRequestDto> dishesList);
+    void rollbackOrder(RestaurantOrderMessageDto dto);
 }
