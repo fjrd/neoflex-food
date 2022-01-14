@@ -26,8 +26,8 @@ public class DeliveryController {
         return deliveryService.getAll();
     }
 
-    @GetMapping
-    public DeliveryOrderResponseDto get(UUID uuid) {
+    @GetMapping("/{uuid}")
+    public DeliveryOrderResponseDto get(@PathVariable UUID uuid) {
         log.info("get order with ud {}", uuid);
         return deliveryService.get(uuid);
     }

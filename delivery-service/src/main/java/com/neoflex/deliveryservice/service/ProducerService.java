@@ -18,7 +18,7 @@ public class ProducerService {
     }
 
     public void produce(DeliveryMessageDto deliveryMessageDto) {
-        log.info("Add application in kafka {}", deliveryMessageDto);
+        log.info("Add deliver order in kafka {}", deliveryMessageDto);
         kafkaTemplate.send("processed_deliveries", deliveryMessageDto);
     }
 }
