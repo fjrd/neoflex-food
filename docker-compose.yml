@@ -90,25 +90,24 @@ services:
       - REDIS_HOST=nf-redis
       - REDIS_PORT=6379
 
-#  #Delivery
-#  delivery:
-#    container_name: nf-delivery-service
-#    image: nf-delivery-service:0.0.1
-#    build:
-#      context: delivery-service
-#      dockerfile: DockerfileCopyJar
-#    depends_on:
-#      - kafka
-#      - postgres-delivery
-#    ports:
-#      - 8085:8085
-#    environment:
-#      - SERVER_PORT=8085
-#      - POSTGRES_URL=jdbc:postgresql://nf-pg-delivery-db:5435/postgres
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#      - KAFKA_HOST_NAME=nf-kafka:9092
-#TODO DONT FORGET TO UNCOMMENT
+  #Delivery
+  delivery:
+    container_name: nf-delivery-service
+    image: nf-delivery-service:0.0.1
+    build:
+      context: delivery-service
+      dockerfile: DockerfileCopyJar
+    depends_on:
+      - kafka
+      - postgres-delivery
+    ports:
+      - 8085:8085
+    environment:
+      - SERVER_PORT=8085
+      - POSTGRES_URL=jdbc:postgresql://nf-pg-delivery-db:5432/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - KAFKA_HOST_NAME=nf-kafka:9092
 
   #Kafka
   zookeeper:
@@ -178,19 +177,19 @@ services:
     volumes:
       - pg-restaurant-data:/var/lib/postgresql/data/
 
-#  #Delivery DataBase
-#  postgres-delivery:
-#    container_name: nf-pg-delivery-db
-#    image: postgres:alpine3.14
-#    ports:
-#      - 5435:5432
-#    environment:
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#      - POSTGRES_DB=postgres
-#    restart: unless-stopped
-#    volumes:
-#      - pg-delivery-data:/var/lib/postgresql/data/
+  #Delivery DataBase
+  postgres-delivery:
+    container_name: nf-pg-delivery-db
+    image: postgres:alpine3.14
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    restart: unless-stopped
+    volumes:
+      - pg-delivery-data:/var/lib/postgresql/data/
 
 volumes:
   pg-orders-data:

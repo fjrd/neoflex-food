@@ -3,7 +3,8 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST:localhost:5432}/${DATABASE_NAME:delivery_db}?currentSchema=public
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/postgres?currentSchema=public}
+    #    url: jdbc:postgresql://${DATABASE_HOST:localhost:5432}/${DATABASE_NAME:delivery_db}?currentSchema=public
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
 

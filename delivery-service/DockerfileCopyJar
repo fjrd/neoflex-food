@@ -1,3 +1,5 @@
 FROM openjdk:18-jdk-alpine3.14 AS MAVEN_BUILD
 
 COPY /target/*.jar app.jar
+
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
