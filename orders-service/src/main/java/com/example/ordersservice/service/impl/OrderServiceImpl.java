@@ -105,6 +105,7 @@ public class OrderServiceImpl implements OrderService {
 
         Order order = findOrderByIdIfExists(dto.getOrderId());
         orderMessageMapper.updateFromDtoToModel(dto, order);
+        log.info("updateOrderFromProcessor(), after mapper update = {}", order);
         orderRepository.saveAndFlush(order);
     }
 
