@@ -109,6 +109,25 @@ services:
       - POSTGRES_PASSWORD=postgres
       - KAFKA_HOST_NAME=nf-kafka:9092
 
+  #Payment
+  payment:
+    container_name: nf-payment-service
+    image: nf-payment-service:0.0.1
+    build:
+      context: payment-service
+      dockerfile: DockerfileCopyJar
+    depends_on:
+      - kafka
+      - postgres-payment
+    ports:
+      - 8086:8086
+    environment:
+      - SERVER_PORT=8086
+      - POSTGRES_URL=jdbc:postgresql://nf-pg-payment-db:5436/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - KAFKA_HOST_NAME=nf-kafka:9092
+
   #Kafka
   zookeeper:
     image: wurstmeister/zookeeper
@@ -191,8 +210,23 @@ services:
     volumes:
       - pg-delivery-data:/var/lib/postgresql/data/
 
+  #Payment DataBase
+  postgres-payment:
+    container_name: nf-pg-payment-db
+    image: postgres:alpine3.14
+    ports:
+      - 5436:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    restart: unless-stopped
+    volumes:
+      - pg-payment-data:/var/lib/postgresql/data/
+
 volumes:
   pg-orders-data:
   pg-customers-data:
   pg-restaurant-data:
   pg-delivery-data:
+  pg-payment-data:
