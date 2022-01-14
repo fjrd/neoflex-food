@@ -1,4 +1,4 @@
-package org.example.dto.restaurant.response;
+package com.example.restaurantservice.controller.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,9 +25,6 @@ public class RestaurantOrderResponseDto {
     private UUID restaurantOrderId;
 
     @NotNull
-    private UUID orderId;
-
-    @NotNull
     private UUID customerId;
 
     @NotNull
@@ -41,7 +38,7 @@ public class RestaurantOrderResponseDto {
     private BigDecimal orderTotalCost;
 
     @NotBlank
-    private List<DishResponseDto> dishesList;
+    private List<DishOrderResponseDto> dishesList;
 
     @NotNull
     private PaymentStatus paymentStatus;

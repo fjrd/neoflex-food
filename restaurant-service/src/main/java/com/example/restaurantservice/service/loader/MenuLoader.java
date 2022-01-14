@@ -1,4 +1,4 @@
-package com.example.restaurantservice.loader;
+package com.example.restaurantservice.service.loader;
 
 import com.example.restaurantservice.model.Dish;
 import com.example.restaurantservice.repository.DishRepository;

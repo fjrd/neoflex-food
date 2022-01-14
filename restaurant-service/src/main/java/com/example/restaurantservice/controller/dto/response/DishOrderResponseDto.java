@@ -1,25 +1,25 @@
-package org.example.dto.restaurant.request;
+package com.example.restaurantservice.controller.dto.response;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.dto.restaurant.RestaurantOrderStatus;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.UUID;
-
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class RestaurantOrderRequestDto {
+public class DishOrderResponseDto implements Serializable {
 
     @NotNull
-    private UUID restaurantOrderId;
+    private UUID dishId;
 
     @NotNull
-    private RestaurantOrderStatus restaurantStatus;
+    private Integer quantity;
 
 }

@@ -1,15 +1,14 @@
 package com.example.restaurantservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = {"restaurantOrder"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
@@ -17,6 +16,7 @@ import java.io.Serializable;
 @Table(name = "dish_orders")
 public class DishOrder implements Serializable {
 
+    @EqualsAndHashCode.Include
     @EmbeddedId
     private DishOrderPK id;
 
@@ -32,5 +32,6 @@ public class DishOrder implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_order_id")
     private RestaurantOrder restaurantOrder;
+
 
 }

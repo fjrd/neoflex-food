@@ -1,7 +1,7 @@
 package com.example.restaurantservice.service;
 
 import com.example.restaurantservice.model.Dish;
-import org.example.dto.restaurant.response.DishResponseDto;
+import com.example.restaurantservice.controller.dto.response.DishResponseDto;
 
 import java.util.List;
 import java.util.Map;

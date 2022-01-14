@@ -2,7 +2,7 @@ package com.example.restaurantservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.dto.restaurant.message.RestaurantOrderMessageDto;
+import org.example.dto.restaurant.RestaurantOrderMessageDto;
 import org.springframework.kafka.KafkaException;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;

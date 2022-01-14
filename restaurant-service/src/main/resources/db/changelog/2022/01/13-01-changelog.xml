@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+
+    <changeSet id="1642133872616-1" author="fjrd">
+        <dropForeignKeyConstraint baseTableName="restaurant_orders" constraintName="FK_orders_to_restaurant_orders"/>
+    </changeSet>
+
+    <changeSet id="1642077923351-1" author="fjrd">
+        <dropColumn tableName="restaurant_orders" columnName="order_id"/>
+    </changeSet>
+
+    <changeSet id="1642077725543-1" author="fjrd">
+        <dropTable tableName="orders"/>
+    </changeSet>
+
+</databaseChangeLog>

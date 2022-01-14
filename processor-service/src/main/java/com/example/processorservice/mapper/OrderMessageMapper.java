@@ -4,7 +4,7 @@ import com.example.processorservice.model.OrderMessage;
 import org.example.dto.delivery.message.DeliveryMessageDto;
 import org.example.dto.order.OrderMessageDto;
 import org.example.dto.payment.message.PaymentMessageDto;
-import org.example.dto.restaurant.message.RestaurantOrderMessageDto;
+import org.example.dto.restaurant.RestaurantOrderMessageDto;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

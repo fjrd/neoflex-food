@@ -8,7 +8,7 @@ import org.example.dto.delivery.DeliveryStatus;
 import org.example.dto.payment.message.CardDetailMessageDto;
 import org.example.dto.payment.PaymentStatus;
 import org.example.dto.restaurant.RestaurantOrderStatus;
-import org.example.dto.restaurant.message.DishMessageDto;
+import org.example.dto.restaurant.DishMessageDto;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
