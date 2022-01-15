@@ -25,7 +25,7 @@ public class RestaurantOrder implements Serializable {
     @Column(name = "restaurant_order_id", nullable = false)
     private UUID restaurantOrderId;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
