@@ -1,38 +1,38 @@
 version: '3.9'
 services:
 
-#  #ApiGateway
-#  gateway:
-#    container_name: nf-api-gateway-service
-#    image: nf-api-gateway-service:0.0.1
-#    build:
-#      context: gateway_api
-#      dockerfile: DockerfileCopyJar
-#    ports:
-#      - 8080:8080
-#    environment:
-#      - SERVER_PORT=8080
-#      - CUSTOMERS_HOST=http://nf-customers-service:8092
-#      - ORDERS_HOST=http://nf-orders-service:8081
-#    command: [ 'java', '-jar', '/app.jar' ]
-#
-#  #Customers
-#  customers:
-#    container_name: nf-customers-service
-#    image: nf-customers-service:0.0.1
-#    build:
-#      context: customer_service
-#      dockerfile: DockerfileCopyJar
-#    depends_on:
-#      - postgres-customers
-#    ports:
-#      - 8092:8092
-#    environment:
-#      - POSTGRES_URL=jdbc:postgresql://nf-pg-customers-db:5432/postgres
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#      - SERVER_PORT=8092
-#    command: [ 'java', '-jar', '/app.jar' ]
+  #ApiGateway
+  gateway:
+    container_name: nf-api-gateway-service
+    image: nf-api-gateway-service:0.0.1
+    build:
+      context: gateway_api
+      dockerfile: DockerfileCopyJar
+    ports:
+      - 8080:8080
+    environment:
+      - SERVER_PORT=8080
+      - CUSTOMERS_HOST=http://nf-customers-service:8092
+      - ORDERS_HOST=http://nf-orders-service:8081
+    command: [ 'java', '-jar', '/app.jar' ]
+
+  #Customers
+  customers:
+    container_name: nf-customers-service
+    image: nf-customers-service:0.0.1
+    build:
+      context: customer_service
+      dockerfile: DockerfileCopyJar
+    depends_on:
+      - postgres-customers
+    ports:
+      - 8092:8092
+    environment:
+      - POSTGRES_URL=jdbc:postgresql://nf-pg-customers-db:5432/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - SERVER_PORT=8092
+    command: [ 'java', '-jar', '/app.jar' ]
 
   #Orders
   orders:
@@ -149,19 +149,19 @@ services:
     volumes:
       - pg-customers-data:/var/lib/postgresql/data/
 
-#  #Customers DataBase
-#  postgres-customers:
-#    container_name: nf-pg-customers-db
-#    image: postgres:alpine3.14
-#    ports:
-#      - 5432:5432
-#    environment:
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#      - POSTGRES_DB=postgres
-#    restart: unless-stopped
-#    volumes:
-#      - pg-orders-data:/var/lib/postgresql/data/
+  #Customers DataBase
+  postgres-customers:
+    container_name: nf-pg-customers-db
+    image: postgres:alpine3.14
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    restart: unless-stopped
+    volumes:
+      - pg-orders-data:/var/lib/postgresql/data/
 
   #Restaurant DataBase
   postgres-restaurant:

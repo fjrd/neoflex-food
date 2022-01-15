@@ -30,7 +30,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Disabled
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -230,7 +229,8 @@ class OrderControllerIntegrationTest {
                 .andExpect(jsonPath("$.dishesList[0].dishId").value(dishId1.toString()))
                 .andExpect(jsonPath("$.dishesList[0].quantity").value(4))
                 .andExpect(jsonPath("$.dishesList[1].dishId").value(dishId2.toString()))
-                .andExpect(jsonPath("$.dishesList[1].quantity").value(1))                .andExpect(jsonPath("$.paymentStatus").value(defaultStatus))
+                .andExpect(jsonPath("$.dishesList[1].quantity").value(1))
+                .andExpect(jsonPath("$.paymentStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.restaurantStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.deliveryStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.orderTime").exists())
