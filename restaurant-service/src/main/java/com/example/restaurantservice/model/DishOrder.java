@@ -24,12 +24,12 @@ public class DishOrder implements Serializable {
     private Integer quantity;
 
     @MapsId("dishId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "dish_id")
     private Dish dish;
 
     @MapsId("restaurantOrderId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "restaurant_order_id")
     private RestaurantOrder restaurantOrder;
 
