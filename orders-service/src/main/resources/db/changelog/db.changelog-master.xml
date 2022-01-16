@@ -12,6 +12,8 @@
     <include file="2021/12/16-01-changelog.xml" relativeToChangelogFile="true"/>
     <include file="db/changelog/2021/12/17-01-changelog.xml"/>
     <include file="db/changelog/2021/12/18-01-changelog.xml"/>
+    <include file="db/changelog/2022/01/06-01-changelog.xml"/>
+    <include file="db/changelog/2022/01/06-02-changelog.xml"/>
 
     <changeSet id="db-v-1.0" author="Alexander Reztsov">
         <tagDatabase tag="db-v-1.0"/>

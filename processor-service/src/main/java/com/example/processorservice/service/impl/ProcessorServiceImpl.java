@@ -1,15 +1,19 @@
 package com.example.processorservice.service.impl;
 
+import com.example.processorservice.mapper.OrderMessageMapper;
+import com.example.processorservice.model.OrderMessage;
+import com.example.processorservice.repository.OrderMessageRepository;
 import com.example.processorservice.service.KafkaProducerService;
 import com.example.processorservice.service.ProcessorService;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.example.dto.order.message.OrderMessageDto;
-import org.example.dto.payment.message.PaymentStatus;
+import org.example.dto.delivery.message.DeliveryMessageDto;
+import org.example.dto.order.OrderMessageDto;
+import org.example.dto.payment.message.PaymentMessageDto;
+import org.example.dto.restaurant.RestaurantOrderMessageDto;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @Service
@@ -17,41 +21,63 @@ import java.util.Random;
 public class ProcessorServiceImpl implements ProcessorService {
 
     private final KafkaProducerService producerService;
-    private Random random = new Random();
+    private final OrderMessageRepository repository;
+    private final OrderMessageMapper mapper;
 
     @Override
     public void processOrder(OrderMessageDto dto) {
         log.info("processOrder(), dto = {}", dto);
-        mockStatusProcessing(dto);
+
+        repository.save(mapper.dtoToModel(dto));
+        producerService.sendOrderToPaymentService(mapper.orderToPayment(dto));
     }
 
-    //this method is mocking order processing unless payment, restaurant, delivery services would be developed
-    @SneakyThrows
-    private void mockStatusProcessing(OrderMessageDto dto){
-        log.info("mockStatusProcessing(), dto = {}", dto);
+    @Override
+    public void updatePayment(PaymentMessageDto dto) {
+        log.info("updatePayment(), dto = {}", dto);
 
-        Thread.sleep(5000);
-        dto.setPaymentStatus(PaymentStatus.SUCCESS);
-        dto.setOrderStatus("IN_PROGRESS");
-        producerService.sendUpdatedOrderToOrdersService(dto);
+        OrderMessage orderMessage = repository.findById(dto.getOrderId()).orElseThrow();
+        orderMessage.setPaymentStatus(dto.getPaymentStatus());
+        orderMessage = repository.save(orderMessage);
+        OrderMessageDto orderMessageDto = mapper.modelToDto(orderMessage);
+        producerService.sendUpdatedOrderToOrdersService(orderMessageDto);
 
-        Thread.sleep(5000);
-        dto.setRestaurantStatus("COOKING_IN_PROGRESS");
-        producerService.sendUpdatedOrderToOrdersService(dto);
-
-        Thread.sleep(5000);
-        dto.setRestaurantStatus("COOKED");
-        producerService.sendUpdatedOrderToOrdersService(dto);
-
-        Thread.sleep(5000);
-        dto.setDeliveryStatus("DELIVERY_IN_PROGRESS");
-        producerService.sendUpdatedOrderToOrdersService(dto);
-
-        Thread.sleep(5000);
-        dto.setDeliveryStatus("DELIVERED");
-        dto.setOrderStatus("COMPLETED");
-        producerService.sendUpdatedOrderToOrdersService(dto);
-
+        switch (dto.getPaymentStatus()){
+            case SUCCESS -> producerService.sendOrderToRestaurantService(mapper.orderToRestaurantOrder(orderMessageDto));
+            case REJECTED, CANCELED -> repository.deleteById(orderMessage.getId());
+        }
     }
 
+    @Override
+    public void updateRestaurantOrder(RestaurantOrderMessageDto dto) {
+        log.info("updateRestaurantOrder(), dto = {}", dto);
+
+        OrderMessage orderMessage = repository.findById(dto.getOrderId()).orElseThrow(() -> new NoSuchElementException("There is no order with ID = " + dto.getOrderId()));
+        log.info("updateRestaurantOrder(), findById = {}", orderMessage);
+        orderMessage.setRestaurantStatus(dto.getRestaurantStatus());
+        orderMessage = repository.save(orderMessage);
+        OrderMessageDto orderMessageDto = mapper.modelToDto(orderMessage);
+        producerService.sendUpdatedOrderToOrdersService(orderMessageDto);
+        System.out.println("____________________________________");
+        switch (dto.getRestaurantStatus()){
+            case SUCCESS -> producerService.sendOrderToDeliveryService(mapper.orderToDelivery(orderMessageDto));
+            case REJECTED, CANCELED -> producerService.rollbackPayments(mapper.orderToPayment(orderMessageDto));
+        }
+    }
+
+    @Override
+    public void updateDelivery(DeliveryMessageDto dto) {
+        log.info("updateDelivery(), dto = {}", dto);
+
+        OrderMessage orderMessage = repository.findById(dto.getOrderId()).orElseThrow();
+        orderMessage.setDeliveryStatus(dto.getDeliveryStatus());
+        orderMessage = repository.save(orderMessage);
+        OrderMessageDto orderMessageDto = mapper.modelToDto(orderMessage);
+        producerService.sendUpdatedOrderToOrdersService(orderMessageDto);
+
+        switch (dto.getDeliveryStatus()){
+            case SUCCESS -> repository.deleteById(orderMessage.getId());
+            case REJECTED -> producerService.rollbackRestaurantOrders(mapper.orderToRestaurantOrder(orderMessageDto));
+        }
+    }
 }

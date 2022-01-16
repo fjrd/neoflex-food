@@ -1,16 +1,14 @@
 package com.example.ordersservice.controller;
 
+import com.example.ordersservice.controller.dto.dish.DishRequestDto;
+import com.example.ordersservice.controller.dto.order.OrderRequestDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.example.dto.order.request.OrderRequestDto;
-import org.example.dto.payment.message.CardDetailDto;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.example.dto.payment.message.CardDetailMessageDto;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +23,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -45,10 +44,13 @@ class OrderControllerIntegrationTest {
     private UUID customerId;
     private UUID orderId1;
     private UUID orderId2;
+    private UUID dishId1;
+    private UUID dishId2;
     private String deliveryAddress;
-    private CardDetailDto cardDetailDto;
-    private String dishesList;
-    private BigDecimal orderAmount;
+    private CardDetailMessageDto cardDetailDto;
+    private List<DishRequestDto> dishesList1;
+    private List<DishRequestDto> dishesList2;
+    private BigDecimal orderTotalCost;
     private String defaultStatus = "UNPROCESSED";
 
     private static PostgreSQLContainer ordersDb;
@@ -94,25 +96,53 @@ class OrderControllerIntegrationTest {
         customerId = UUID.randomUUID();
         orderId1 = UUID.randomUUID();
         orderId2 = UUID.randomUUID();
+        dishId1 = UUID.randomUUID();
+        dishId2 = UUID.randomUUID();
         deliveryAddress = "some address";
-        cardDetailDto = new CardDetailDto("123-456-789-901", "11/22", "Alexander", "Reztsov", "123");
-        dishesList = "pizza and tea";
-        orderAmount = BigDecimal.valueOf(12.99);
+        cardDetailDto = new CardDetailMessageDto(
+                "123-456-789-901",
+                "11/22",
+                "Alexander",
+                "Reztsov",
+                "123");
+        dishesList1 = List.of(
+                DishRequestDto.builder()
+                        .orderId(orderId1)
+                        .dishId(dishId1)
+                        .quantity(4)
+                        .build(),
+                DishRequestDto.builder()
+                        .orderId(orderId1)
+                        .dishId(dishId2)
+                        .quantity(1)
+                        .build());
+        dishesList2 = List.of(
+                DishRequestDto.builder()
+                        .orderId(orderId2)
+                        .dishId(dishId1)
+                        .quantity(3)
+                        .build(),
+                DishRequestDto.builder()
+                        .orderId(orderId2)
+                        .dishId(dishId2)
+                        .quantity(2)
+                        .build());
+        orderTotalCost = BigDecimal.valueOf(12.99);
 
         requestDto1 = OrderRequestDto.builder()
                 .orderId(orderId1)
                 .deliveryAddress(deliveryAddress)
                 .cardDetails(cardDetailDto)
-                .dishesList(dishesList)
-                .orderAmount(orderAmount)
+                .dishesList(dishesList1)
+                .orderTotalCost(orderTotalCost)
                 .build();
 
         requestDto2 = OrderRequestDto.builder()
                 .orderId(orderId2)
                 .deliveryAddress(deliveryAddress)
                 .cardDetails(cardDetailDto)
-                .dishesList(dishesList)
-                .orderAmount(orderAmount)
+                .dishesList(dishesList2)
+                .orderTotalCost(orderTotalCost)
                 .build();
 
         mapper.findAndRegisterModules();
@@ -152,26 +182,36 @@ class OrderControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].orderId").value(orderId1.toString()))
                 .andExpect(jsonPath("$[0].customerId").value(customerId.toString()))
-                .andExpect(jsonPath("$[0].orderStatus").value(defaultStatus))
                 .andExpect(jsonPath("$[0].deliveryAddress").value(deliveryAddress))
-                .andExpect(jsonPath("$[0].dishesList").value(dishesList))
+                .andExpect(jsonPath("$[0].orderTime").exists())
+                .andExpect(jsonPath("$[0].orderCounter").isNumber())
+                .andExpect(jsonPath("$[0].orderTotalCost").value(orderTotalCost))
+                .andExpect(jsonPath("$[0].dishesList[0].dishId").value(dishId1.toString()))
+                .andExpect(jsonPath("$[0].dishesList[0].quantity").value(4))
+                .andExpect(jsonPath("$[0].dishesList[1].dishId").value(dishId2.toString()))
+                .andExpect(jsonPath("$[0].dishesList[1].quantity").value(1))
+                .andExpect(jsonPath("$[0].orderStatus").value(defaultStatus))
                 .andExpect(jsonPath("$[0].paymentStatus").value(defaultStatus))
                 .andExpect(jsonPath("$[0].restaurantStatus").value(defaultStatus))
                 .andExpect(jsonPath("$[0].deliveryStatus").value(defaultStatus))
-                .andExpect(jsonPath("$[0].orderTime").exists())
-                .andExpect(jsonPath("$[0].orderCounter").isNumber())
-                .andExpect(jsonPath("$[0].orderAmount").value(orderAmount))
+                .andExpect(jsonPath("$[0].assignedCourierId").isEmpty())
+
+
                 .andExpect(jsonPath("$[1].orderId").value(orderId2.toString()))
                 .andExpect(jsonPath("$[1].customerId").value(customerId.toString()))
-                .andExpect(jsonPath("$[1].orderStatus").value(defaultStatus))
                 .andExpect(jsonPath("$[1].deliveryAddress").value(deliveryAddress))
-                .andExpect(jsonPath("$[1].dishesList").value(dishesList))
+                .andExpect(jsonPath("$[1].orderTime").exists())
+                .andExpect(jsonPath("$[1].orderCounter").isNumber())
+                .andExpect(jsonPath("$[1].orderTotalCost").value(orderTotalCost))
+                .andExpect(jsonPath("$[1].dishesList[0].dishId").value(dishId1.toString()))
+                .andExpect(jsonPath("$[1].dishesList[0].quantity").value(3))
+                .andExpect(jsonPath("$[1].dishesList[1].dishId").value(dishId2.toString()))
+                .andExpect(jsonPath("$[1].dishesList[1].quantity").value(2))
+                .andExpect(jsonPath("$[1].orderStatus").value(defaultStatus))
                 .andExpect(jsonPath("$[1].paymentStatus").value(defaultStatus))
                 .andExpect(jsonPath("$[1].restaurantStatus").value(defaultStatus))
                 .andExpect(jsonPath("$[1].deliveryStatus").value(defaultStatus))
-                .andExpect(jsonPath("$[1].orderTime").exists())
-                .andExpect(jsonPath("$[1].orderCounter").isNumber())
-                .andExpect(jsonPath("$[1].orderAmount").value(orderAmount));
+                .andExpect(jsonPath("$[1].assignedCourierId").isEmpty());
     }
 
     @Test
@@ -186,13 +226,16 @@ class OrderControllerIntegrationTest {
                 .andExpect(jsonPath("$.customerId").value(customerId.toString()))
                 .andExpect(jsonPath("$.orderStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.deliveryAddress").value(deliveryAddress))
-                .andExpect(jsonPath("$.dishesList").value(dishesList))
+                .andExpect(jsonPath("$.dishesList[0].dishId").value(dishId1.toString()))
+                .andExpect(jsonPath("$.dishesList[0].quantity").value(4))
+                .andExpect(jsonPath("$.dishesList[1].dishId").value(dishId2.toString()))
+                .andExpect(jsonPath("$.dishesList[1].quantity").value(1))
                 .andExpect(jsonPath("$.paymentStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.restaurantStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.deliveryStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.orderTime").exists())
                 .andExpect(jsonPath("$.orderCounter").isNumber())
-                .andExpect(jsonPath("$.orderAmount").value(String.valueOf(orderAmount)));
+                .andExpect(jsonPath("$.orderTotalCost").value(String.valueOf(orderTotalCost)));
     }
 
     @Test
@@ -207,13 +250,16 @@ class OrderControllerIntegrationTest {
                 .andExpect(jsonPath("$.customerId").value(customerId.toString()))
                 .andExpect(jsonPath("$.orderStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.deliveryAddress").value(deliveryAddress))
-                .andExpect(jsonPath("$.dishesList").value(dishesList))
+                .andExpect(jsonPath("$.dishesList[0].dishId").value(dishId1.toString()))
+                .andExpect(jsonPath("$.dishesList[0].quantity").value(4))
+                .andExpect(jsonPath("$.dishesList[1].dishId").value(dishId2.toString()))
+                .andExpect(jsonPath("$.dishesList[1].quantity").value(1))
                 .andExpect(jsonPath("$.paymentStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.restaurantStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.deliveryStatus").value(defaultStatus))
                 .andExpect(jsonPath("$.orderTime").exists())
                 .andExpect(jsonPath("$.orderCounter").isNumber())
-                .andExpect(jsonPath("$.orderAmount").value(String.valueOf(orderAmount)));
+                .andExpect(jsonPath("$.orderTotalCost").value(String.valueOf(orderTotalCost)));
 
         mockMvc.perform(get("/api/v1/orders/" + customerId))
                 .andExpect(status().isOk())

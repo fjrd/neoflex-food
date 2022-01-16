@@ -1,8 +1,9 @@
 package com.example.ordersservice.service;
 
-import org.example.dto.order.message.OrderMessageDto;
-import org.example.dto.order.request.OrderRequestDto;
-import org.example.dto.order.response.OrderResponseDto;
+
+import com.example.ordersservice.controller.dto.order.OrderRequestDto;
+import com.example.ordersservice.controller.dto.order.OrderResponseDto;
+import org.example.dto.order.OrderMessageDto;
 
 import java.util.List;
 import java.util.UUID;

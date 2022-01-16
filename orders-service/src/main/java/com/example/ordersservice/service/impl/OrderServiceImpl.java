@@ -1,19 +1,21 @@
 package com.example.ordersservice.service.impl;
 
+import com.example.ordersservice.controller.dto.order.OrderRequestDto;
+import com.example.ordersservice.controller.dto.order.OrderResponseDto;
 import com.example.ordersservice.mapper.OrderMessageMapper;
 import com.example.ordersservice.mapper.OrderRequestMapper;
 import com.example.ordersservice.mapper.OrderResponseMapper;
 import com.example.ordersservice.model.Customer;
 import com.example.ordersservice.model.Order;
+import com.example.ordersservice.repository.CourierRepository;
 import com.example.ordersservice.repository.CustomerRepository;
 import com.example.ordersservice.repository.OrderRepository;
 import com.example.ordersservice.service.KafkaProducerService;
 import com.example.ordersservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.dto.order.message.OrderMessageDto;
-import org.example.dto.order.request.OrderRequestDto;
-import org.example.dto.order.response.OrderResponseDto;
+import org.example.dto.order.OrderMessageDto;
+import org.example.dto.order.OrderStatus;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,6 +38,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderResponseMapper orderResponseMapper;
     private final KafkaProducerService kafkaProducerService;
     private final CustomerRepository customerRepository;
+    private final CourierRepository courierRepository;
     private final OrderRepository orderRepository;
 
     @Override
@@ -55,15 +58,17 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @CacheEvict(key = "#customerId")
     public OrderResponseDto createOrder(UUID customerId, OrderRequestDto requestDto) {
-        log.info("createOrder(), orderDto = {}", requestDto);
+        log.info("createOrder(), requestDto = {}", requestDto);
 
         checkIfOrderExists(requestDto.getOrderId());
-
-        Order order = orderRepository.saveAndFlush(orderRequestMapper.dtoToModel(requestDto)
-                .toBuilder()
-                .customer(customerRepository.findById(customerId)
-                        .orElse(new Customer(customerId)))
-                .build());
+//        java.lang.IllegalStateException: Multiple representations of the same entity
+//        Order saved = orderRepository.saveAndFlush(orderRequestMapper.dtoToModel(requestDto)
+//                .toBuilder()
+//                .customer(customerRepository.findById(customerId).orElse(new Customer(customerId)))
+//                .build());
+        Order order = orderRequestMapper.dtoToModel(requestDto);
+        order.setCustomer(customerRepository.findById(customerId).orElse(new Customer(customerId)));
+        order = orderRepository.saveAndFlush(order);
 
         kafkaProducerService.send(orderMessageMapper.modelToDto(order)
                 .toBuilder()
@@ -78,17 +83,12 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @CacheEvict(key = "#customerId")
     public OrderResponseDto updateOrder(UUID customerId, OrderRequestDto requestDto) {
-        log.info("createOrder(), customerId = {}, orderDto = {}", customerId, requestDto);
+        log.info("update(), customerId = {}, requestDto = {}", customerId, requestDto);
 
         Order order = findOrderByIdIfExists(requestDto.getOrderId());
-
         checkIfOrderBelongsToCustomer(order, customerId);
-
-        order = orderRepository.saveAndFlush(order
-                .toBuilder()
-                .deliveryAddress(requestDto.getDeliveryAddress())
-                .dishesList(requestDto.getDishesList())
-                .build());
+        orderRequestMapper.updateFromDtoToModel(requestDto, order);
+        order = orderRepository.saveAndFlush(order);
 
         kafkaProducerService.send(orderMessageMapper.modelToDto(order)
                 .toBuilder()
@@ -102,17 +102,13 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @CacheEvict(key = "#dto.customerId")
     public void updateOrderFromProcessor(OrderMessageDto dto) {
-        log.info("updateOrder(), fullOrderDto = {}", dto);
+        log.info("updateOrderFromProcessor(), dto = {}", dto);
 
         Order order = findOrderByIdIfExists(dto.getOrderId());
-
-        orderRepository.save(order.toBuilder()
-                .orderStatus(dto.getOrderStatus())
-                .paymentStatus(dto.getPaymentStatus())
-                .restaurantStatus(dto.getRestaurantStatus())
-                .deliveryStatus(dto.getDeliveryStatus())
-                .orderAmount(dto.getOrderAmount())
-                .build());
+        order.setOrderStatus(OrderStatus.IN_PROGRESS);
+        orderMessageMapper.updateFromDtoToModel(dto, order);
+        log.info("updateOrderFromProcessor(), after mapper update = {}", order);
+        orderRepository.saveAndFlush(order);
     }
 
 

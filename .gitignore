@@ -32,3 +32,5 @@ build/
 ### VS Code ###
 .vscode/
 /.jpb/
+/docker-compose2.yml
+/app_kafka_service/
