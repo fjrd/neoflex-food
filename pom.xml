@@ -7,6 +7,25 @@
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>fjrd</sonar.organization>
+        <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.language>java</sonar.language>
+        <sonar.exclusions>
+            file:**/target/generated-sources/**,
+            file:**/target/generated-test-sources/**,
+            file:**/target/test-classes/**,
+            file:**/model/*.java,
+            file:**/*Config.java,
+            file:**/*App.java,
+            shared-order-dto/**/*
+        </sonar.exclusions>
+    </properties>
+
     <modules>
         <module>customer_service</module>
         <module>delivery-service</module>
@@ -16,4 +35,26 @@
         <module>restaurant-service</module>
         <module>shared-order-dto</module>
     </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.6.0.201210061924</version>
+                <configuration>
+                    <destFile>${sonar.jacoco.reportPath}</destFile>
+                    <append>true</append>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
