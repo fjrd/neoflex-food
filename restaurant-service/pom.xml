@@ -14,7 +14,7 @@
     <name>restaurant-service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <testcontainers.version>1.16.2</testcontainers.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <springdoc-openapi.version>1.5.10</springdoc-openapi.version>
