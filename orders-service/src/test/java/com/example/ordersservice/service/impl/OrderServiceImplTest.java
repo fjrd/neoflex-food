@@ -13,12 +13,12 @@ import com.example.ordersservice.service.KafkaProducerService;
 import lombok.SneakyThrows;
 import org.example.dto.order.OrderMessageDto;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
@@ -30,24 +30,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 
-@Disabled
+@ExtendWith(MockitoExtension.class)
 class OrderServiceImplTest {
 
-    @Mock
-    private OrderMessageMapper orderMessageMapper ;
-    @Mock
-    private OrderRequestMapper orderRequestMapper;
-    @Mock
-    private OrderResponseMapper orderResponseMapper;
-    @Mock
-    private KafkaProducerService producer;
-    @Mock
-    private CustomerRepository customerRepository;
-    @Mock
-    private OrderRepository orderRepository;
-
-    @InjectMocks
-    private OrderServiceImpl service;
+    @Mock private OrderMessageMapper orderMessageMapper ;
+    @Mock private OrderRequestMapper orderRequestMapper;
+    @Mock private OrderResponseMapper orderResponseMapper;
+    @Mock private KafkaProducerService producer;
+    @Mock private CustomerRepository customerRepository;
+    @Mock private OrderRepository orderRepository;
+    @InjectMocks private OrderServiceImpl service;
 
     private static final UUID CUSTOMER_ID = UUID.randomUUID();
     private static final UUID ORDER_ID = UUID.randomUUID();
@@ -62,22 +54,20 @@ class OrderServiceImplTest {
     @BeforeEach
     void setUp() {
 
-        MockitoAnnotations.openMocks(this);
-
         requestDto = OrderRequestDto.builder().orderId(ORDER_ID).build();
         customer = new Customer(CUSTOMER_ID);
         order = Order.builder().orderId(ORDER_ID).customer(customer).build();
         messageDto = OrderMessageDto.builder().orderId(ORDER_ID).customerId(CUSTOMER_ID).build();
         responseDto = OrderResponseDto.builder().orderId(ORDER_ID).customerId(CUSTOMER_ID).build();
 
-        Mockito.when(orderRequestMapper.dtoToModel(requestDto)).thenAnswer(i -> order);
-        Mockito.when(orderMessageMapper.modelToDto(order)).thenAnswer(i -> messageDto);
-        Mockito.when(orderResponseMapper.modelToDto(order)).thenAnswer(i -> responseDto);
-        Mockito.when(orderRepository.existsById(any())).thenAnswer(i -> false);
-        Mockito.when(orderRepository.saveAndFlush(any())).thenAnswer(i -> order);
-        Mockito.when(orderRepository.getAllByCustomer(any())).thenAnswer(i -> List.of(order));
-        Mockito.when(orderRepository.findById(any())).thenReturn(Optional.of(order));
-        Mockito.when(customerRepository.findById(CUSTOMER_ID)).thenAnswer(i -> Optional.of(customer));
+        Mockito.lenient().when(orderRequestMapper.dtoToModel(requestDto)).thenAnswer(i -> order);
+        Mockito.lenient().when(orderMessageMapper.modelToDto(order)).thenAnswer(i -> messageDto);
+        Mockito.lenient().when(orderResponseMapper.modelToDto(order)).thenAnswer(i -> responseDto);
+        Mockito.lenient().when(orderRepository.existsById(any())).thenAnswer(i -> false);
+        Mockito.lenient().when(orderRepository.saveAndFlush(any())).thenAnswer(i -> order);
+        Mockito.lenient().when(orderRepository.getAllByCustomer(any())).thenAnswer(i -> List.of(order));
+        Mockito.lenient().when(orderRepository.findById(any())).thenReturn(Optional.of(order));
+        Mockito.lenient().when(customerRepository.findById(CUSTOMER_ID)).thenAnswer(i -> Optional.of(customer));
     }
 
     @Test

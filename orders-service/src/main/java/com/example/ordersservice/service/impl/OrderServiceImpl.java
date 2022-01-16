@@ -15,6 +15,7 @@ import com.example.ordersservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.order.OrderMessageDto;
+import org.example.dto.order.OrderStatus;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -104,6 +105,7 @@ public class OrderServiceImpl implements OrderService {
         log.info("updateOrderFromProcessor(), dto = {}", dto);
 
         Order order = findOrderByIdIfExists(dto.getOrderId());
+        order.setOrderStatus(OrderStatus.IN_PROGRESS);
         orderMessageMapper.updateFromDtoToModel(dto, order);
         log.info("updateOrderFromProcessor(), after mapper update = {}", order);
         orderRepository.saveAndFlush(order);

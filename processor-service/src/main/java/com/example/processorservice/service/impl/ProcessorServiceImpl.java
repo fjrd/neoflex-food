@@ -29,9 +29,7 @@ public class ProcessorServiceImpl implements ProcessorService {
         log.info("processOrder(), dto = {}", dto);
 
         repository.save(mapper.dtoToModel(dto));
-        producerService.sendOrderToRestaurantService(mapper.orderToRestaurantOrder(dto));
-        //TODO - FOR TESTING PURPOSE - DONT FORGET TO UNCOMMENT BELOW LINE AND DELETE ABOVE LINE AFTER THE PAYMENT SERVICE IS DEVELOPED
-//        producerService.sendOrderToPaymentService(mapper.orderToPayment(dto));
+        producerService.sendOrderToPaymentService(mapper.orderToPayment(dto));
     }
 
     @Override
