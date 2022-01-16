@@ -7,6 +7,13 @@
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>fjrd</sonar.organization>
+        <sonar.projectKey>Fjrd_neoflex-food</sonar.projectKey>
+        <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
+    </properties>
+
     <modules>
         <module>customer_service</module>
         <module>delivery-service</module>
@@ -16,4 +23,22 @@
         <module>restaurant-service</module>
         <module>shared-order-dto</module>
     </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar.version}</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sonar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
