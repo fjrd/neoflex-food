@@ -18,7 +18,6 @@
         <testcontainers.version>1.16.2</testcontainers.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <springdoc-openapi.version>1.5.10</springdoc-openapi.version>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../neoflex-food/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
     <dependencies>
         <dependency>
@@ -158,29 +157,6 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <goals>
-                            <goal>report-aggregate</goal>
-                        </goals>
-                        <phase>verify</phase>
-                        <configuration>
-                            <outputDirectory>
-                                ${sonar.coverage.jacoco.xmlReportPaths}
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
