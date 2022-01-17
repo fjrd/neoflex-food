@@ -1,5 +1,5 @@
 # Neoflex-food
-
+[![Build](https://github.com/Fjrd/neoflex-food/actions/workflows/build.yml/badge.svg)](https://github.com/Fjrd/neoflex-food/actions/workflows/build.yml)
 ## About
 Demo application developed as part of microservice architecture training at Neoflex company
 
@@ -30,4 +30,3 @@ Alexander Michaylenko []()
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 Please make sure to update tests as appropriate.
 
-[![Build](https://github.com/Fjrd/neoflex-food/actions/workflows/develop.yml/badge.svg)](https://github.com/Fjrd/neoflex-food/actions/workflows/develop.yml)
