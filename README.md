@@ -10,8 +10,8 @@ mvn clean install -DskipTests
 docker-compose -f docker-compose.yml up --build
 ```
 
-## Architecture
-[Link to achitecture schema documentation at Miro whiteboard](https://miro.com/app/board/uXjVOd7LGZE=/?invite_link_id=39127214006)
+## Architecture preview
+![Screenshot 2022-09-03 at 14 50 30](https://user-images.githubusercontent.com/18509753/188269151-a6d92e38-722c-470b-83e2-2f904e8cf017.png)
 
 
 ## Api documentation
