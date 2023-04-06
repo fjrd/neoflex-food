@@ -13,6 +13,7 @@ import org.example.dto.delivery.DeliveryStatus;
 import org.example.dto.delivery.message.DeliveryMessageDto;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -58,6 +59,7 @@ public class DeliveryService {
         return responseMapper.toDto(order);
     }
 
+    @Transactional
     public void update(@NonNull DeliveryOrderRequestDto requestDto, UUID orderUuid) {
         Courier courier = courierRepository.findById(requestDto.getCourierId()).orElseThrow();
         DeliveryOrder order = deliveryRepository.findById(orderUuid).orElseThrow();

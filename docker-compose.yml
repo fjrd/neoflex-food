@@ -115,18 +115,28 @@ services:
     container_name: nf-zookeeper
     expose:
       - 2181
+    volumes:
+      - zookeeper-data:/data
+      - zookeeper-datalog:/datalog
 
   kafka:
     image: wurstmeister/kafka
     container_name: nf-kafka
     ports:
-      - 9092:9092
+      - 9093:9093
     depends_on:
       - zookeeper
     environment:
-      - KAFKA_ADVERTISED_HOST_NAME=nf-kafka
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      KAFKA_BROKER_ID: 1
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://localhost:9093
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9093
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     restart: unless-stopped
+    volumes:
+      - kafka:/kafka
 
   #Redis
   redis:
@@ -192,6 +202,9 @@ services:
       - pg-delivery-data:/var/lib/postgresql/data/
 
 volumes:
+  kafka:
+  zookeeper-data:
+  zookeeper-datalog:
   pg-orders-data:
   pg-customers-data:
   pg-restaurant-data:
